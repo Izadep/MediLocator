@@ -10,19 +10,28 @@
     
     <div id="box">
         <h2>Hello.</h2>
-        <p id="welcome">Welcome Back</p>
-        <form >
+        <p id="welcome">Welcome back!</p>
+        <form onsubmit="event.preventDefault(); processData()">
             <div class="formGrp">
-            <p>Email</p>
-            <input type="text" id="emailIn" placeholder="Enter email" required>
+                <p style="text-align: left;">Email</p>
+                <input type="text" id="emailIn" placeholder="✉ Enter email" style="text-align: left;" required>
             </div>
             <div class="formGrp">
-                <p>Password</p>
-                <input type="password" id="passIn" placeholder="Enter password" required>
+                <p style="text-align: left;">Password</p>
+                <input type="password" id="passIn" placeholder="🔒︎ Enter password" style="text-align: left;" required>
             </div>
+            <a id="forgor" href="" style="text-align: right;">Forgot password?</a>
+            <button type="submit">Log in</button>
+            <div id="noAcc">
+                <p>Don't have an account? <a href="">Sign in</a> </p> 
+            </div>
+            
         </form>
 
 
     </div>
+    <script>
+        
+    </script>
 </body>
 </html>

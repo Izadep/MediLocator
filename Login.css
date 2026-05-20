@@ -19,7 +19,9 @@
             margin-top: 60px;
         }
         #box form p {
+            text-align: center;
             font-size: 16px;
+            margin-right: 100px;
         }
 
         .formGrp {
@@ -29,9 +31,48 @@
             margin-top: 30px;
         }
         .formGrp input {
+            display: block;
             background-color: rgba(209, 207, 207, 0.327);
             border: 0px;
             padding: 10px;
             border-radius: 10px;
-            width: 9%;
+            width: 96%;
+            margin: auto;
+        }
+        #box #forgor {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: right;
+            text-decoration: none;
+            margin-top: 10px;
+            color: rgb(62, 213, 135);
+        }
+        #box button {
+            display: block;
+            background-color: rgba(209, 207, 207, 0.327);
+            border: 0px;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+            margin: auto;
+            margin-top: 25px;
+            background-color: rgb(62, 213, 135);
+            font-weight: bold;
+            color: aliceblue;
+        }
+        #box #noAcc{
+            margin-top: 15px;
+            color: rgb(122, 122, 122);
+        }
+        #box #noAcc p{
+            font-size: 11px;
+            text-align: center;
+            color: rgb(122, 122, 122);
+            margin: auto;
+        }
+        #box #noAcc p a{
+            font-weight: bold;
+            text-decoration: none;
+            color: rgb(62, 213, 135);
         }
