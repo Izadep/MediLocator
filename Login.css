@@ -3,21 +3,24 @@
         }
         #logo{
             display: block;
-            width: 300px;
+            width: 510px;
             margin: auto;
+            margin-top: 60px;
+            margin-left: 500px;
             
         }
         #welcome{
             color: rgb(122, 122, 122);
         }
         #box{
+            display: block;
             width: 30%;
             box-shadow:  0 5px 15px rgba(0,0,0,0.15);
             background-color: rgb(255, 255, 255);
             margin: auto;
             border-radius: 12px;
             padding: 20px;
-            margin-top: 100px;
+            margin-top: 40px;
             font-size: 20px;
             line-height: 0.5;
         }
