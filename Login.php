@@ -39,7 +39,7 @@ include 'database.php';
             <a id="forgor" href="" style="text-align: right;" padding="20px" font-weight="bolder" color="atlantic";>Forgot password?</a>
             <button type="submit">Log in</button>
             <div id="noAcc">
-                <p>Don't have an account? <a href="">Sign in</a> </p> 
+                <p>Don't have an account? <a href="Register.php">Sign in</a> </p> 
             </div>
             
         </form>
