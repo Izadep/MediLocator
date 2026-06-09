@@ -2,7 +2,7 @@
 session_start();
 include 'database.php';
 
-if($_SERVER['REQUEST_METHOD'] == ['POSt']) {
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userid = mysqli_real_escape_string($conn, $_POST['userid']);
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -16,15 +16,14 @@ if($_SERVER['REQUEST_METHOD'] == ['POSt']) {
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_assoc($result);
         $userid = "USR" . str_pad($row['total'] + 1, 3, "0" ,STR_PAD_LEFT );
-    }
-
+    
     $sql = "INSERT INTO users (userid,name, pass, email)
-            VALUE ('$userid','$name','$password','$email')";
-
+            VALUES ('$userid','$name','$password','$email')";
+    }
     if (mysqli_query($conn,$sql)) {
         header("Location: Login.php?register_success=1");
         exit();
-    }else {
+    } else {
         $error = "Registration failed:" . mysqli_error($conn);
     }
 }
@@ -48,7 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == ['POSt']) {
             <p style="color: red;"><?php echo $error; ?></p>
         <?php endif; ?>
 
-        <form action="" method="POST">
+        <form method="POST" onsubmit="return validatePassword()">
             <div class="formGrp">
                 <p style="text-align: left;">IC/Passport number</p>
                 <input type="text" name="userid" id="idIn" placeholder="🪪IC/Passport Number" style="text-align: left;" required>
@@ -66,7 +65,7 @@ if($_SERVER['REQUEST_METHOD'] == ['POSt']) {
 
             <div class="formGrp">
                 <p style="text-align: left;">Confirm Password</p>
-                <input type="password" name="confirm_password" placeholder="🔒︎ Enter password again" style="text-align: left;" required>
+                <input type="password" name="confirm_password" id= "cpassIn" placeholder="🔒︎ Enter password again" style="text-align: left;" required>
             </div>
 
         
@@ -80,7 +79,18 @@ if($_SERVER['REQUEST_METHOD'] == ['POSt']) {
 
     </div>
     <script>
-        
+        function validatePassword() {
+            let pswd = document.getElementById("passIn").value;
+            let confpwsd = document.getElementById("cpassIn").value;
+
+            if (pswd !== confpwsd) {
+                alert("Password does not match!");
+                return false;
+            } else {
+                alert("Account Successfully Created!");
+                return true;
+            }
+        }
     </script>
 </body>
 </html>
