@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.search-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+#SearchBar {
+    width: 400px;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 20px;
+    font-size: 16px;
+    border-color: green;
+}
+#SearchBar::placeholder {
+    opacity: 0.3;
+    font-style: italic;
+}
+.search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+}
+.search-icon img {
+    width: 18px;
+    height: 18px;
+}
+#logo {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    filter: opacity(20%);
+}
+#ProfilePic{
+    position: fixed;
+    left: 100px;
+    top: 1;
+    width: 40px;
+    height: 40px;
+}
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 125px;
+    height: 100vh;      /* full screen height */
+    width: 200px;
+    background: rgb(10, 131, 69);
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+}
+
+.sidebar a:hover {
+    background: rgb(5, 66, 34);
+}
