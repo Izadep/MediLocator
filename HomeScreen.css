@@ -1,10 +1,43 @@
 body {
     font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #C1E1C1, #ECFFEC);
+}
+@media (max-width: 768px) {
+    #SearchBar {
+        width: 90%;
+    }
+    .categories-box {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.NavBar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+.nav-item {
+    display: inline-block;
+    padding: 10px 20px;
+
+    background-color: green;
+    color: white;
+
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.5s;
+}
+.nav-item:hover {
+    background-color: rgb(5, 66, 34);
+    transform: scale(1.1);
 }
 .search-container{
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 #SearchBar {
     width: 400px;
@@ -13,6 +46,7 @@ body {
     border-radius: 20px;
     font-size: 16px;
     border-color: green;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 #SearchBar::placeholder {
     opacity: 0.3;
@@ -36,23 +70,39 @@ body {
     width: 500px;
     filter: opacity(20%);
 }
+.profile-container {
+    position: fixed;
+    left: 0;
+    top: 0px;
+    height: 100vh;
+    width: 200px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
 #ProfilePic{
     position: fixed;
-    left: 100px;
-    top: 1;
+    left: 5px;
+    top: 75px;
     width: 40px;
     height: 40px;
+}
+#Username {
+    padding: 65px 10px;
+    margin-left: 50px;
 }
 .sidebar {
     position: fixed;
     left: 0;
     top: 125px;
-    height: 100vh;      /* full screen height */
+    height: 100vh;
     width: 200px;
     background: rgb(10, 131, 69);
     display: flex;
     flex-direction: column;
     padding-top: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar a {
@@ -64,4 +114,99 @@ body {
 
 .sidebar a:hover {
     background: rgb(5, 66, 34);
+}
+.mapAyerKeroh {
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+}
+#loc-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+#marker-image {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+.current-location {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.area-name {
+    font-size: 16px;
+    font-style: italic;
+    margin-bottom: 5px;
+    color: gray;
+}
+#map-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 0px;
+    border-radius: 25px;
+    padding: 15px;
+    margin: auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+#map {
+    width: 1600px;
+    height: 550px;
+    border: 2px solid green;
+    border-radius: 25px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.quickcategories-container {
+    display: flex;
+    justify-content: center;
+    top: 0;
+}
+
+.categories-box {
+    display: flex;
+    gap: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 10px;
+    background: rgb(10, 131, 69);
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.5s;
+    width: 100px;
+    text-align: center;
+}
+
+.category img {
+    width: 70px;
+    height: 70px;
+}
+
+.category span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.category:hover {
+    background: rgb(5, 66, 34);
+    transform: scale(1.10);
 }
