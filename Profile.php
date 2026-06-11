@@ -29,7 +29,7 @@ $email = $_SESSION['user_email'];
         <!-- Profile Header -->
         <div class="profile-header">
             <div class="profile-pic">
-                <img src="image/user-icon.png" alt="Profile">
+                <img src="image/user-icon.png" alt="Profile Picture">
             </div>
 
             <div class="profile-info">
@@ -47,12 +47,12 @@ $email = $_SESSION['user_email'];
 
                 <div class="appointment-info">
                     <span class="appointment-date">
-                        Friday, 22/5/2026 (Tomorrow)
+                        📅 Friday, 22/5/2026 (Tomorrow)
                     </span>
 
-                    <p class="clinic-type">Clinic</p>
-
-                    <h3>Klinik Ayer Keroh</h3>
+                    <p class="healthcare-type">Clinic</p>
+                    <p class="healthcare-name"><b>
+                    Klinik Ayer Keroh</b></p>
 
                     <p class="clinic-address">
                         Klinik Ayer Keroh, 25, Lorong ...

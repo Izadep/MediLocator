@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(to bottom, #C1E1C1, #ECFFEC);
+    background: linear-gradient(to bottom, rgb(114, 216, 222), #ECFFEC);
     min-height: 100vh;
 }
 
@@ -17,7 +17,7 @@ body {
     display: inline-block;
     padding: 10px 20px;
 
-    background-color: green;
+    background-color: rgb(10, 125, 131);
     color: white;
 
     border-radius: 10px;
@@ -46,7 +46,7 @@ body {
 
 /* Green Appointment Header */
 .appointment-header {
-    background: rgb(10, 131, 69);
+    background: rgb(10, 125, 131);
     padding: 25px;
     text-align: center;
     color: white;
@@ -81,7 +81,7 @@ body {
     width: 225px;
     padding: 12px 15px;
 
-    background: rgb(10, 131, 69);
+    background: rgb(10, 125, 131);
     color: white;
 
     border: none;
@@ -99,14 +99,14 @@ body {
     color: #333;
 }
 
-.history-link {
+.appointment-link {
     margin-top: 35px;
-    color: #1d6fc2;
+    color: rgb(10, 131, 69);
     font-weight: bold;
     text-decoration: none;
 }
 
-.history-link:hover {
+.appointment-link:hover {
     text-decoration: underline;
 }
 

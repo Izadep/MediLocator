@@ -70,5 +70,8 @@
             </div>
         </div>
     </div>
+    <div class="footer">
+        <img src="image\MedilocatorIslam.svg" alt="MediLocator Logo">
+    </div>
 </body>
 </html>

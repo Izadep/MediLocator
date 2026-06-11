@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(to bottom, #C1E1C1, #ECFFEC);
     min-height: 100vh;
 }
@@ -96,9 +96,18 @@ body {
     font-size:12px;
 }
 
-.clinic-type{
+.healthcare-type{
+    border: 1px #4a90e2;
+    border-radius: 15px;
+    background-color: #4a91e261;
+    width: 70px;
+    text-align: center;
     color:#4a90e2;
-    margin:5px 0;
+    margin:10px 0;
+}
+.healthcare-name{
+    font-size: 20px;
+    margin-top: 5px;
 }
 
 .clinic-address{
