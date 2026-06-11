@@ -1,8 +1,8 @@
-<?php
-session_start();
-
-include 'database.php';
-?>
+<?php if(isset($_GET['register_success'])): ?>
+<script>
+    alert("Account successfully created!");
+</script>
+<?php endif; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +27,7 @@ include 'database.php';
         }
         ?>
 
-        <form action="process_login.php" method="POST">
+        <form action="login_process.php" method="POST">
             <div class="formGrp">
                 <p style="text-align: left;">Email</p>
                 <input type="text" name="email" id="emailIn" placeholder="✉ Enter email" style="text-align: left;" required>

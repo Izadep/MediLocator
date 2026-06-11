@@ -13,12 +13,14 @@
         <a href="Appointment.php" class="nav-item">Appointment</a>
         <a href="Chat.php" class="nav-item">Chat</a>
     </div>
+    <form action="Search.php" method="GET">
     <div class="search-container">
-        <a href="Search">
-            <span class="search-icon"><img src="image/magnifyingGlass.png"></span>
-        </a>
-        <input type="text" placeholder="Search Clinic or Pharmacy..." id="SearchBar">
+        <button type="submit" class="search-icon">
+            <img src="image/magnifyingGlass.png">
+        </button>
+        <input type="text" name="search" placeholder="Search Clinic or Pharmacy..." id="SearchBar">
     </div>
+    </form>
     <!--<div class ="profile-container">
         <div id="ProfPart">
             <a href="Profile.php">
@@ -36,7 +38,6 @@
         <a href="Chat.php">Chat</a>
     </div> -->
     <div class="content">
-
     <div class="mapAyerKeroh">
         <div id="map-container">
             <div id="loc-container">

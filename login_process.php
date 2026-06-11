@@ -22,7 +22,7 @@
                 $_SESSION['user_email'] = $user['email'];
                 $_SESSION['logged_in'] = true;
 
-                header("Location: dashboard.php");
+                header("Location: HomeScreen.php");
                 exit();
 
             } else {

@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #C1E1C1, #ECFFEC);
+    min-height: 100vh;
+}
+.NavBar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+.nav-item {
+    display: inline-block;
+    padding: 10px 20px;
+
+    background-color: green;
+    color: white;
+
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.5s;
+}
+.nav-item:hover {
+    background-color: rgb(5, 66, 34);
+    transform: scale(1.1);
+}
+.profile-container{
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.profile-header{
+    background:#e8f3ef;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    border-radius:10px;
+}
+
+.profile-pic{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#e85c8a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.profile-pic img{
+    width:35px;
+}
+
+.profile-info h2{
+    margin:0;
+}
+
+.profile-info p{
+    margin:5px 0 0;
+    color:#666;
+}
+
+.appointment-section{
+    margin-top:20px;
+}
+
+.appointment-card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.clinic-image{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#dff0d8;
+}
+
+.appointment-info{
+    flex:1;
+}
+
+.appointment-date{
+    color:red;
+    font-size:12px;
+}
+
+.clinic-type{
+    color:#4a90e2;
+    margin:5px 0;
+}
+
+.clinic-address{
+    color:#888;
+    font-size:13px;
+}
+
+.appointment-info a{
+    color:#00a676;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.go-btn{
+    padding:8px 18px;
+    border:none;
+    border-radius:8px;
+    background:#e8f3ef;
+    color:#00a676;
+    cursor:pointer;
+}
+
+.profile-menu{
+    margin-top:20px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.profile-menu a{
+    display:block;
+    padding:15px 20px;
+    text-decoration:none;
+    color:#555;
+    border-bottom:1px solid #eee;
+}
+
+.profile-menu a:last-child{
+    border-bottom:none;
+}
+
+.logout{
+    color:red !important;
+}

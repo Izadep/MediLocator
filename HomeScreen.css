@@ -30,7 +30,7 @@ body {
 
     transition: 0.5s;
 }
-.nav-item:hover {
+.nav-item:hover{
     background-color: rgb(5, 66, 34);
     transform: scale(1.1);
 }
@@ -56,6 +56,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
     padding: 10px 12px;
 }
 .search-icon img {
@@ -118,7 +122,7 @@ body {
 .mapAyerKeroh {
     display: flex;
     justify-content: center;
-    padding: 60px;
+    padding: 50px;
 }
 #loc-container {
     display: flex;

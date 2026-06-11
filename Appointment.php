@@ -1,3 +1,13 @@
+<?php
+session_start();
+if(!isset($_SESSION['logged_in'])) {
+    header("Location: Login.php");
+    exit();
+}
+
+$name = $_SESSION['user_name'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +34,7 @@
             <div class="select-area">
                 <label for="appointmentUser">Select appointment for :</label>
                 <select id="appointmentUser" name="appointmentUser">
-                    <option value="user1">User 1 (you)</option>
+                    <option value="user1"><?php echo $name . " (you)"?></option>
                     <option value="user2">User 2</option>
                 </select>
             </div>

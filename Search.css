@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #C1E1C1, #ECFFEC);
+}
+body h1, h2 {
+    text-align: center;
+}
+.NavBar {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+.nav-item {
+    display: inline-block;
+    padding: 10px 20px;
+
+    background-color: green;
+    color: white;
+
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.5s;
+}
+.nav-item:hover{
+    background-color: rgb(5, 66, 34);
+    transform: scale(1.1);
+}
+.search-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+#SearchBar {
+    width: 400px;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 20px;
+    font-size: 16px;
+    border-color: green;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+#SearchBar::placeholder {
+    opacity: 0.3;
+    font-style: italic;
+}
+.search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px 12px;
+}
+.search-icon img {
+    width: 18px;
+    height: 18px;
+}
+.healthcare-list {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin: 12px auto;
+    width: 80%;
+    max-width: 900px;
+    height: 100px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: 0.2s ease-in-out;
+}
+.healthcare-list:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.healthcare-list h3 {
+    margin: 0;
+    color: #000000;
+}
+.healthcare-list p {
+    margin: 5px 0 0;
+    color: grey;
+}
+.no-list {
+    text-align: center;
+}
