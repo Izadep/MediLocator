@@ -27,7 +27,7 @@ $name = $_SESSION['user_name'];
 
     <div class="appointment-page">
         <div class="appointment-header">
-            <h1>Appointment</h1>
+            <h1>📅 Appointment 📅</h1>
         </div>
 
         <div class="appointment-controls">

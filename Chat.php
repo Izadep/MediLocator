@@ -33,7 +33,7 @@ $chats = [
     </div>
     <div class="chat-page">
         <div class="chat-header">
-            <h1>Chat</h1>
+            <h1>💬 Chat 💬</h1>
         </div>
 
         <div class="chat-controls">

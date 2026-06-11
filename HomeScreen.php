@@ -38,6 +38,18 @@
         <a href="Chat.php">Chat</a>
     </div> -->
     <div class="content">
+        <div class="IntroMedilocator-container">
+            <h2>Welcome To MediLocator!</h2>
+
+            <div class="medilocator-info">
+                <p>
+                    MediLocator helps users quickly find nearby clinics,
+                    pharmacies, and healthcare specialists. Search for medical
+                    services, view locations on the map, and access healthcare
+                    information conveniently from one platform.
+                </p>
+            </div>
+        </div>
     <div class="mapAyerKeroh">
         <div id="map-container">
             <div id="loc-container">

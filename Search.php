@@ -61,7 +61,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 } else {
     echo "<div class='no-list'>
-    <p>(No result found for <b>" . htmlspecialchars($search) . ")</b></p>
+    <p>(No result found for <b>" . htmlspecialchars($search) . "</b>)</p>
     </div>";
 }
 ?>
