@@ -34,7 +34,10 @@
             </div>
             <div class="formGrp">
                 <p style="text-align: left;">Password</p>
-                <input type="password" name="password" id="passIn" placeholder="🔒︎ Enter password" style="text-align: left;" required>
+                <div class="input-wrapper">
+                    <input type="password" name="password" id="passIn" placeholder="🔒︎ Enter password" style="text-align: left;" required>
+                    <span class="toggle-pass" onclick="togglePass('passIn',this)">👁️</span>
+                </div>
             </div>
             <a id="forgor" href="" style="text-align: right;" padding="20px" font-weight="bolder" color="atlantic";>Forgot password?</a>
             <button type="submit">Log in</button>
@@ -47,7 +50,19 @@
 
     </div>
     <script>
-        
+        function togglePass(input, icon) {
+            var passIn = document.getElementById(input);
+
+            if(passIn.type === "password") {
+                passIn.type= "text";
+                icon.innerText="🙈";
+  
+            }else {
+                passIn.type= "password";
+                icon.innerText="👁️";
+                
+            }
+        }
     </script>
 </body>
 </html>
