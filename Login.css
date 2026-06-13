@@ -66,7 +66,7 @@
             width: 100%;
             margin: auto;
             margin-top: 25px;
-            background-color: rgb(62, 213, 135);
+            background-color: rgb(49, 203, 151);
             font-weight: bold;
             color: aliceblue;
         }
@@ -83,7 +83,7 @@
         #box #noAcc p a{
             font-weight: bold;
             text-decoration: none;
-            color: rgb(62, 213, 135);
+            color: rgb(49, 203, 151);
         }
         .input-wrapper{
             position: relative;
