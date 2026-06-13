@@ -77,12 +77,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="formGrp">
                 <p style="text-align: left;">Password</p>
-                <input type="password" name="password" id="passIn" placeholder="🔒︎ Enter password" style="text-align: left;" required>
+                <div class="input-wrapper">
+                    <input type="password" name="password" id="passIn" placeholder="🔒︎ Enter password" style="text-align: left;" required>
+                    <span class="toggle-pass" onclick="togglePass()">👁️</span>
+                </div>
             </div>
 
             <div class="formGrp">
                 <p style="text-align: left;">Confirm Password</p>
-                <input type="password" name="confirm_password" id= "cpassIn" placeholder="🔒︎ Enter password again" style="text-align: left;" required>
+                <div class="input-wrapper">
+                    <input type="password" name="confirm_password" id= "cpassIn" placeholder="🔒︎ Enter password again" style="text-align: left;" required>
+                     <span class="toggle-pass" onclick="togglePass()">👁️</span>
+                </div>
             </div>
 
         
@@ -105,6 +111,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 return false;
             } else {
                 return true;
+            }
+        }
+        function togglePass() {
+            var passIn = document.getElementById("passIn");
+            var cpassIn= document.getElementById("cpassIn");
+            var icon= document.querySelectorAll(".toggle-pass");
+
+            if(passIn.type === "password") {
+                passIn.type= "text";
+                cpassIn.type= "text";
+
+                icon.forEach(function(icon) {
+                    icon.innerText="🙈";
+                });
+                
+            }else {
+                passIn.type= "password";
+                cpassIn.type= "password";
+
+                icon.forEach(function(icon) {
+                    icon.innerText="👁️";
+                });
             }
         }
     </script>

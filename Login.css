@@ -33,9 +33,10 @@
         }
 
         .formGrp {
-            line-height: 1px;
+            line-height: normal;
+            margin-bottom: 25px;
         }
-        #box form div {
+        #box form .formGrp {
             margin-top: 30px;
         }
         .formGrp input {
@@ -83,4 +84,27 @@
             font-weight: bold;
             text-decoration: none;
             color: rgb(62, 213, 135);
+        }
+        .input-wrapper{
+            position: relative;
+            display: block;
+            width: 96%;
+            margin: auto;
+        }
+        .input-wrapper input{
+            width: 100% !important;
+            box-sizing: border-box !important;
+            padding-right: 40px !important;
+            margin: 0 !important;
+        }
+        .toggle-pass{
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 10;
+            user-select: none;
+            line-height: normal;
         }
