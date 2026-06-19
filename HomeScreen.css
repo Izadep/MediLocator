@@ -65,6 +65,7 @@ body {
 }
 
 .search-container{
+    margin: 0 auto 40px auto;
     display: flex;
     align-items: center;
     background-color: var(--white);
@@ -74,8 +75,7 @@ body {
     width: 100%;
     max-width: 500px;
     box-shadow:  0 8px 20px rgba(32, 51, 70, 0.08);
-    transition: all 0.3 ease;
-    margin-bottom: 40px;
+    transition: all 0.3s ease;
 }
 #SearchBar {
     flex: 1;
@@ -100,7 +100,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: background 0.3 ease;
+    transition: background 0.3s ease;
 }
 .search-icon img {
     width: 33px;
