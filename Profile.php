@@ -47,7 +47,6 @@ $email = $_SESSION['user_email'];
 
                 <div class="appointment-info">
                     <span class="appointment-date">
-                        📅 Friday, 22/5/2026 (Tomorrow)
                     </span>
 
                     <p class="healthcare-type">Clinic</p>
