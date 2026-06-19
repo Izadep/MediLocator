@@ -84,7 +84,6 @@ $email = $_SESSION['user_email'];
    </div>
 
    <div class="footer">
-        <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo" onerror="this.style.display='none';">
         <p>© 2024 MediLocator. All Rights Reserved.</p>
     </div>
 
