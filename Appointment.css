@@ -5,6 +5,9 @@
     --mint-pale: #E0F0EE;
     --teal-med: #8ACCC2;
     --white: #ffffff;
+    --sky-blue:#87CEEB;
+    --pastel-blue: #A7C7E7;
+    --azure:#F0FFFF;
 }
 
 * {
@@ -16,6 +19,13 @@
 
 body {
     background-color: var(--mint-pale);
+    color: var(--night-ocean);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.bodyhistory {
+    background-color: var(--azure);
     color: var(--night-ocean);
     min-height: 100vh;
     overflow-x: hidden;
@@ -70,7 +80,7 @@ body {
     font-weight: 600;
     padding: 10px 18px;
     border-radius: 8px;
-    transition: all 0.3 ease;
+    transition: all 0.3s ease;
     background: transparent;
     border: none;
     font-size: 16px;
@@ -119,6 +129,13 @@ body {
     color: var(--white);
 }
 
+.history-header {
+    background: linear-gradient(135deg, var(--sky-blue), var(--pastel-blue));
+    padding: 25px;
+    text-align: center;
+    color: var(--white);
+}
+
 .appointment-header h1 {
     font-size: 30px;
     font-weight: 800;
@@ -156,7 +173,49 @@ body {
     box-shadow: 0 8px 20px rgba(97, 188, 174, 0.3);
 }
 
+.select-area1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.select-area1 label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--night-ocean);
+}
+
+.select-area1 select {
+    width: 230px;
+    padding: 12px 15px;
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(97, 188, 174, 0.3);
+}
+
+.select-area1 select {
+    width: 230px;
+    padding: 12px 15px;
+    background: var(--sky-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(97, 188, 174, 0.3);
+}
+
 .select-area select option {
+    background: var(--white);
+    color: var(--night-ocean);
+}
+
+.select-area1 select option {
     background: var(--white);
     color: var(--night-ocean);
 }
@@ -170,6 +229,17 @@ body {
 
 .history-link:hover {
     color: var(--night-ocean);
+    text-decoration: underline;
+}
+.appointment-link {
+    margin-top: 35px;
+    color: var(--sky-blue);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.appointment-link:hover {
+    color: var(--pastel-blue);
     text-decoration: underline;
 }
 
@@ -186,6 +256,8 @@ body {
     border-top: 2px solid var(--mint-pale);
     margin: 25px auto;
 }
+
+
 
 .appointment-content {
     min-height: 420px;
@@ -211,7 +283,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
-    transition: all 0.3 ease;
+    transition: all 0.3s ease;
     z-index: 1;
 }
 
