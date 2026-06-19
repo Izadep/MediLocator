@@ -17,60 +17,104 @@ $email = $_SESSION['user_email'];
     <link rel="stylesheet" href="Profile.css">
     <title>Profile</title>
 </head>
+
 <body>
-    <div class="NavBar">
-        <a href="HomeScreen.php" class="nav-item">Home</a>
-        <a href="Profile.php" class="nav-item">Profile</a>
-        <a href="Appointment.php" class="nav-item active">Appointment</a>
-        <a href="Chat.php" class="nav-item">Chat</a>
-    </div>
-    <div class="profile-container">
+    <nav class="NavBar">
+        <div class="nav-container">
+            <a href="HomeScreen.php" class="logo">
+                <img src="image/MedilocatorIslam.svg">
+            </a>
+            <div class="nav-links">
+                <a href="HomeScreen.php" class="nav-item">Home</a>
+                <a href="Appointment.php" class="nav-item">Appointment</a>
+                <a href="Chat.php" class="nav-item">Chat</a>
 
-        <!-- Profile Header -->
-        <div class="profile-header">
-            <div class="profile-pic">
-                <img src="image/user-icon.png" alt="Profile Picture">
-            </div>
-
-            <div class="profile-info">
-                <h2><?php echo $_SESSION['user_name']; ?></h2>
-                <p><?php echo $_SESSION['user_email']; ?></p>
+                <div class="dropdown">
+                    <button class="dropbtn nav-item active">Profile ▼</button>
+                    <div class="dropdown-content">
+                        <a href="Profile.html">My Account</a>
+                        <a href="Login.html" style="color: red;">Log Out</a>
+                    </div>
+                </div>
             </div>
         </div>
+    </nav>
 
-        <!-- Appointment Section -->
-        <div class="appointment-section">
-            <h2>My Appointments</h2>
+   <div class="profile-header slide-in">
+        <div class="profile-container">
 
-            <div class="appointment-card">
-                <div class="clinic-image"></div>
-
-                <div class="appointment-info">
-                    <span class="appointment-date">
-                    </span>
-
-                    <p class="healthcare-type">Clinic</p>
-                    <p class="healthcare-name"><b>
-                    Klinik Ayer Keroh</b></p>
-
-                    <p class="clinic-address">
-                        Klinik Ayer Keroh, 25, Lorong ...
-                    </p>
-
-                    <a href="#">APPOINTMENT DETAILS</a>
+            <div class="profile-header slide-in">
+                <div class="profile-pic">
+                    <img src="<?php echo $_SESSION['user-img'] ?>" alt="Profile Picture">
                 </div>
 
-                <button class="go-btn">Go</button>
+                <div class="profile-info">
+                    <h2><?php echo $_SESSION['user_name']; ?></h2>
+                    <p><?php echo $_SESSION['user_email']; ?></p>
+                </div>
+            </div>
+
+            <div class="appointment-section slide-in" style="animation-delay: 0.1s;">
+                <h2 class="section-title">My Appointments</h2>
+
+                <div class="appointment-card">
+                    <div class="clinic-image"></div>
+
+                   <!-- <div class="appointment-info">
+                         <span class="appointment-date">Tomorrow, 10:00 AM</span>
+                        
+                        <div class="healthcare-type">Clinic</div>
+                        <p class="healthcare-name"><b>Klinik Ayer Keroh</b></p>
+                        <p class="clinic-address">Klinik Ayer Keroh, 25, Lorong ...</p>
+                        
+                        <a href="#" class="details-link">VIEW DETAILS →</a>
+                    </div>-->
+
+                    <button class="go-btn">Go</button>
+                </div>
+            </div>
+
+            <div class="profile-menu slide-in" style="animation-delay: 0.2s;">
+                <a href="History.php">📅 Appointment History</a>
+                <a href="Saved.php">❤️ Saved Clinics / Pharmacies</a>
+                <a href="Settings.php">⚙️ Settings</a>
+                <a href="logout.php" class="logout">🚪 Log Out</a>
             </div>
         </div>
+   </div>
 
-        <!-- Menu Section -->
-        <div class="profile-menu">
-            <a href="History.php">Appointment History</a>
-            <a href="Saved.php">Saved Clinics / Pharmacies</a>
-            <a href="Settings.php">Settings</a>
-            <a href="logout.php" class="logout">Log Out</a>
-        </div>
+   <div class="footer">
+        <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo" onerror="this.style.display='none';">
+        <p>© 2024 MediLocator. All Rights Reserved.</p>
     </div>
+
+    <script>
+        window.addEventListener('scroll',function(){
+            var navbar = document.getElementById('navbar');
+            if(window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            }else{
+                navbar.classList.remove('scrolled');
+            }
+        });
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const slideElements = document.querySelectorAll('.slide-in');
+        slideElements.forEach(el => observer.observe(el));
+
+    </script>
 </body>
 </html>
