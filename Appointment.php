@@ -18,7 +18,8 @@ $name = $_SESSION['user_name'];
 </head>
 
 <body>
-    <nav class="NavBar" id="navbar">
+</body>
+<nav class="NavBar" id="navbar">
         <div class="nav-contain">
             <a href="HomeScreen.php" class="logo">
                 <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
@@ -75,7 +76,31 @@ $name = $_SESSION['user_name'];
         <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
         <p>&copy; 2026 MediLocator</p>
     </footer>
-</body>
+<script>
+    window.addEventListener('scroll',function(){
+            var navbar= document.getElementById('navbar');
+            if(window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        })
 
+        const observerOptions= {
+            root: null, rootMargin: '0px', thresold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const slideElements = document.querySelectorAll('.slide-in');
+        slideElements.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
