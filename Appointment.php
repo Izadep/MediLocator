@@ -18,7 +18,6 @@ $name = $_SESSION['user_name'];
 </head>
 
 <body>
-</body>
     <nav class="NavBar" id="navbar">
             <div class="nav-contain">
                 <a href="HomeScreen.php" class="logo">
@@ -66,8 +65,7 @@ $name = $_SESSION['user_name'];
                 <hr>
 
                 <div class="appointment-content">
-                    <!-- appointment cards/content later -->
-                </div>
+                    </div>
             </div>
         </div>
 

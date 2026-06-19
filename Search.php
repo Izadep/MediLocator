@@ -4,6 +4,7 @@ include 'database.php';
 
 $search = $_GET['search'] ?? '';
 $search = mysqli_real_escape_string($conn, $search);
+$category = $_GET['category'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -36,10 +37,34 @@ $search = mysqli_real_escape_string($conn, $search);
 <h1>Search Results</h1>
 
 <?php
-$sql = "SELECT clinicName AS name, address FROM clinic WHERE clinicName LIKE '%$search%'
-        UNION
-        SELECT pharmacyName AS name, address FROM pharmacy WHERE pharmacyName LIKE '%$search%' ORDER BY name";
+if ($category == 'clinic') {
 
+    $sql = "SELECT clinicName AS name, address
+            FROM clinic
+            ORDER BY clinicName";
+
+}
+elseif ($category == 'pharmacy') {
+
+    $sql = "SELECT pharmacyName AS name, address
+            FROM pharmacy
+            ORDER BY pharmacyName";
+
+}
+else {
+
+    $sql = "SELECT clinicName AS name, address
+            FROM clinic
+            WHERE clinicName LIKE '%$search%'
+
+            UNION
+
+            SELECT pharmacyName AS name, address
+            FROM pharmacy
+            WHERE pharmacyName LIKE '%$search%'
+
+            ORDER BY name";
+}
 $result = mysqli_query($conn, $sql);
 
 if ($result && mysqli_num_rows($result) > 0) {

@@ -54,14 +54,14 @@
 
         <div class="quickcategories-container slide-in" style="animation-delay: 0.3;">
             <div class="categories-box">
-                <div class="category">
-                    <img src="image/Clinic-icon.png">
+                <a href="Search.php?category=clinic" class="category">
+                    <img src="image/Clinic-icon.png" alt="Clinic">
                     <span>Clinic</span>
-                </div>
-                <div class="category">
+                </a>
+                <a href="Search.php?category=pharmacy" class="category">
                     <img src="image/pharmacy-icon.png">
                     <span>Pharmacy</span>
-                </div>
+                </a>
                 <div class="category">
                     <img src="image/specialist-icon.png">
                     <span>Specialist</span>
