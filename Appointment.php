@@ -54,7 +54,7 @@ $name = $_SESSION['user_name'];
                                 <select id="appointmentUser" name="appointmentUser">
                                     <option value="user1"><?php echo $name . " (you)"?></option>
                                     <option value="user2">User 2</option>
-                                </select>keluar dikit jir
+                                </select>
                     </div>
             </div>
 
