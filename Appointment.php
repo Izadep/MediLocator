@@ -51,10 +51,10 @@ $name = $_SESSION['user_name'];
                     <label for="appointmentUser">Select appointment for:</label>
 
                     <div class="custom-select-wrapper">
-                        <select id="appointmentUser" name="appointmentUser">
-                            <option value="user1"><?php echo $name . " (you)" ?></option>
-                            <option value="user2">User 2</option>
-                        </select>
+                                <select id="appointmentUser" name="appointmentUser">
+                                    <option value="user1"><?php echo $name . " (you)"?></option>
+                                    <option value="user2">User 2</option>
+                                </select>
                     </div>
                 </div>
 
