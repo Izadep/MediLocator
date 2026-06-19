@@ -16,64 +16,66 @@ $name = $_SESSION['user_name'];
     <title>Appointment</title>
     <link rel="stylesheet" href="Appointment.css">
 </head>
+
 <body>
-    <nav id="navbar">
-        <div class="nav-container">
+    <nav class="NavBar" id="navbar">
+        <div class="nav-contain">
             <a href="HomeScreen.php" class="logo">
-                <img src="image/MedilocatorIslam.svg">
+                <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
             </a>
 
-            <div calss="nav-links">
-                <a href="HomeScreen.html" class="nav-item">Home</a>
-                <a href="Appointment.html" class="nav-item active">Appointment</a>
-                <a href="Chat.html" class="nav-item">Chat</a>
+            <div class="nav-links">
+                <a href="HomeScreen.php" class="nav-item">Home</a>
+                <a href="Appointment.php" class="nav-item active">Appointment</a>
+                <a href="Chat.php" class="nav-item">Chat</a>
+
                 <div class="dropdown">
-                    <button class="dropbtn nav-item">Profile</button>
+                    <button class="dropbtn nav-item">Profile ▼</button>
                     <div class="dropdown-content">
-                        <a href="Profile.html">My Account</a>
-                        <a href="#">Settings</a>
-                        <a href="Login.html">Log Out</a>
+                        <a href="Profile.php">My Account</a>
+                        <a href="logout.php" style="color: red;">Log out</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
-   
 
-   <div class="content slide-in">
+    <div class="content slide-in">
         <div class="appointment-page">
-
             <div class="appointment-header">
                 <h1>Appointment</h1>
             </div>
 
             <div class="appointment-controls">
                 <div class="select-area">
-                    <label for="appointmentUser">Select appointment for :</label>
+                    <label for="appointmentUser">Select appointment for:</label>
+
                     <div class="custom-select-wrapper">
-                                <select id="appointmentUser" name="appointmentUser">
-                                    <option value="user1"><?php echo $name . " (you)"?></option>
-                                    <option value="user2">User 2</option>
-                                </select>keluar dikit jir
+                        <select id="appointmentUser" name="appointmentUser">
+                            <option value="user1"><?php echo $name . " (you)" ?></option>
+                            <option value="user2">User 2</option>
+                        </select>
                     </div>
+                </div>
+
+                <a href="History.php" class="history-link">History</a>
             </div>
 
-            <a href="History.php" class="history-link">History</a>
+            <p class="no-appointment">(No upcoming appointment)</p>
 
-        <   /div>
+            <hr>
 
-        <p class="no-appointment">(No upcoming appointment)</p>
-
-        <hr>
-
-        <div class="appointment-content">
-
-            <div class="footer">
-                <img src="image\MedilocatorIslam.svg" alt="MediLocator Logo">
+            <div class="appointment-content">
+                <!-- appointment cards/content later -->
             </div>
         </div>
-        </div>
-   </div>
+    </div>
+
+    <footer class="footer">
+        <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
+        <p>&copy; 2026 MediLocator</p>
+    </footer>
+</body>
 
 </body>
 </html>

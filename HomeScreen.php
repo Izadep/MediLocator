@@ -8,16 +8,17 @@
 </head>
 <body>
 
-    <nav id="navbar">
-         <div class="nav-contain">
+    <nav class="NavBar" id="navbar">
+        <div class="nav-contain">
             <a href="HomeScreen.php" class="logo">
-                <img src="image/MedilocatorIslam.svg">
+                <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
             </a>
 
             <div class="nav-links">
                 <a href="HomeScreen.php" class="nav-item active">Home</a>
                 <a href="Appointment.php" class="nav-item">Appointment</a>
                 <a href="Chat.php" class="nav-item">Chat</a>
+
                 <div class="dropdown">
                     <button class="dropbtn nav-item">Profile ▼</button>
                     <div class="dropdown-content">

@@ -1,5 +1,18 @@
+        :root {
+            --teal: #61BCAE;
+            --night-ocean: #415c77;
+            --mint-bright: #ADD8D1;
+            --mint-pale: #E0F0EE;
+            --teal-med: #8ACCC2;
+            --white: #ffffff;
+            --navy: #001d4f;
+        }
+
+        
         body{
             font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--mint-pale);
+            color: var(--navy);
         }
         #logo{
             display: block;
