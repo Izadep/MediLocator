@@ -1,155 +1,350 @@
-body {
+:root {
+    --teal: #61BCAE;
+    --night-ocean: #415c77;
+    --mint-bright: #ADD8D1;
+    --mint-pale: #E0F0EE;
+    --teal-med: #8ACCC2;
+    --white: #ffffff;
+    --navy: #001d4f;
+}
+
+
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(to bottom, #C1E1C1, #ECFFEC);
+}
+body {
+    background-color: var(--mint-pale);
+    color: var(--night-ocean);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
-.NavBar {
+
+#NavBar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+#navbar.scrolled {
+    padding: 5px 0;
+    box-shadow: 0 4px 20px rgba(32, 51, 70, 0.1);
+}
+
+
+.nav-item {
+    text-decoration: none;
+    color: var(--navy);
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3 ease;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nav-item:hover, .nav-item.active{
+    background-color: var(--mint-bright);
+    color: var(--navy);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+.logo img {
+    height: 40px;
+}
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    right: 0;
+    background-color: var(--white);
+    min-width: 160px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3 ease;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: var(--navy);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--mint-pale);
+    color: var(--teal);
+}
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.content {
+    flex: 1;
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-top: 50px;
+    margin-top: 100px;
+    padding: 20px;
 }
-.nav-item {
-    display: inline-block;
-    padding: 10px 20px;
 
-    background-color: green;
-    color: white;
-
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-
-    transition: 0.5s;
-}
-.nav-item:hover {
-    background-color: rgb(5, 66, 34);
-    transform: scale(1.1);
-}
-.profile-container{
-    width: 90%;
+.profile-container {
+    width: 100%;
     max-width: 800px;
-    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.profile-header{
-    background:#e8f3ef;
-    padding:20px;
-    display:flex;
-    align-items:center;
-    gap:20px;
-    border-radius:10px;
+.profile-header {
+    background-color: var(--white);
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(32, 51, 70, 0.08);
 }
 
-.profile-pic{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:#e85c8a;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.profile-pic img{
-    width:35px;
+.profile-pic {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--mint-bright);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(97, 188, 174, 0.4);
+    overflow: hidden;
 }
 
 .profile-info h2{
-    margin:0;
+    margin: 0;
+    font-size: 28px;
+    color: var(--navy);
 }
 
-.profile-info p{
-    margin:5px 0 0;
-    color:#666;
+.profile-info p {
+    margin: 5px 0 0;
+    color: #6c757d;
+    font-size: 16px;
 }
 
-.appointment-section{
-    margin-top:20px;
+.section-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: var(--navy);
+    padding-left: 5px;
 }
 
-.appointment-card{
-    background:white;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
-
-    display:flex;
-    align-items:center;
-    gap:15px;
+.appointment-card {
+     background: var(--white);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(32, 51, 70, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.clinic-image{
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    background:#dff0d8;
+.appointment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(32, 51, 70, 0.12);
 }
 
-.appointment-info{
-    flex:1;
+.clinic-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    background: var(--mint-pale);
+}
+.appointment-info {
+    flex: 1;
 }
 
-.appointment-date{
-    color:red;
-    font-size:12px;
+.appointment-date {
+    color: var(--teal);
+    font-weight: bold;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 8px;
 }
 
 .healthcare-type{
-    border: 1px #4a90e2;
+    display: inline-block;
+    padding: 5px 12px;
     border-radius: 15px;
-    background-color: #4a91e261;
-    width: 70px;
-    text-align: center;
-    color:#4a90e2;
-    margin:10px 0;
+    background-color: var(--mint-pale);
+    color: var(--navy);
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
+
 .healthcare-name{
-    font-size: 20px;
-    margin-top: 5px;
+    font-size: 18px;
+    color: var(--navy);
+    margin: 0 0 5px 0;
 }
 
-.clinic-address{
-    color:#888;
-    font-size:13px;
+.clinic-address {
+    color: #6c757d;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.details-link {
+    color: var(--teal);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-.appointment-info a{
-    color:#00a676;
-    text-decoration:none;
-    font-size:12px;
-    font-weight:bold;
+.details-link:hover {
+    color: var(--navy);
 }
-
 .go-btn{
-    padding:8px 18px;
-    border:none;
-    border-radius:8px;
-    background:#e8f3ef;
-    color:#00a676;
-    cursor:pointer;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 12px;
+    background: var(--teal);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.go-btn:hover {
+    background: var(--navy);
+    transform: scale(1.05);
 }
 
-.profile-menu{
-    margin-top:20px;
-    background:white;
-    border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+.profile-menu {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(32, 51, 70, 0.08);
+    overflow: hidden;
+}
+.profile-menu a {
+    display: block;
+    padding: 20px 25px;
+    text-decoration: none;
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 16px;
+    border-bottom: 1px solid var(--mint-pale);
+    transition: all 0.3s ease;
 }
 
-.profile-menu a{
-    display:block;
-    padding:15px 20px;
-    text-decoration:none;
-    color:#555;
-    border-bottom:1px solid #eee;
+.profile-menu a:last-child {
+    border-bottom: none;
 }
 
-.profile-menu a:last-child{
-    border-bottom:none;
+.profile-menu a:hover{
+    background-color: var(--mint-pale);
+    color: var(--teal);
+    padding-left: 35px;
 }
 
-.logout{
-    color:red !important;
+.profile-menu.logout {
+    color:  #e63946;
+}
+.profile-menu a.logout:hover {
+    background-color: #ffe5e5;
+    color: var(--red-logout);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    background-color: var(--navy);
+    color: var(--mint-bright);
+    margin-top: auto;
+}
+
+.footer img {
+    width: 120px;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.slide-in {
+    opacity: 0;
+    transform: translateY(30px);
+     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.slide-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .appointment-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .go-btn {
+        width: 100%;
+    }
 }

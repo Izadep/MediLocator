@@ -86,7 +86,7 @@
     </div>
 
     <div class="footer">
-        <img src="image\MedilocatorIslam.svg" alt="MediLocator Logo">
+        
         <p>&copy; 2026 MediLocator</p>
     </div>
     <script>

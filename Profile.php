@@ -19,7 +19,7 @@ $email = $_SESSION['user_email'];
 </head>
 
 <body>
-    <nav class="NavBar">
+    <nav id="NavBar">
         <div class="nav-container">
             <a href="HomeScreen.php" class="logo">
                 <img src="image/MedilocatorIslam.svg">
@@ -40,7 +40,7 @@ $email = $_SESSION['user_email'];
         </div>
     </nav>
 
-   <div class="profile-header slide-in">
+   <div class="content">
         <div class="profile-container">
 
             <div class="profile-header slide-in">
@@ -84,7 +84,7 @@ $email = $_SESSION['user_email'];
    </div>
 
    <div class="footer">
-        <p>© 2024 MediLocator. All Rights Reserved.</p>
+        <p>&copy; 2026 MediLocator</p>
     </div>
 
     <script>
