@@ -30,7 +30,9 @@ $category = $_GET['category'] ?? '';
                 <a href="Chat.php" class="nav-item">Chat</a>
 
                 <div class="dropdown">
-                    <button class="dropbtn nav-item">Profile ▼</button>
+                    <a href="Profile.php" class="dropbtn nav-item">
+                        Profile ▼
+                    </a>
                     <div class="dropdown-content">
                         <a href="Profile.php">My Account</a>
                         <a href="logout.php" style="color: red;">Log out</a>

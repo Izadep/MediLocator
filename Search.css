@@ -23,7 +23,7 @@ body {
     padding-top: 120px;
     background-color: var(--mint-pale);
     color: var(--night-ocean);
-    min-height: 100vh;
+    min-height: 110vh;
     overflow-x: hidden;
 }
 body h1, h2 {

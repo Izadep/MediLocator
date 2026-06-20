@@ -24,7 +24,7 @@ body {
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 110vh;
 }
 
 .bodyhistory {
@@ -288,7 +288,6 @@ body {
     padding: 50px;
 }
 
-/* Footer */
 .footer {
     display: flex;
     flex-direction: column;
