@@ -138,20 +138,57 @@ body h1, h2 {
     
 }
 .healthcare-list {
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 15px 20px;
-    margin: 12px auto;
+    position: relative;
     width: 80%;
     max-width: 900px;
+    margin: 15px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
     height: 100px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    transition: 0.2s ease-in-out;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 .healthcare-list:hover {
+    height: 320px;
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.card-expand {
+    position: relative;
+    opacity: 0;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+.healthcare-list:hover .card-expand {
+    opacity: 1;
+}
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.card-expand img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+.details-btn {
+    margin-top: auto;
+    margin-left: auto;
+
+    padding: 10px 20px;
+    background: var(--teal);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.details-btn:hover {
+    background: var(--night-ocean);
 }
 .healthcare-list h3 {
     margin: 0;

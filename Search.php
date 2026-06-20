@@ -53,37 +53,44 @@ $category = $_GET['category'] ?? '';
 
 if ($category == 'clinic') {
 
-    $sql = "SELECT clinicName AS name,
-                   address,
-                   'Clinic' AS type
+    $sql = "SELECT clinicId AS id,
+                clinicName AS name,
+                address,
+                clinicImage AS image,
+                'Clinic' AS type
             FROM clinic
-            ORDER BY clinicName";
+            ORDER BY name";
 
 } elseif ($category == 'pharmacy') {
 
-    $sql = "SELECT pharmacyName AS name,
-                   address,
-                   'Pharmacy' AS type
+    $sql = "SELECT pharmacyId AS id,
+                pharmacyName AS name,
+                address,
+                pharmacyImage AS image,
+                'Pharmacy' AS type
             FROM pharmacy
-            ORDER BY pharmacyName";
+            ORDER BY name";
 
 } else {
 
-    $sql = "SELECT clinicName AS name,
-                   address,
-                   'Clinic' AS type
-            FROM clinic
-            WHERE clinicName LIKE '%$search%'
+    $sql = "SELECT clinicId AS id,
+               clinicName AS name,
+               address,
+               clinicImage AS image,
+               'Clinic' AS type
+        FROM clinic
+        WHERE clinicName LIKE '%$search%'
 
-            UNION
+        UNION
 
-            SELECT pharmacyName AS name,
-                   address,
-                   'Pharmacy' AS type
-            FROM pharmacy
-            WHERE pharmacyName LIKE '%$search%'
-
-            ORDER BY name";
+        SELECT pharmacyId AS id,
+               pharmacyName AS name,
+               address,
+               pharmacyImage AS image,
+               'Pharmacy' AS type
+        FROM pharmacy
+        WHERE pharmacyName LIKE '%$search%'
+        ORDER BY name";
 }
 
 $result = mysqli_query($conn, $sql);
@@ -102,9 +109,23 @@ if ($result && mysqli_num_rows($result) > 0) {
 
         echo "
         <div class='healthcare-list'>
-            <span class='type-badge {$typeClass}'>" . htmlspecialchars($row['type']) . "</span>
-            <h3>" . htmlspecialchars($row['name']) . "</h3>
-            <p>" . htmlspecialchars($row['address']) . "</p>
+            <span class='type-badge {$typeClass}'>
+                " . htmlspecialchars($row['type']) . "
+            </span>
+
+            <div class='card-main'>
+                <h3>" . htmlspecialchars($row['name']) . "</h3>
+                <p>" . htmlspecialchars($row['address']) . "</p>
+            </div>
+
+            <div class='card-expand'>
+                <img src='" . htmlspecialchars($row['image']) . "' alt='Healthcare Image'>
+                <div class='button-container'>
+                    <a href='Details.php?id=" . $row['id'] . "&type={$typeClass}' class='details-btn'>
+                        View Details
+                    </a>
+                </div>
+            </div>
         </div>";
     }
 
