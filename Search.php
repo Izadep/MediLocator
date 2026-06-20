@@ -17,7 +17,8 @@ $category = $_GET['category'] ?? '';
 </head>
 
 <body>
-<nav class="NavBar" id="navbar">
+    
+ <nav class="NavBar" id="navbar">
         <div class="nav-contain">
             <a href="HomeScreen.php" class="logo">
                 <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
@@ -38,6 +39,7 @@ $category = $_GET['category'] ?? '';
             </div>
         </div>
     </nav>
+
         <form action="Search.php" method="get" class="slide-in" style="animation-delay: 0.2s;">
             <div class="search-container">
                 <input type="text" name="search" placeholder="Search Clinic or Pharmacy" id="SearchBar" required>
@@ -118,7 +120,6 @@ if ($result && mysqli_num_rows($result) > 0) {
 ?>
 </div>
         <footer class="footer">
-            <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
             <p>&copy; 2026 MediLocator</p>
         </footer>
 <script>

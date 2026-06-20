@@ -6,6 +6,7 @@
     <title>Home Screen</title>
     <link rel= "stylesheet" href="HomeScreen.css">
 </head>
+
 <body>
 
     <nav class="NavBar" id="navbar">
