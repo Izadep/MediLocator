@@ -73,7 +73,6 @@ $name = $_SESSION['user_name'];
     </div>
 
     <footer class="footer">
-        <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
         <p>&copy; 2026 MediLocator</p>
     </footer>
 <script>

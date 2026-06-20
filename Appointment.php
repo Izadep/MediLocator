@@ -18,7 +18,7 @@ $name = $_SESSION['user_name'];
 </head>
 
 <body>
-    <nav id="NavBar">
+    <nav class="NavBar" id="navbar">
             <div class="nav-contain">
                 <a href="HomeScreen.php" class="logo">
                     <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">

@@ -32,7 +32,7 @@ $email = $_SESSION['user_email'];
                 <div class="dropdown">
                     <button class="dropbtn nav-item active">Profile ▼</button>
                     <div class="dropdown-content">
-                        <a href="Profile.html">My Account</a>
+                        <a href="Profile.php">My Account</a>
                         <a href="Login.html" style="color: red;">Log Out</a>
                     </div>
                 </div>

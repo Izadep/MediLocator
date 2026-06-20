@@ -302,10 +302,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 30px 20px;
-    background-color: var(--n);
+    padding: 40px 20px;
+    background-color: var(--night-ocean);
     color: var(--mint-bright);
-    margin-top: auto;
+    margin-top: 60px;
 }
 
 .footer img {
