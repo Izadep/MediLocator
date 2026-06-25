@@ -17,7 +17,8 @@ $category = $_GET['category'] ?? '';
 </head>
 
 <body>
-<nav class="NavBar" id="navbar">
+    
+ <nav class="NavBar" id="navbar">
         <div class="nav-contain">
             <a href="HomeScreen.php" class="logo">
                 <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
@@ -29,7 +30,9 @@ $category = $_GET['category'] ?? '';
                 <a href="Chat.php" class="nav-item">Chat</a>
 
                 <div class="dropdown">
-                    <button class="dropbtn nav-item">Profile ▼</button>
+                    <a href="Profile.php" class="dropbtn nav-item">
+                        Profile ▼
+                    </a>
                     <div class="dropdown-content">
                         <a href="Profile.php">My Account</a>
                         <a href="logout.php" style="color: red;">Log out</a>
@@ -38,6 +41,7 @@ $category = $_GET['category'] ?? '';
             </div>
         </div>
     </nav>
+
         <form action="Search.php" method="get" class="slide-in" style="animation-delay: 0.2s;">
             <div class="search-container">
                 <input type="text" name="search" placeholder="Search Clinic or Pharmacy" id="SearchBar" required>
@@ -51,37 +55,44 @@ $category = $_GET['category'] ?? '';
 
 if ($category == 'clinic') {
 
-    $sql = "SELECT clinicName AS name,
-                   address,
-                   'Clinic' AS type
+    $sql = "SELECT clinicId AS id,
+                clinicName AS name,
+                address,
+                clinicImage AS image,
+                'Clinic' AS type
             FROM clinic
-            ORDER BY clinicName";
+            ORDER BY name";
 
 } elseif ($category == 'pharmacy') {
 
-    $sql = "SELECT pharmacyName AS name,
-                   address,
-                   'Pharmacy' AS type
+    $sql = "SELECT pharmacyId AS id,
+                pharmacyName AS name,
+                address,
+                pharmacyImage AS image,
+                'Pharmacy' AS type
             FROM pharmacy
-            ORDER BY pharmacyName";
+            ORDER BY name";
 
 } else {
 
-    $sql = "SELECT clinicName AS name,
-                   address,
-                   'Clinic' AS type
-            FROM clinic
-            WHERE clinicName LIKE '%$search%'
+    $sql = "SELECT clinicId AS id,
+               clinicName AS name,
+               address,
+               clinicImage AS image,
+               'Clinic' AS type
+        FROM clinic
+        WHERE clinicName LIKE '%$search%'
 
-            UNION
+        UNION
 
-            SELECT pharmacyName AS name,
-                   address,
-                   'Pharmacy' AS type
-            FROM pharmacy
-            WHERE pharmacyName LIKE '%$search%'
-
-            ORDER BY name";
+        SELECT pharmacyId AS id,
+               pharmacyName AS name,
+               address,
+               pharmacyImage AS image,
+               'Pharmacy' AS type
+        FROM pharmacy
+        WHERE pharmacyName LIKE '%$search%'
+        ORDER BY name";
 }
 
 $result = mysqli_query($conn, $sql);
@@ -100,9 +111,23 @@ if ($result && mysqli_num_rows($result) > 0) {
 
         echo "
         <div class='healthcare-list'>
-            <span class='type-badge {$typeClass}'>" . htmlspecialchars($row['type']) . "</span>
-            <h3>" . htmlspecialchars($row['name']) . "</h3>
-            <p>" . htmlspecialchars($row['address']) . "</p>
+            <span class='type-badge {$typeClass}'>
+                " . htmlspecialchars($row['type']) . "
+            </span>
+
+            <div class='card-main'>
+                <h3>" . htmlspecialchars($row['name']) . "</h3>
+                <p>" . htmlspecialchars($row['address']) . "</p>
+            </div>
+
+            <div class='card-expand'>
+                <img src='" . htmlspecialchars($row['image']) . "' alt='Healthcare Image'>
+                <div class='button-container'>
+                    <a href='Details.php?id=" . $row['id'] . "&type={$typeClass}' class='details-btn'>
+                        View Details
+                    </a>
+                </div>
+            </div>
         </div>";
     }
 
@@ -118,7 +143,6 @@ if ($result && mysqli_num_rows($result) > 0) {
 ?>
 </div>
         <footer class="footer">
-            <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
             <p>&copy; 2026 MediLocator</p>
         </footer>
 <script>
