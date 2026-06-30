@@ -2,7 +2,6 @@
 session_start();
 include 'database.php';
 
-// Handle delete
 if (isset($_GET['delete'])) {
     $userId = mysqli_real_escape_string($conn, $_GET['delete']);
 

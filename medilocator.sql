@@ -96,3 +96,39 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO pharmacy (pharmacyId, pharmacyName, product, message, address, latitude, longitude, phoneNum, opHours, pharmacyImage)
+VALUES
+(1, 'All-Day Pharmacy (Ayer Keroh)', NULL, NULL, 'Lot G04-G05, Hang Tuah Jaya, Mydin Mall, Malacca', 2.27078347, 102.29204005, '016-3352470', '10 AM - 10 PM', 'image/Allday Pharmacy.jpg');
+
+INSERT INTO pharmacy (pharmacyId, pharmacyName, product, message, address, latitude, longitude, phoneNum, opHours, pharmacyImage)
+VALUES
+(2, 'Health Lane Family Pharmacy', NULL, NULL, '8, Lorong Setia 1, Taman Ayer Keroh Heights, 75450', 2.25535379, 102.29146544, '06-2402182', '8:30 AM - 9 PM', 'image/Health Lane Family Pharmacy.jpg');
+
+INSERT INTO pharmacy (pharmacyId, pharmacyName, product, message, address, latitude, longitude, phoneNum, opHours, pharmacyImage)
+VALUES
+(3, 'Alpro Pharmacy Ayer Keroh', NULL, NULL, '73, Jalan Komersial Skywiz, Pusat Komersial Skywiz', 2.24652737, 102.29191202, '019-2536923', '9 AM - 9 PM', 'image/farmasialpro.png');
+
+INSERT INTO pharmacy (pharmacyId, pharmacyName, product, message, address, latitude, longitude, phoneNum, opHours, pharmacyImage)
+VALUES
+(4, 'Farmasi Murni @ Ayer Keroh', NULL, NULL, '55, Lorong Setia 1, Ayer Keroh Heights, 75450 Ayer Keroh', 2.25837001, 102.29139068, '016-7237806', '9 AM - 8 PM', 'image/farmasi murni.png');
+
+INSERT INTO pharmacy (pharmacyId, pharmacyName, product, message, address, latitude, longitude, phoneNum, opHours, pharmacyImage)
+VALUES
+(5, 'Caring Pharmacy | Ayer Keroh Heights', NULL, NULL, '9, Lorong Setia 1, Taman Ayer Keroh Heights, 75450', 2.25531324, 102.29140357, '012-8023928', 'Weekend 9 AM - 9:30 PM, Weekday 9 AM - 9 PM', 'image/Caring Pharmacy Ayer Keroh Heights.png');
+
+INSERT INTO pharmacy (pharmacyId, pharmacyName, product, message, address, latitude, longitude, phoneNum, opHours, pharmacyImage)
+VALUES
+(6, 'Straits Pharmacy @ Ayer Keroh', NULL, NULL, 'G-8 Bangunan Kings Hotel, Jalan Tun Abdul Razak', 2.23683759, 102.28757417, '016-4268798', '9 AM - 8 PM', 'image/Straits Pharmacy @Ayer Keroh.png');
+
+INSERT INTO pharmacy (pharmacyId, pharmacyName, product, message, address, latitude, longitude, phoneNum, opHours, pharmacyImage)
+VALUES
+(7, 'Sevens Care Pharmacy', NULL, NULL, 'Lot A2, Jalan PKCAK 2, Pusat Komersial Cendana', 2.23868577, 102.28799953, '06-2347777', '9:30 AM - 7 PM', 'image/Sevens Care Pharmacy.png');
+
+INSERT INTO pharmacy (pharmacyId, pharmacyName, product, message, address, latitude, longitude, phoneNum, opHours, pharmacyImage)
+VALUES
+(8, 'Watsons Taman Ayer Keroh Heights', NULL, NULL, 'No 2, Hang Tuah Jaya, Ground Floor & 4, Jalan Komersial', 2.25462315, 102.29078625, '06-2319572', '9:30 AM - 10 PM', 'image/Watsons Taman Ayer Keroh Heights.png');
+
+INSERT INTO pharmacy (pharmacyId, pharmacyName, product, message, address, latitude, longitude, phoneNum, opHours, pharmacyImage)
+VALUES
+(9, 'Watsons MITC Melaka Tengah', NULL, NULL, 'Jalan Komersial, Taman Kota Fesyen, Melaka International', 2.27095897, 102.29158260, '06-2331416', '9 AM - 10 PM', 'image/Watsons MITC Melaka Tengah.png');
