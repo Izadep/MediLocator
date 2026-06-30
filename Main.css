@@ -1,0 +1,96 @@
+:root {
+    --teal: #61BCAE;
+    --night-ocean: #415c77;
+    --mint-bright: #ADD8D1;
+    --mint-pale: #E0F0EE;
+    --teal-med: #8ACCC2;
+    --white: #ffffff;
+    --navy: #001d4f;
+    --sky-blue:#87CEEB;
+    --pastel-blue: #A7C7E7;
+    --azure:#F0FFFF;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+body {
+    background-color: var(--mint-pale);
+    color: var(--night-ocean);
+    min-height: 110vh;
+    overflow-x: hidden;
+}
+#body-img {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("image/MediLocatorBackgroundTest.png") center/cover no-repeat;
+    filter: blur(8px);
+    transform: scale(1.1);
+    z-index: -1;
+}
+
+.NavBar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    height: 100px;
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.nav-contain {
+    width: 100%;
+    padding: 20px 5%;
+    background-color: var(--white);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#navbar.scrolled {
+    padding: 5px 0;
+    box-shadow: 0 4px 20px rgba(32, 51, 70, 0.1);
+}
+
+
+.nav-item {
+    text-decoration: none;
+    color: var(--night-ocean);
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nav-item:hover, .nav-item.active{
+    background-color: var(--mint-bright);
+    color: var(--night-ocean);
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: rgba(65, 92, 119, 0.75);
+    color: var(--mint-bright);
+    margin-top: 60px;
+}
+
+.footer img {
+    width: 150px;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}

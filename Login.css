@@ -1,0 +1,125 @@
+        :root {
+            --teal: #61BCAE;
+            --night-ocean: #415c77;
+            --mint-bright: #ADD8D1;
+            --mint-pale: #E0F0EE;
+            --teal-med: #8ACCC2;
+            --white: #ffffff;
+            --navy: #001d4f;
+        }
+
+        
+        body{
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--mint-pale);
+            color: var(--navy);
+        }
+        #logo{
+            display: block;
+            width: 500px;
+            margin: auto;
+            margin-top: 60px;
+            
+        }
+        #welcome{
+            color: rgb(122, 122, 122);
+        }
+        #box{
+            display: block;
+            width: 30%;
+            box-shadow:  0 5px 15px rgba(0,0,0,0.15);
+            background-color: rgb(255, 255, 255);
+            margin: auto;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 20px;
+            line-height: 0.5;
+        }
+        #box form {
+            margin-top: 60px;
+        }
+        #box form p {
+            text-align: center;
+            font-size: 16px;
+            margin-right: 100px;
+        }
+
+        .formGrp {
+            line-height: normal;
+            margin-bottom: 25px;
+        }
+        #box form .formGrp {
+            margin-top: 30px;
+        }
+        .formGrp input {
+            display: block;
+            background-color: rgba(209, 207, 207, 0.327);
+            border: 0px;
+            padding: 10px;
+            border-radius: 10px;
+            width: 96%;
+            margin: auto;
+        }
+        #box #forgor {
+            display: block;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: right;
+            text-decoration: none;
+            margin-top: 10px;
+            color: rgb(62, 213, 135);
+        }
+        #box button {
+            display: block;
+            background-color: rgba(209, 207, 207, 0.327);
+            border: 0px;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+            margin: auto;
+            margin-top: 25px;
+            background-color: rgb(49, 203, 151);
+            font-weight: bold;
+            color: aliceblue;
+        }
+        #box #noAcc{
+            margin-top: 15px;
+            color: rgb(122, 122, 122);
+        }
+        #box #noAcc p{
+            font-size: 11px;
+            text-align: center;
+            color: rgb(122, 122, 122);
+            margin: auto;
+        }
+        #box #noAcc p a{
+            font-weight: bold;
+            text-decoration: none;
+            color: rgb(49, 203, 151);
+        }
+        .input-wrapper{
+            position: relative;
+            width: 100%;
+            margin: auto;
+        }
+        .input-wrapper input{
+            display: block;
+            background-color: rgba(209, 207, 207, 0.327);
+            border: 0px;
+            padding: 10px;
+            border-radius: 10px;
+            width: 96%;
+            margin: auto;
+        }
+        .toggle-pass{
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 10;
+            user-select: none;
+            line-height: normal;
+        }

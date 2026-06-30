@@ -1,0 +1,192 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+.logo img {
+    height: 60px;
+    margin-left: 10px;
+}
+
+.search-container{
+    margin: 0 auto 40px auto;
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border: 2px solid var(--teal);
+    border-radius: 30px;
+    padding: 5px 15px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow:  0 8px 20px rgba(32, 51, 70, 0.08);
+    transition: all 0.3s ease;
+}
+#SearchBar {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    color: var(--navy);
+    background: transparent;
+    outline: none;
+}
+#SearchBar:focus-within{
+    box-shadow: 0 8px 25px rgba(97, 188, 174, 0.4);
+    transform: scale(1.02);
+}
+.search-icon {
+    background: var(--teal);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.search-icon img {
+    width: 33px;
+    height: 34px;
+    filter: brightness(100);
+    margin: auto;
+    
+}
+.healthcare-list {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    margin: 15px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 100px;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.healthcare-list:hover {
+    height: 320px;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.card-expand {
+    position: relative;
+    opacity: 0;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+.healthcare-list:hover .card-expand {
+    opacity: 1;
+}
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.card-expand img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+.details-btn {
+    margin-top: auto;
+    margin-left: auto;
+
+    padding: 10px 20px;
+    background: var(--teal);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.details-btn:hover {
+    background: var(--night-ocean);
+}
+.healthcare-list h3 {
+    margin: 0;
+    color: #000000;
+}
+.healthcare-list p {
+    margin: 5px 0 0;
+    color: grey;
+}
+.no-list {
+    text-align: center;
+}
+
+.healthcare-list {
+    position: relative;
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.type-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.type-badge.clinic {
+    background-color: var(--teal);
+}
+
+.type-badge.pharmacy {
+    background-color: var(--pastel-blue);
+}
+
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    right: 0;
+    background-color: var(--white);
+    min-width: 160px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: var(--night-ocean);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--mint-pale);
+    color: var(--teal);
+}
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
