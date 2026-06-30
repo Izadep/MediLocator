@@ -1,13 +1,1 @@
-BAHAGIAN ANWAR:
-1. Login Page
-    -Page untuk user sedia ada masuk dan guna applikasi.
-    -Variable: Email , Password.
-2. Sign up Page
-    -Page untuk user baharu untuk masuk dan guna aplikasi
-    -Variable: Email, Password, No.IC, Nama, Age, Address, phone num
-3. Forgot Password page
-    -Page untuk user yang terlupa password
-    -Variable: Email, phone number.
-4. Change Password page
-    -Page untuk user ubah password jika ingin ubah atau terlupa password lama
-    -Variable: Email, password lama, password baharu 1, password baharu 2.
+Danish's Branch
