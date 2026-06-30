@@ -24,7 +24,7 @@ $appointmentCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS t
             <a href="manageclinic.php">Clinics</a>
             <a href="managepharmacy.php">Pharmacies</a>
             <a href="manageappointment.php">Appointments</a>
-            <a href="adminlogout.php" style="color:#ffb3b3;">Log out (<?php echo htmlspecialchars($_SESSION['user_name'] ?? ''); ?>)</a>
+            <a href="logout.php" style="color:#ffb3b3;">Log out (<?php echo htmlspecialchars($_SESSION['user_name'] ?? ''); ?>)</a>
         </div>
     </nav>
 

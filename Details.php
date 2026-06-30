@@ -36,6 +36,11 @@ $row = mysqli_fetch_assoc($result);
 $image = ($type == "clinic")
     ? $row['clinicImage']
     : $row['pharmacyImage'];
+$lat = $row['latitude'];
+$lng = $row['longitude'];
+
+$googleLink = "https://www.google.com/maps?q=$lat,$lng";
+$wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
 ?>
 
 <!DOCTYPE html>
@@ -70,18 +75,20 @@ $image = ($type == "clinic")
                     ⭐ 4.6 (33 reviews)
                     <span class="status open">OPEN</span>
                 </div>
-
+                
                 <div class="action-buttons">
                     <button>📞 Call</button>
                     <button>💬 Message</button>
-                    <button>📍 Direction</button>
-                    <button>🔗 Share</button>
+                    <button onclick="openDirectionModal()">📍 Direction</button>
+                    <button onclick="copyLink()" class="share-btn">🔗 Share</button>
                 </div>
 
                 <div class="info">
                     <p>📍 <?php echo htmlspecialchars($row['address']); ?></p>
                     <p>📞 <?php echo htmlspecialchars($row['phoneNum']); ?></p>
-                    <p>➕ <?php echo htmlspecialchars($row['specialty']); ?></p>
+                    <?php if (!empty($row['specialty'])): ?>
+                        <p>➕ <?php echo htmlspecialchars($row['specialty']); ?></p>
+                    <?php endif; ?>
                 </div>
 
                 <a href="Appointment.php" class="book-btn">
@@ -90,7 +97,23 @@ $image = ($type == "clinic")
             </div>
         </div>
     </div>
+    <div id="directionModal" class="modal">
+    <div class="modal-content">
+            <h3>Choose Navigation</h3>
 
+            <a href="<?= $googleLink ?>" target="_blank" class="btn google">
+                📍 Google Maps
+            </a>
+
+            <a href="<?= $wazeLink ?>" target="_blank" class="btn waze">
+                🚗 Waze
+            </a>
+
+            <button onclick="closeDirectionModal()" class="btn close">
+                Cancel
+            </button>
+        </div>
+    </div>
     <?php include("footer.php") ?>
     <script>
         window.addEventListener('scroll',function(){
@@ -117,6 +140,44 @@ $image = ($type == "clinic")
 
         const slideElements = document.querySelectorAll('.slide-in');
         slideElements.forEach(el => observer.observe(el));
+    </script>
+    <script>
+    function openDirectionModal() {
+        document.getElementById("directionModal").style.display = "flex";
+    }
+
+    function closeDirectionModal() {
+        document.getElementById("directionModal").style.display = "none";
+    }
+
+    // click outside to close
+    window.onclick = function(event) {
+        let modal = document.getElementById("directionModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    function copyLink() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            let toast = document.createElement("div");
+            toast.innerText = "Link copied!";
+            toast.style.position = "fixed";
+            toast.style.bottom = "20px";
+            toast.style.left = "50%";
+            toast.style.transform = "translateX(-50%)";
+            toast.style.background = "#333";
+            toast.style.color = "#fff";
+            toast.style.padding = "10px 20px";
+            toast.style.borderRadius = "8px";
+            toast.style.zIndex = "9999";
+            toast.style.fontSize = "14px";
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 1500);
+        });
+    }
     </script>
 </body>
 </html>

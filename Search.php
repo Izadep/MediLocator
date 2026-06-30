@@ -23,7 +23,7 @@ $category = $_GET['category'] ?? '';
         <div id = "body-img">
         </div>
     </div>
-
+    <div class = container>
         <form action="Search.php" method="get" class="slide-in" style="animation-delay: 0.2s;">
             <div class="search-container">
                 <input type="text" name="search" placeholder="Search Clinic or Pharmacy" id="SearchBar" required>
@@ -119,6 +119,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     </div>";
 }
 ?>
+</div>
 </div>
         <?php include("footer.php") ?>
 <script>

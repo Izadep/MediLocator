@@ -18,7 +18,7 @@ session_start();
         </div>
     </div>
     <?php include("navbar.php") ?>
-
+    <div class = container>
     <main class="page-content">
 
         <div class="chat-container">
@@ -34,6 +34,7 @@ session_start();
         </div>
 
     </main>
+    </div>
 
     <?php include("footer.php") ?>
 
