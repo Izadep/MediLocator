@@ -132,3 +132,222 @@ VALUES
 INSERT INTO pharmacy (pharmacyId, pharmacyName, product, message, address, latitude, longitude, phoneNum, opHours, pharmacyImage)
 VALUES
 (9, 'Watsons MITC Melaka Tengah', NULL, NULL, 'Jalan Komersial, Taman Kota Fesyen, Melaka International', 2.27095897, 102.29158260, '06-2331416', '9 AM - 10 PM', 'image/Watsons MITC Melaka Tengah.png');
+
+ALTER TABLE `pharmacy`
+DROP COLUMN `opHours`;
+
+ALTER TABLE `pharmacy`
+ADD COLUMN `opHourStart` TIME NOT NULL AFTER `phoneNum`,
+ADD COLUMN `opHourEnd` TIME NOT NULL AFTER `opHourStart`;
+
+UPDATE `pharmacy`
+SET
+    opHourStart = '10:00:00',
+    opHourEnd = '22:00:00'
+WHERE pharmacyId = 1;
+
+UPDATE `pharmacy`
+SET
+    opHourStart = '08:30:00',
+    opHourEnd = '21:00:00'
+WHERE pharmacyId = 2;
+
+UPDATE `pharmacy`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '21:00:00'
+WHERE pharmacyId = 3;
+
+UPDATE `pharmacy`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '20:00:00'
+WHERE pharmacyId = 4;
+
+UPDATE `pharmacy`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '21:00:00'
+WHERE pharmacyId = 5;
+
+UPDATE `pharmacy`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '20:00:00'
+WHERE pharmacyId = 6;
+
+UPDATE `pharmacy`
+SET
+    opHourStart = '09:30:00',
+    opHourEnd = '19:00:00'
+WHERE pharmacyId = 7;
+
+UPDATE `pharmacy`
+SET
+    opHourStart = '09:30:00',
+    opHourEnd = '22:00:00'
+WHERE pharmacyId = 8;
+
+UPDATE `pharmacy`
+SET 
+	opHourStart = '09:00:00',
+    opHourEnd = '22:00:00'
+WHERE pharmacyId = 9;
+
+
+ALTER TABLE `clinic`
+DROP COLUMN `opHours`;
+
+ALTER TABLE `clinic`
+ADD COLUMN `opHourStart` TIME NOT NULL AFTER `phoneNum`,
+ADD COLUMN `opHourEnd` TIME NOT NULL AFTER `opHourStart`;
+
+UPDATE `clinic`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '20:30:00'
+WHERE clinicId = 1;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:00:00',
+    opHourEnd = '19:00:00'
+WHERE clinicId = 2;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:30:00',
+    opHourEnd = '16:30:00'
+WHERE clinicId = 3;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:00:00',
+    opHourEnd = '22:00:00'
+WHERE clinicId = 4;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:00:00',
+    opHourEnd = '17:00:00'
+WHERE clinicId = 5;
+
+UPDATE `clinic`
+SET
+    opHourStart = '00:00:00',
+    opHourEnd = '23:59:59'
+WHERE clinicId = 6;
+
+UPDATE `clinic`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '23:00:00'
+WHERE clinicId = 7;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:15:00',
+    opHourEnd = '17:00:00'
+WHERE clinicId = 8;
+
+UPDATE `clinic`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '22:00:00'
+WHERE clinicId = 9;
+
+UPDATE `clinic`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '22:00:00'
+WHERE clinicId = 10;
+
+UPDATE `clinic`
+SET
+    opHourStart = '00:00:00',
+    opHourEnd = '23:59:59'
+WHERE clinicId = 11;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:00:00',
+    opHourEnd = '22:00:00'
+WHERE clinicId = 12;
+
+UPDATE `clinic`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '18:00:00'
+WHERE clinicId = 13;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:00:00',
+    opHourEnd = '17:00:00'
+WHERE clinicId = 14;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:30:00',
+    opHourEnd = '22:00:00'
+WHERE clinicId = 15;
+
+UPDATE `clinic`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '21:00:00'
+WHERE clinicId = 16;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:00:00',
+    opHourEnd = '22:00:00'
+WHERE clinicId = 17;
+
+UPDATE `clinic`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '19:00:00'
+WHERE clinicId = 18;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:00:00',
+    opHourEnd = '17:00:00'
+WHERE clinicId = 19;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:00:00',
+    opHourEnd = '20:00:00'
+WHERE clinicId = 20;
+
+UPDATE `clinic`
+SET
+    opHourStart = '09:00:00',
+    opHourEnd = '20:00:00'
+WHERE clinicId = 21;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:00:00',
+    opHourEnd = '19:00:00'
+WHERE clinicId = 22;
+
+UPDATE `clinic`
+SET
+    opHourStart = '09:30:00',
+    opHourEnd = '18:00:00'
+WHERE clinicId = 23;
+
+UPDATE `clinic`
+SET
+    opHourStart = '10:00:00',
+    opHourEnd = '19:00:00'
+WHERE clinicId = 24;
+
+UPDATE `clinic`
+SET
+    opHourStart = '08:30:00',
+    opHourEnd = '17:30:00'
+WHERE clinicId = 25;
