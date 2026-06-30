@@ -41,37 +41,46 @@ if ($category == 'clinic') {
                 clinicName AS name,
                 address,
                 clinicImage AS image,
+                opHourStart,
+                opHourEnd,
                 'Clinic' AS type
-            FROM clinic
-            ORDER BY name";
+            FROM clinic";
 
 } elseif ($category == 'pharmacy') {
 
     $sql = "SELECT pharmacyId AS id,
                 pharmacyName AS name,
                 address,
+                pharmacyImage AS image,
+                opHourStart,
+                opHourEnd,
                 'Pharmacy' AS type
-            FROM pharmacy
-            ORDER BY name";
+            FROM pharmacy";
 
 } else {
 
     $sql = "SELECT clinicId AS id,
-               clinicName AS name,
-               address,
-               'Clinic' AS type
-        FROM clinic
-        WHERE clinicName LIKE '%$search%'
+                clinicName AS name,
+                address,
+                clinicImage AS image,
+                opHourStart,
+                opHourEnd,
+                'Clinic' AS type
+            FROM clinic
+            WHERE clinicName LIKE '%$search%'
 
-        UNION
+            UNION
 
-        SELECT pharmacyId AS id,
-               pharmacyName AS name,
-               address,
-               'Pharmacy' AS type
-        FROM pharmacy
-        WHERE pharmacyName LIKE '%$search%'
-        ORDER BY name";
+            SELECT pharmacyId AS id,
+                pharmacyName AS name,
+                address,
+                pharmacyImage AS image,
+                opHourStart,
+                opHourEnd,
+                'Pharmacy' AS type
+            FROM pharmacy
+            WHERE pharmacyName LIKE '%$search%'
+            ORDER BY name";
 }
 
 $result = mysqli_query($conn, $sql);
@@ -88,11 +97,34 @@ if ($result && mysqli_num_rows($result) > 0) {
 
         $typeClass = strtolower($row['type']);
 
+        date_default_timezone_set("Asia/Kuala_Lumpur");
+
+        $currentTime = date("H:i:s");
+        $openTime = $row['opHourStart'] ?? null;
+        $closeTime = $row['opHourEnd'] ?? null;
+
+        $isOpen = false;
+
+        if ($openTime && $closeTime) {
+            if ($openTime <= $closeTime) {
+                $isOpen = ($currentTime >= $openTime && $currentTime <= $closeTime);
+            } else {
+                $isOpen = ($currentTime >= $openTime || $currentTime <= $closeTime);
+            }
+        }
+
+
         echo "
         <div class='healthcare-list'>
+            <div class='badge-container'>
             <span class='type-badge {$typeClass}'>
                 " . htmlspecialchars($row['type']) . "
             </span>
+
+            <span class='status-badge " . ($isOpen ? "open" : "closed") . "'>
+                " . ($isOpen ? "OPEN" : "CLOSED") . "
+            </span>
+        </div>
 
             <div class='card-main'>
                 <h3>" . htmlspecialchars($row['name']) . "</h3>

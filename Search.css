@@ -129,16 +129,28 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
-.type-badge {
+.badge-container {
     position: absolute;
     top: 15px;
     right: 15px;
+    display: flex;
+    gap: 8px;
+}
 
-    padding: 5px 12px;
+.type-badge,
+.status-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 70px;      /* Same width for all badges */
+    height: 28px;
+
     border-radius: 20px;
     color: white;
     font-size: 12px;
     font-weight: bold;
+    box-sizing: border-box;
 }
 
 .type-badge.clinic {
@@ -147,4 +159,12 @@ body {
 
 .type-badge.pharmacy {
     background-color: var(--pastel-blue);
+}
+
+.status-badge.open {
+    background-color: #2ecc71;
+}
+
+.status-badge.closed {
+    background-color: #e74c3c;
 }

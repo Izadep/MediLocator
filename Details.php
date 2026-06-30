@@ -33,6 +33,23 @@ if (!$result || mysqli_num_rows($result) == 0) {
 
 $row = mysqli_fetch_assoc($result);
 
+date_default_timezone_set("Asia/Kuala_Lumpur");
+
+$currentTime = date("H:i:s");
+
+$openTime = $row['opHourStart'];
+$closeTime = $row['opHourEnd'];
+
+$isOpen = false;
+
+if ($openTime && $closeTime) {
+    if ($openTime <= $closeTime) {
+        $isOpen = ($currentTime >= $openTime && $currentTime <= $closeTime);
+    } else {
+        $isOpen = ($currentTime >= $openTime || $currentTime <= $closeTime);
+    }
+}
+
 $image = ($type == "clinic")
     ? $row['clinicImage']
     : $row['pharmacyImage'];
@@ -73,14 +90,16 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
 
                 <div class="rating-status">
                     ⭐ 4.6 (33 reviews)
-                    <span class="status open">OPEN</span>
+                    <span class="status <?= $isOpen ? 'open' : 'closed' ?>">
+                        <?= $isOpen ? 'OPEN' : 'CLOSED' ?>
+                    </span>
                 </div>
                 
                 <div class="action-buttons">
-                    <button>📞 Call</button>
-                    <button>💬 Message</button>
-                    <button onclick="openDirectionModal()">📍 Direction</button>
-                    <button onclick="copyLink()" class="share-btn">🔗 Share</button>
+                    <button onclick="copyPhone('<?= $row['phoneNum'] ?>')" class="call-btn" title="Copy phone-number">📞 Call</button>
+                    <button title="Send a Message">💬 Message</button>
+                    <button onclick="openDirectionModal()" title="Get Direction">📍 Direction</button>
+                    <button onclick="copyLink()" class="share-btn" title="Copy link">🔗 Share</button>
                 </div>
 
                 <div class="info">
@@ -91,9 +110,11 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                     <?php endif; ?>
                 </div>
 
-                <a href="BookAppointment.php" class="book-btn">
-                    Book Appointment
-                </a>
+                <?php if ($type == "clinic"): ?>
+                    <a href="BookAppointment.php" class="book-btn">
+                        Book Appointment
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -171,6 +192,28 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
             toast.style.borderRadius = "8px";
             toast.style.zIndex = "9999";
             toast.style.fontSize = "14px";
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 1500);
+        });
+    }
+    function copyPhone(phone) {
+        navigator.clipboard.writeText(phone).then(() => {
+            let toast = document.createElement("div");
+            toast.innerText = "Phone number copied!";
+            toast.style.position = "fixed";
+            toast.style.bottom = "20px";
+            toast.style.left = "50%";
+            toast.style.transform = "translateX(-50%)";
+            toast.style.background = "#333";
+            toast.style.color = "#fff";
+            toast.style.padding = "10px 20px";
+            toast.style.borderRadius = "8px";
+            toast.style.zIndex = "9999";
+            toast.style.fontSize = "14px";
+
             document.body.appendChild(toast);
 
             setTimeout(() => {
