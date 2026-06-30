@@ -50,7 +50,6 @@ if ($category == 'clinic') {
     $sql = "SELECT pharmacyId AS id,
                 pharmacyName AS name,
                 address,
-                pharmacyImage AS image,
                 'Pharmacy' AS type
             FROM pharmacy
             ORDER BY name";
@@ -60,7 +59,6 @@ if ($category == 'clinic') {
     $sql = "SELECT clinicId AS id,
                clinicName AS name,
                address,
-               clinicImage AS image,
                'Clinic' AS type
         FROM clinic
         WHERE clinicName LIKE '%$search%'
@@ -70,7 +68,6 @@ if ($category == 'clinic') {
         SELECT pharmacyId AS id,
                pharmacyName AS name,
                address,
-               pharmacyImage AS image,
                'Pharmacy' AS type
         FROM pharmacy
         WHERE pharmacyName LIKE '%$search%'
@@ -83,7 +80,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
     $count = mysqli_num_rows($result);
 
-    echo "<h2>{$count} Results found</h2>";
+    echo "<div class='result-count'>{$count} Results found</div>";
 
     echo "<div class='results-container'>";
 
@@ -103,7 +100,6 @@ if ($result && mysqli_num_rows($result) > 0) {
             </div>
 
             <div class='card-expand'>
-                <img src='" . htmlspecialchars($row['image']) . "' alt='Healthcare Image'>
                 <div class='button-container'>
                     <a href='Details.php?id=" . $row['id'] . "&type={$typeClass}' class='details-btn'>
                         View Details
