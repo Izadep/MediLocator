@@ -13,6 +13,10 @@ session_start();
 </head>
 
 <body>
+    <div class = "body-bg">
+        <div id = "body-img">
+        </div>
+    </div>
     <?php include("navbar.php") ?>
 
     <main class="page-content">

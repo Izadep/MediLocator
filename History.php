@@ -20,6 +20,10 @@ $name = $_SESSION['user_name'];
 
 <body class="bodyhistory">
     <?php include("navbar.php") ?>
+    <div class = "body-bg">
+        <div id = "body-img">
+        </div>
+    </div>
     <div class="content slide-in">
         <div class="appointment-page">
 

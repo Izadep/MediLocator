@@ -19,6 +19,10 @@ $category = $_GET['category'] ?? '';
 
 <body>
     <?php include("navbar.php") ?>
+    <div class = "body-bg">
+        <div id = "body-img">
+        </div>
+    </div>
 
         <form action="Search.php" method="get" class="slide-in" style="animation-delay: 0.2s;">
             <div class="search-container">

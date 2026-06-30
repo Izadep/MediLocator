@@ -21,6 +21,10 @@ $email = $_SESSION['user_email'];
 
 <body>
     <?php include("navbar.php") ?>
+    <div class = "body-bg">
+        <div id = "body-img">
+        </div>
+    </div>
 
    <div class="content">
         <div class="profile-container">

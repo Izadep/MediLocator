@@ -84,7 +84,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
-    background-color: var(--night-ocean);
+    background-color: rgba(65, 92, 119, 0.75);
     color: var(--mint-bright);
     margin-top: 60px;
 }
