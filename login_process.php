@@ -15,7 +15,7 @@
 
             $user = mysqli_fetch_assoc($result);
 
-            if($password == $user['pass']) {
+            if(password_verify($password, $user['pass'])) {
 
                 $_SESSION['user_id'] = $user['userid'];
                 $_SESSION['user_name'] = $user['name'];
