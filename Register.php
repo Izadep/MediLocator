@@ -4,16 +4,17 @@ include 'database.php';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $userid = mysqli_real_escape_string($conn, $_POST['userid']);
+    $ic = mysqli_real_escape_string($conn, $_POST['userid']);
     $name = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
     if($password !== $confirm_password) {
         $error = "Passwords do not match!";
     } else {
 
+        // check email
         $emailcheck = "SELECT * FROM users WHERE email = '$email'";
         $emailResult = mysqli_query($conn, $emailcheck);
 
@@ -21,14 +22,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error = "Email is already registered!";
         } else {
 
+            // generate user id
             $sql = "SELECT COUNT(*) as total FROM users";
             $result = mysqli_query($conn, $sql);
             $row = mysqli_fetch_assoc($result);
 
             $userid = "USR" . str_pad($row['total'] + 1, 3, "0", STR_PAD_LEFT);
 
+            // 🔐 HASH PASSWORD
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
             $sql = "INSERT INTO users (userid, name, pass, email)
-                    VALUES ('$userid', '$name', '$password', '$email')";
+                    VALUES ('$userid', '$name', '$hashedPassword', '$email')";
 
             if(mysqli_query($conn, $sql)) {
                 header("Location: Login.php?register_success=1");
