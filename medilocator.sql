@@ -351,3 +351,99 @@ SET
     opHourStart = '08:30:00',
     opHourEnd = '17:30:00'
 WHERE clinicId = 25;
+
+UPDATE clinic
+SET clinicImage = 'image/poliklinikperdanaayerkeroh.png'
+WHERE clinicId = 1;
+
+UPDATE clinic
+SET clinicImage = 'image/stiraflesia.png'
+WHERE clinicId = 3;
+
+UPDATE clinic
+SET clinicImage = 'image/poliklinik wahida.png'
+WHERE clinicId = 4;
+
+UPDATE clinic
+SET clinicImage = 'image/Ayer Keroh Dental Clinic.png'
+WHERE clinicId = 5;
+
+UPDATE clinic
+SET clinicImage = 'image/MediPulih Klinik.png'
+WHERE clinicId = 6;
+
+UPDATE clinic
+SET clinicImage = 'image/bekam care mitc.png'
+WHERE clinicId = 7;
+
+UPDATE clinic
+SET clinicImage = 'image/Poliklinik Piang & X Ray Sdn Bhd.png'
+WHERE clinicId = 8;
+
+UPDATE clinic
+SET clinicImage = 'image/KLINIK IMPIAN (CAWANGAN AYER KEROH).png'
+WHERE clinicId = 9;
+
+UPDATE clinic
+SET clinicImage = 'image/Poliklinik Nazmir.png'
+WHERE clinicId = 10;
+
+UPDATE clinic
+SET clinicImage = 'image/KLINIK ANDA 24 JAM.png'
+WHERE clinicId = 11;
+
+UPDATE clinic
+SET clinicImage = 'image/MyFirst Klinik (Ayer Keroh) Family Clinic Occu.png'
+WHERE clinicId = 12; 
+
+UPDATE clinic
+SET clinicImage = 'image/poliklinik anna.png'
+WHERE clinicId = 13; 
+
+UPDATE clinic
+SET clinicImage = 'image/Klinik Hang Tuah (Ayer Keroh).png'
+WHERE clinicId = 14;
+
+UPDATE clinic
+SET clinicImage = 'image/Klinik Safwa Ayer Keroh.png'
+WHERE clinicId = 15;
+
+UPDATE clinic
+SET clinicImage = 'image/KLINIK SUNITA SDN BHD.png'
+WHERE clinicId = 16;
+
+UPDATE clinic
+SET clinicImage = 'image/Careclinics Al-Amin Ayer Keroh.png'
+WHERE clinicId = 17;
+
+UPDATE clinic
+SET clinicImage = 'image/Klinik Adam Hawa (Ayer Keroh).png'
+WHERE clinicId = 18;
+
+UPDATE clinic
+SET clinicImage = 'image/Ayer Keroh Health Clinic.png'
+WHERE clinicId = 19;
+
+UPDATE clinic
+SET clinicImage = 'image/Kelinik Ayer Keroh.png'
+WHERE clinicId = 20;
+
+UPDATE clinic
+SET clinicImage = 'image/Q&M Ayer Keroh - Ng Dental Surgery.png'
+WHERE clinicId = 21;
+
+UPDATE clinic
+SET clinicImage = 'image/MRIC CLINIC.png'
+WHERE clinicId = 22;
+
+UPDATE clinic
+SET clinicImage = 'image/SONOBEE ULTRASOUND AYER KEROH.png'
+WHERE clinicId = 23;
+
+UPDATE clinic
+SET clinicImage = 'image/Klinik Veterinar Ayer Keroh Heights.png'
+WHERE clinicId = 24;
+
+UPDATE clinic
+SET clinicImage = 'image/Star Life Clinic TM.png'
+WHERE clinicId = 25;
