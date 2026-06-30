@@ -8,35 +8,12 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat - MediLocator</title>
+    <link rel="stylesheet" href="Main.css">
     <link rel="stylesheet" href="Chat.css">
 </head>
 
 <body>
-
-    <nav class="NavBar" id="navbar">
-        <div class="nav-contain">
-            <a href="HomeScreen.php" class="logo">
-                <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
-            </a>
-
-            <div class="nav-links">
-                <a href="HomeScreen.php" class="nav-item">Home</a>
-                <a href="Appointment.php" class="nav-item">Appointment</a>
-                <a href="Chat.php" class="nav-item active">Chat</a>
-
-                <div class="dropdown">
-                    <a href="Profile.php" class="dropbtn nav-item">
-                        Profile ▼
-                    </a>
-
-                    <div class="dropdown-content">
-                        <a href="Profile.php">My Account</a>
-                        <a href="logout.php" style="color:red;">Log out</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include("navbar.php") ?>
 
     <main class="page-content">
 
@@ -54,9 +31,7 @@ session_start();
 
     </main>
 
-    <footer class="footer">
-            <p>&copy; 2026 MediLocator</p>
-        </footer>
+    <?php include("footer.php") ?>
 
     <script>
         window.addEventListener('scroll', function () {

@@ -4,35 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Screen</title>
+    <link rel= "stylesheet" href="Main.css">
     <link rel= "stylesheet" href="HomeScreen.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 </head>
 <body>
+    <?php include("navbar.php") ?>
 
-    <nav class="NavBar" id="navbar">
-        <div class="nav-contain">
-            <a href="HomeScreen.php" class="logo">
-                <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
-            </a>
-
-            <div class="nav-links">
-                <a href="HomeScreen.php" class="nav-item active">Home</a>
-                <a href="Appointment.php" class="nav-item">Appointment</a>
-                <a href="Chat.php" class="nav-item">Chat</a>
-
-                <div class="dropdown">
-                    <a href="Profile.php" class="dropbtn nav-item">
-                        Profile ▼
-                    </a>
-                    <div class="dropdown-content">
-                        <a href="Profile.php">My Account</a>
-                        <a href="logout.php" style="color: red;">Log out</a>
-                    </div>
-                </div>
-            </div>
+    <div class = "body-bg">
+        <div id = "body-img">
         </div>
-    </nav>
-
+    </div>
     <div class="content">
         <div class="IntroMedilocator-container">
             <h2>Welcome To MediLocator!</h2>
@@ -86,11 +68,7 @@
             </div>
         </div>
     </div>
-
-    <div class="footer">
-        
-        <p>&copy; 2026 MediLocator</p>
-    </div>
+    <?php include("footer.php") ?>
     <script>
         window.addEventListener('scroll',function(){
             var navbar= document.getElementById('navbar');
@@ -102,7 +80,7 @@
         })
 
         const observerOptions= {
-            root: null, rootMargin: '0px', thresold: 0.1
+            root: null, rootMargin: '0px', threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries, observer) => {

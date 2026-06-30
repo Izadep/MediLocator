@@ -14,32 +14,12 @@ $name = $_SESSION['user_name'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment History</title>
+    <link rel="stylesheet" href="Main.css">
     <link rel="stylesheet" href="Appointment.css">
 </head>
 
 <body class="bodyhistory">
-    <nav class="NavBar" id="navbar">
-        <div class="nav-contain">
-            <a href="HomeScreen.php" class="logo">
-                <img src="image/MedilocatorIslam.svg" alt="MediLocator Logo">
-            </a>
-
-            <div class="nav-links">
-                <a href="HomeScreen.php" class="nav-item">Home</a>
-                <a href="Appointment.php" class="nav-item active">Appointment</a>
-                <a href="Chat.php" class="nav-item">Chat</a>
-
-                <div class="dropdown">
-                    <button class="dropbtn nav-item">Profile ▼</button>
-                    <div class="dropdown-content">
-                        <a href="Profile.php">My Account</a>
-                        <a href="logout.php" style="color: red;">Log out</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
+    <?php include("navbar.php") ?>
     <div class="content slide-in">
         <div class="appointment-page">
 
@@ -72,9 +52,7 @@ $name = $_SESSION['user_name'];
         </div>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2026 MediLocator</p>
-    </footer>
+    <?php include("footer.php") ?>
 <script>
         window.addEventListener('scroll', function () {
             var navbar = document.getElementById('navbar');

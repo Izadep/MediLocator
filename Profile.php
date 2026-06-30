@@ -14,33 +14,13 @@ $email = $_SESSION['user_email'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Main.css">
     <link rel="stylesheet" href="Profile.css">
     <title>Profile</title>
 </head>
 
 <body>
-    <nav id="NavBar">
-        <div class="nav-container">
-            <a href="HomeScreen.php" class="logo">
-                <img src="image/MedilocatorIslam.svg">
-            </a>
-            <div class="nav-links">
-                <a href="HomeScreen.php" class="nav-item">Home</a>
-                <a href="Appointment.php" class="nav-item">Appointment</a>
-                <a href="Chat.php" class="nav-item">Chat</a>
-
-                <div class="dropdown">
-                    <a href="Profile.php" class="dropbtn nav-item active">
-                        Profile ▼
-                    </a>
-                    <div class="dropdown-content">
-                        <a href="Profile.php">My Account</a>
-                        <a href="Login.html" style="color: red;">Log Out</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <?php include("navbar.php") ?>
 
    <div class="content">
         <div class="profile-container">
@@ -85,9 +65,7 @@ $email = $_SESSION['user_email'];
         </div>
    </div>
 
-   <div class="footer">
-        <p>&copy; 2026 MediLocator</p>
-    </div>
+   <?php include("footer.php") ?>
 
     <script>
         window.addEventListener('scroll',function(){
