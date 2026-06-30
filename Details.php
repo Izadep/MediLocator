@@ -91,7 +91,7 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                     <?php endif; ?>
                 </div>
 
-                <a href="Appointment.php" class="book-btn">
+                <a href="BookAppointment.php" class="book-btn">
                     Book Appointment
                 </a>
             </div>
