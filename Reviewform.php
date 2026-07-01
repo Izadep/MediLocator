@@ -90,9 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="form-actions">
                     <button type="submit" class="btn-submit">Submit Review</button>
-                    <a href="javascript:void(0)" class="btn-cancel" onclick="window.history.back()">
-                        Cancel
-                    </a>
+                    <a href="Review.php?type=<?php echo $type; ?>&id=<?php echo $refId; ?>"
+                       class="btn-cancel">Cancel</a>
                 </div>
             </form>
 
