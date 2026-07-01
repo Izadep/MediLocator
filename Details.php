@@ -111,7 +111,7 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                 </div>
 
                 <?php if ($type == "clinic"): ?>
-                    <a href="BookAppointment.php" class="book-btn">
+                    <a href="BookAppointment.php?id= <?= $row['clinicId'] ?>" class="book-btn">
                         Book Appointment
                     </a>
                 <?php endif; ?>

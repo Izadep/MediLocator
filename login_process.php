@@ -17,7 +17,7 @@
 
             if(password_verify($password, $user['pass'])) {
 
-                $_SESSION['user_id'] = $user['userid'];
+                $_SESSION['user_id'] = $user['userId'];
                 $_SESSION['user_name'] = $user['name'];
                 $_SESSION['user_email'] = $user['email'];
                 $_SESSION['logged_in'] = true;
