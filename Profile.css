@@ -206,7 +206,6 @@
     }
 }
 
-/* --------- TAMBAHAN UNTUK EDIT PROFILE PICTURE --------- */
 .profile-pic-container {
     position: relative;
     display: inline-block;
@@ -216,7 +215,7 @@
     position: absolute;
     bottom: 5px;
     right: 0px;
-    background: var(--teal, #008080); /* Fallback color added just in case */
+    background: var(--teal, #008080); 
     color: var(--white, #ffffff);
     border-radius: 50%;
     width: 30px;

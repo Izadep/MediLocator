@@ -11,9 +11,6 @@ $name = $_SESSION['user_name'];
 $email = $_SESSION['user_email'];
 $userId = $_SESSION['user_id'];
 
-// ==========================================
-// LOGIK UNTUK UPLOAD GAMBAR PROFIL BARU
-// ==========================================
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_picture'])) {
     $target_dir = "ProfilePic/"; 
     $file_name = basename($_FILES["profile_picture"]["name"]);
@@ -52,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_picture'])) {
         }
     }
 }
-// ==========================================
 
 $sql = "SELECT a.*, c.clinicName, c.address, c.clinicImage
         FROM appointment a

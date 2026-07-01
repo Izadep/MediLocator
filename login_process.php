@@ -21,6 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['role'] = $user['role'];
             $_SESSION['logged_in'] = true;
 
+            if (!empty($user['picture'])) {
+                $_SESSION['user-img'] = $user['picture'];
+            } else {
+                // Jika user belum pernah upload gambar, guna gambar default
+                // Pastikan awak letak gambar bernama "default.png" dalam folder ProfilePic
+                $_SESSION['user-img'] = 'ProfilePic/default.png'; 
+            }
+
             if ($user['role'] == 'admin') {
                 header("Location: admindashboard.php");
                 exit();
