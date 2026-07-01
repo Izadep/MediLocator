@@ -69,16 +69,12 @@ while ($row = mysqli_fetch_assoc($result)) {
 
             <div class="review-header">
                 <?php if ($filterType && $filterId): ?>
-                    <a href="Details.php?id=<?php echo $filterId; ?>&type=<?php echo $filterType; ?>"
-                    style="text-decoration:none; color:#2c3e91; font-size:0.95rem;">← Back</a>
+                    <a href="Details.php?id=<?php echo $filterId; ?>&type=<?php echo $filterType; ?>">Back</a>
                 <?php endif; ?>
                 <h1>Reviews</h1>
                 <?php if (isset($_SESSION['logged_in'])): ?>
                     <a href="reviewform.php<?php echo ($filterType && $filterId) ? "?type=$filterType&id=$filterId" : ''; ?>"
-                        class="btn-add-review"
-                        style="background:#2c3e91; color:#fff; padding:10px 18px; border-radius:8px; text-decoration:none; display:inline-block;">
-                        + Write a Review
-                    </a>
+                        class="btn-add-review">Write a Review</a>
                 <?php else: ?>
                     <a href="Login.php" class="btn-add-review">Log in to Review</a>
                 <?php endif; ?>

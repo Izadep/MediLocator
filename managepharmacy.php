@@ -5,9 +5,25 @@ include 'adminauth.php';
 
 if (isset($_GET['delete'])) {
     $id = (int) $_GET['delete'];
+
+    $result = mysqli_query($conn, "SELECT pharmacyImage FROM pharmacy WHERE pharmacyId = $id");
+    $pharmacy = mysqli_fetch_assoc($result);
+
+    if ($pharmacy && !empty($pharmacy['pharmacyImage'])) {
+        $imagePath = $pharmacy['pharmacyImage'];
+
+        // Only delete files inside image folder
+        if (strpos($imagePath, 'image/') === 0 && file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+    }
+
+
     mysqli_query($conn, "DELETE FROM pharmacy WHERE pharmacyId = $id");
+
     header("Location: managepharmacy.php");
     exit();
+
 }
 
 $result = mysqli_query($conn, "SELECT * FROM pharmacy ORDER BY pharmacyId");

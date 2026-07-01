@@ -1,100 +1,136 @@
-.appointment-page{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    margin-top:120px;
-    margin-bottom:60px;
+.appointment-page {
+    width: 90%;
+    max-width: 1200px;
+    margin: 120px auto 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.top-bar{
-    background-color: var(--teal);
+.top-bar {
+    width: 100%;
+    background: linear-gradient(135deg, var(--teal), var(--sky-blue));
+    padding: 30px;
     border-radius: 20px;
-    height: 60px;
-    width: 400px;
-    text-align:center;
-    margin-bottom:20px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
 }
 
-.top-bar h2{
-    font-size:22px;
-    color:var(--night-ocean);
+.top-bar h2 {
+    font-size: 34px;
+    margin-bottom: 8px;
+    color: white;
 }
 
-.top-bar p{
-    color:var(--night-ocean);
-    font-size:20px;
+.top-bar p {
+    font-size: 18px;
+    color: rgba(255,255,255,.9);
 }
 
-.appointment-card{
-    width:1000px;
-    background:white;
-    border-radius:20px;
-    padding:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+.appointment-card {
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.12);
 }
 
-.section{
-    margin-bottom:20px;
+.section {
+    margin-bottom: 30px;
 }
 
-.section h3{
-    font-size:16px;
-    margin-bottom:10px;
-    color:var(--night-ocean);
+.section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: var(--night-ocean);
 }
 
-input[type="date"]{
-    width:100%;
-    padding:10px;
-    border-radius:10px;
-    border:1px solid #ddd;
+input[type="date"],
+select {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #d8d8d8;
+    border-radius: 12px;
+    transition: .3s;
 }
 
-.time-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
+input[type="date"]:focus,
+select:focus {
+    border-color: var(--teal);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(97,188,174,.2);
 }
 
-.time-btn{
-    padding:10px;
-    border-radius:10px;
-    border:1px solid #ddd;
-    background:white;
-    cursor:pointer;
-    transition:0.2s;
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
 }
 
-.time-btn:hover{
-    background:var(--mint-pale);
+.time-btn {
+    padding: 18px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    border: 2px solid #ddd;
+    background: white;
+    cursor: pointer;
+    transition: .25s;
 }
 
-.time-btn.active{
-    background:var(--teal);
-    color:white;
-    border-color:var(--teal);
+.time-btn:hover {
+    background: var(--mint-pale);
+    border-color: var(--teal);
+    transform: translateY(-2px);
 }
 
-select{
-    width:100%;
-    padding:10px;
-    border-radius:10px;
-    border:1px solid #ddd;
+.time-btn.active {
+    background: var(--teal);
+    color: white;
+    border-color: var(--teal);
+    box-shadow: 0 8px 20px rgba(97,188,174,.35);
 }
 
-.confirm-btn{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    background:var(--teal);
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 25px;
 }
 
-.confirm-btn:hover{
-    background:var(--night-ocean);
+.back-btn,
+.confirm-btn {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.back-btn {
+    background: #f3f3f3;
+    color: #555;
+    border: 2px solid #ddd;
+}
+
+.back-btn:hover {
+    background: #e5e5e5;
+    border-color: #bbb;
+}
+
+.confirm-btn {
+    border: none;
+    background: var(--teal);
+    color: white;
+    cursor: pointer;
+}
+
+.confirm-btn:hover {
+    background: var(--night-ocean);
 }
