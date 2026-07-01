@@ -4,9 +4,18 @@ include 'database.php';
 
 $editMode = false;
 $clinic = [
-    'clinicId' => '', 'clinicName' => '', 'specialty' => '', 'specialServices' => '',
-    'message' => '', 'address' => '', 'latitude' => '', 'longitude' => '',
-    'phoneNum' => '', 'opHours' => '', 'clinicImage' => ''
+    'clinicId' => '', 
+    'clinicName' => '', 
+    'specialty' => '', 
+    'specialServices' => '',
+    'message' => '',
+    'address' => '', 
+    'latitude' => '', 
+    'longitude' => '',
+    'phoneNum' => '', 
+    'opHourStart' => '',
+    'opHourEnd' => '',
+    'clinicImage' => ''
 ];
 
 if (isset($_GET['id'])) {
@@ -56,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!is_numeric($latitude) || !is_numeric($longitude)) {
         $error = "Latitude and longitude must be numbers.";
-    } else if (isset($_POST['clinicId']) && $_POST['clinicId'] !== '') {
+    } else if ($error == '' && isset($_POST['clinicId']) && $_POST['clinicId'] !== '') {
         // Update
         $id = (int) $_POST['clinicId'];
         $sql = "UPDATE clinic SET
@@ -71,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $error = "Update failed: " . mysqli_error($conn);
         }
-    } else {
+    } else if ($error == '') {
         // Insert
         $sql = "INSERT INTO clinic
                     (clinicName, specialty, specialServices, message, address, latitude, longitude, phoneNum, opHourStart, opHourEnd, clinicImage)
@@ -113,10 +122,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="clinicName" value="<?php echo htmlspecialchars($clinic['clinicName']); ?>" required>
 
             <label>Specialty</label>
-            <input type="text" name="specialty" value="<?php echo htmlspecialchars($clinic['specialty']); ?>">
+            <input type="text" name="specialty" value="<?php echo htmlspecialchars($clinic['specialty']); ?>" placeholder="Optional">
 
             <label>Special Services</label>
-            <input type="text" name="specialServices" value="<?php echo htmlspecialchars($clinic['specialServices']); ?>">
+            <input type="text" name="specialServices" value="<?php echo htmlspecialchars($clinic['specialServices']); ?>" placeholder="Optional">
 
             <label>Message</label>
             <textarea name="message"><?php echo htmlspecialchars($clinic['message']); ?></textarea>

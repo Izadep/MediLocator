@@ -1,3 +1,29 @@
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(65, 92, 119, 0.15);
+    margin-top: 25px;
+}
+
+.admin-table th {
+    background: var(--night-ocean);
+    color: var(--white);
+    padding: 15px;
+    text-align: left;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+}
+
+.admin-table td {
+    padding: 14px 15px;
+    border-bottom: 1px solid var(--mint-pale);
+    color: var(--night-ocean);
+    font-size: 15px;
+}
+
 
 /* Delete Button */
 .btn-delete {

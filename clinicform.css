@@ -22,11 +22,11 @@
     width: 100%;
     padding: 12px 14px;
     margin-bottom: 18px;
-    border: 1px solid var(--mint-bright);
+    border: 1px solid var(--azure);
     border-radius: 9px;
     font-size: 15px;
     color: var(--night-ocean);
-    background: var(--azure);
+    background: var(--teal-med);
     outline: none;
     transition: 0.3s ease;
 }
@@ -87,4 +87,20 @@
     background: var(--pastel-blue);
     color: var(--navy);
     transform: translateY(-2px);
+}
+
+.current-image-text {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--night-ocean);
+}
+
+.preview-image {
+    width: 180px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 18px;
+    box-shadow: 0 5px 14px rgba(65, 92, 119, 0.18);
 }

@@ -18,8 +18,7 @@ $appointmentCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS t
 <body>
     <div class = container>
      <?php include("navbaradmin.php") ?>
-    </nav>
-
+    
     <div class="admin-content">
         <div class="admin-title">MediLocator Admin</div>
         <h1>Dashboard</h1>
