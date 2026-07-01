@@ -16,7 +16,7 @@
 .details-card{
     width:100%;
     max-width:900px;
-    background:#fff;
+    background:var(--white);
     border-radius:20px;
     overflow:hidden;
     box-shadow:0 10px 25px rgba(0,0,0,.1);
