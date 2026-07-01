@@ -70,13 +70,15 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY userId");
                 <td><?php echo htmlspecialchars($row['name']); ?></td>
                 <td><?php echo htmlspecialchars($row['email']); ?></td>
                 <td><?php echo htmlspecialchars($row['role']); ?></td>
-                <td>
+                <?php if ($row['userId'] != 'USR001') { ?>
+                    <td>
                     <a href="manageusers.php?delete=<?php echo urlencode($row['userId']); ?>"
                        class="btn-delete"
                        onclick="return confirm('Delete this user? This cannot be undone.');">
                        Delete
                     </a>
                 </td>
+                <?php } ?>
             </tr>
             <?php endwhile; ?>
         </table>
