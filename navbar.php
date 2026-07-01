@@ -17,10 +17,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     Appointment
                 </a>
 
-                <a href="Chat.php" class="nav-item <?= $currentPage == 'Chat.php' ? 'active' : '' ?>">
-                    Chat
-                </a>
-
                 <div class="dropdown">
                     <a href="Profile.php" class="dropbtn nav-item">
                         Profile ▼

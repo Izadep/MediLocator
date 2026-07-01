@@ -73,8 +73,7 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
     <?php include("navbar.php") ?>
 
     <div class="body-bg">
-        <div id="body-img">
-        </div>
+        <div id="body-img" style="background-image: url('<?php echo htmlspecialchars($image); ?>');"></div>
     </div>
 
     <div class="details-container">
@@ -97,7 +96,6 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                 
                 <div class="action-buttons">
                     <button onclick="copyPhone('<?= $row['phoneNum'] ?>')" class="call-btn" title="Copy phone-number">📞 Call</button>
-                    <button title="Send a Message">💬 Message</button>
                     <button onclick="openDirectionModal()" title="Get Direction">📍 Direction</button>
                     <button onclick="copyLink()" class="share-btn" title="Copy link">🔗 Share</button>
                 </div>
@@ -111,7 +109,7 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                 </div>
 
                 <?php if ($type == "clinic"): ?>
-                    <a href="BookAppointment.php" class="book-btn">
+                    <a href="BookAppointment.php?id= <?= $row['clinicId'] ?>" class="book-btn">
                         Book Appointment
                     </a>
                 <?php endif; ?>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("database.php");
 if(!isset($_SESSION['logged_in'])) {
     header("Location: Login.php");
     exit();
@@ -7,6 +8,22 @@ if(!isset($_SESSION['logged_in'])) {
 
 $name = $_SESSION['user_name'];
 $email = $_SESSION['user_email'];
+
+$userId = $_SESSION['user_id'];
+
+
+$sql = "SELECT a.*, c.clinicName, c.address, c.clinicImage
+        FROM appointment a
+        JOIN clinic c ON a.clinicId = c.clinicId
+        WHERE a.userId = '$userId'
+        AND a.dateTime >= NOW()
+        ORDER BY a.dateTime ASC
+        LIMIT 1";
+
+$result = mysqli_query($conn, $sql);
+
+$appointment = mysqli_fetch_assoc($result);
+
 ?>
 
 <!DOCTYPE html>
@@ -21,12 +38,12 @@ $email = $_SESSION['user_email'];
 
 <body>
     <?php include("navbar.php") ?>
-    <div class = "body-bg">
+    <!--<div class = "body-bg">
         <div id = "body-img">
         </div>
-    </div>
+    </div>-->
 
-   <div class="content">
+   <div class="contentprofile">
         <div class="profile-container">
 
             <div class="profile-header slide-in">
@@ -44,25 +61,52 @@ $email = $_SESSION['user_email'];
                 <h2 class="section-title">My Appointments</h2>
 
                 <div class="appointment-card">
-                    <div class="clinic-image"></div>
 
-                   <!-- <div class="appointment-info">
-                         <span class="appointment-date">Tomorrow, 10:00 AM</span>
-                        
+                <?php if ($appointment): ?>
+
+                    <?php
+                    $clinicImage = $appointment['clinicImage'] ?? 'default.jpg';
+                    $clinicImage = trim($clinicImage);
+                    ?>
+
+                    <div class="clinic-image"
+                        style="background-image: url('<?php echo htmlspecialchars($clinicImage); ?>');">
+                    </div>
+
+                    <div class="appointment-info">
+                        <span class="appointment-date">
+                            <?= date("d M Y, h:i A", strtotime($appointment['dateTime'])) ?>
+                        </span>
+
                         <div class="healthcare-type">Clinic</div>
-                        <p class="healthcare-name"><b>Klinik Ayer Keroh</b></p>
-                        <p class="clinic-address">Klinik Ayer Keroh, 25, Lorong ...</p>
-                        
-                        <a href="#" class="details-link">VIEW DETAILS →</a>
-                    </div>-->
 
-                    <button class="go-btn">Go</button>
-                </div>
+                        <p class="healthcare-name">
+                            <b><?= htmlspecialchars($appointment['clinicName']) ?></b>
+                        </p>
+
+                        <p class="clinic-address">
+                            <?= htmlspecialchars($appointment['address']) ?>
+                        </p>
+
+                        <a href="Details.php?id=<?= $appointment['clinicId'] ?>&type=clinic" class="details-link">
+                            VIEW DETAILS →
+                        </a>
+                    </div>
+
+                <?php else: ?>
+
+                    <p style="padding: 20px; color: #777;">
+                        No upcoming appointment
+                    </p>
+
+                <?php endif; ?>
+
+                <button class="go-btn" onclick="location.href='Appointment.php'">Go</button>
+            </div>
             </div>
 
             <div class="profile-menu slide-in" style="animation-delay: 0.2s;">
                 <a href="History.php">📅 Appointment History</a>
-                <a href="Saved.php">❤️ Saved Clinics / Pharmacies</a>
                 <a href="Settings.php">⚙️ Settings</a>
                 <a href="logout.php" class="logout">🚪 Log Out</a>
             </div>

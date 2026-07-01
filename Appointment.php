@@ -1,11 +1,21 @@
 <?php
+include("database.php");
 session_start();
 if(!isset($_SESSION['logged_in'])) {
     header("Location: Login.php");
     exit();
 }
 
+$userId = $_SESSION['user_id'];
 $name = $_SESSION['user_name'];
+
+$sql = "SELECT a.*, c.clinicName, c.address
+        FROM appointment a
+        JOIN clinic c ON a.clinicId = c.clinicId
+        WHERE a.userId = '$userId'
+        ORDER BY a.dateTime ASC";
+
+$result = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -20,10 +30,10 @@ $name = $_SESSION['user_name'];
 
 <body>
     <?php include("navbar.php") ?>
-    <div class = "body-bg">
+    <!--<div class = "body-bg">
         <div id = "body-img">
         </div>
-    </div>
+    </div>-->
         <div class="content slide-in">
             <div class="appointment-page">
                 <div class="appointment-header">
@@ -32,24 +42,53 @@ $name = $_SESSION['user_name'];
 
                 <div class="appointment-controls">
                     <div class="select-area">
-                        <label for="appointmentUser">Select appointment for:</label>
+                        <label for="appointmentUser">Username:</label>
 
                         <div class="custom-select-wrapper">
-                            <select id="appointmentUser" name="appointmentUser">
-                                <option value="user1"><?php echo $name . " (you)"?></option>
-                                <option value="user2">User 2</option>
-                            </select>
+                            <div class="user-display">
+                                <?= htmlspecialchars($name) ?>
+                            </div>
                         </div>
                     </div>
                     <a href="History.php" class="history-link">History</a>
                 </div>
-
-                <p class="no-appointment">(No upcoming appointment)</p>
-
                 <hr>
-
                 <div class="appointment-content">
-                    </div>
+
+                <?php if ($result && mysqli_num_rows($result) > 0): ?>
+
+                     <?php while($row = mysqli_fetch_assoc($result)): ?>
+
+                        <?php
+                            $appointmentDate = strtotime($row['dateTime']);
+                            $now = time();
+
+                            $isNearby = false;
+
+                            if ($appointmentDate) {
+                                $diff = $appointmentDate - $now;
+                                $isNearby = ($diff >= 0 && $diff <= 86400);
+                            }
+                        ?>
+                        <div class="appointment-card <?= $isNearby ? 'nearby' : '' ?>">
+
+                            <?php if ($isNearby): ?>
+                            <div class="badge">UPCOMING</div>
+                            <?php endif; ?>
+                            <h3><?= htmlspecialchars($row['clinicName']) ?></h3>
+                            <p>📍 <?= htmlspecialchars($row['address']) ?></p>
+                            <p>📅 <?= date("d M Y", strtotime($row['dateTime'])) ?></p>
+                            <p class="<?= $isNearby ? 'time-red' : '' ?>">
+                                ⏰ <?= date("h:i A", strtotime($row['dateTime'])) ?>
+                            </p>
+                            <p>🧾 Type: <?= htmlspecialchars($row['type']) ?></p>
+                        </div>
+
+                    <?php endwhile; ?>
+                    <?php else: ?>
+                    <p class="no-appointment">(No upcoming appointment)</p>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
 

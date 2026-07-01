@@ -19,11 +19,11 @@ $category = $_GET['category'] ?? '';
 
 <body>
     <?php include("navbar.php") ?>
-    <div class = "body-bg">
+    <!--<div class = "body-bg">
         <div id = "body-img">
         </div>
-    </div>
-    <div class = container>
+    </div>-->
+    <div class = "container">
         <form action="Search.php" method="get" class="slide-in" style="animation-delay: 0.2s;">
             <div class="search-container">
                 <input type="text" name="search" placeholder="Search Clinic or Pharmacy" id="SearchBar" required>
