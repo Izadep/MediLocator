@@ -102,6 +102,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (window.scrollY > 20) navbar.classList.add('scrolled');
             else navbar.classList.remove('scrolled');
         });
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme')=== 'dark') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '☀️Light Mode'
+        }
     </script>
 </body>
 </html>
