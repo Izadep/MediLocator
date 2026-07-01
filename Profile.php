@@ -107,7 +107,7 @@ $appointment = mysqli_fetch_assoc($result);
 
             <div class="profile-menu slide-in" style="animation-delay: 0.2s;">
                 <a href="History.php">📅 Appointment History</a>
-                <a href="Settings.php">⚙️ Settings</a>
+                <a href="setting.php">⚙️ Settings</a>
                 <a href="logout.php" class="logout">🚪 Log Out</a>
             </div>
         </div>
