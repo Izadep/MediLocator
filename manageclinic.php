@@ -9,34 +9,25 @@ if (isset($_GET['delete'])) {
     exit();
 }
 
-$result = mysqli_query($conn, "SELECT * FROM clinic ORDER BY clinicName");
+$result = mysqli_query($conn, "SELECT * FROM clinic ORDER BY clinicId");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Manage Clinics</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="adminMain.css">
+    <link rel="stylesheet" href="manageclinic.css">
 </head>
 <body>
-    <nav class="admin-nav">
-        <div class="admin-nav-title">MediLocator Admin</div>
-        <div class="admin-nav-links">
-            <a href="admindashboard.php">Dashboard</a>
-            <a href="manageusers.php">Users</a>
-            <a href="manageclinic.php" class="active">Clinics</a>
-            <a href="managepharmacy.php">Pharmacies</a>
-            <a href="manageappointment.php">Appointments</a>
-            <a href="adminlogout.php" style="color:#ffb3b3;">Log out</a>
-        </div>
-    </nav>
+    <div class = container>
+     <?php include("navbaradmin.php") ?>
 
     <div class="admin-content">
-        <div class="content-header">
-            <h1>Manage Clinics</h1>
+        <div class="admin-title">MediLocator Admin</div>
+            <h1>Manage Clinics</h1> 
             <a href="clinicform.php" class="btn-add">+ Add Clinic</a>
-        </div>
-
+        
         <table class="admin-table">
             <tr>
                 <th>ID</th>
@@ -45,6 +36,7 @@ $result = mysqli_query($conn, "SELECT * FROM clinic ORDER BY clinicName");
                 <th>Phone</th>
                 <th>Action</th>
             </tr>
+            
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <tr>
                 <td><?php echo $row['clinicId']; ?></td>
@@ -63,5 +55,7 @@ $result = mysqli_query($conn, "SELECT * FROM clinic ORDER BY clinicName");
             <?php endwhile; ?>
         </table>
     </div>
+    </div>
+    <?php include("footer.php") ?>
 </body>
 </html>

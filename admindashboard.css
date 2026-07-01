@@ -1,0 +1,28 @@
+
+.stat-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.stat-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(65, 92, 119, 0.15);
+    border-top: 6px solid var(--teal);
+    transition: 0.3s ease;
+}
+
+.stat-card h2 {
+    font-size: 42px;
+    color: var(--teal);
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 17px;
+    color: var(--night-ocean);
+    font-weight: 600;
+}

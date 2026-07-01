@@ -1,0 +1,82 @@
+/* Admin Table */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(65, 92, 119, 0.15);
+    margin-top: 25px;
+}
+
+.admin-table th {
+    background: var(--night-ocean);
+    color: var(--white);
+    padding: 15px;
+    text-align: left;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+}
+
+.admin-table td {
+    padding: 14px 15px;
+    border-bottom: 1px solid var(--mint-pale);
+    color: var(--night-ocean);
+    font-size: 15px;
+}
+
+/* Delete Button */
+.btn-delete {
+    display: inline-block;
+    background: #ff6b6b;
+    color: var(--white);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-delete:hover {
+    background: #d94343;
+    transform: translateY(-2px);
+}
+
+/* Edit Button */
+.btn-edit{
+    display: inline-block;
+    background: #68d97a;
+    color: var(--white);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-edit:hover {
+    background: #3f9542;
+    transform: translateY(-2px);
+}
+
+
+/*Add Button*/
+.btn-add {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-add:hover {
+    background: var(--night-ocean);
+    transform: translateY(-2px);
+}

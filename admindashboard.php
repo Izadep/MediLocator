@@ -1,34 +1,27 @@
 <?php
 session_start();
 include 'database.php';
-
-
 $userCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM users"))['total'];
 $clinicCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM clinic"))['total'];
 $pharmacyCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM pharmacy"))['total'];
 $appointmentCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM appointment"))['total'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="adminMain.css">
+    <link rel="stylesheet" href="admindashboard.css">
 </head>
 <body>
-    <nav class="admin-nav">
-        <div class="admin-nav-title">MediLocator Admin</div>
-        <div class="admin-nav-links">
-            <a href="admindashboard.php">Dashboard</a>
-            <a href="manageusers.php">Users</a>
-            <a href="manageclinic.php">Clinics</a>
-            <a href="managepharmacy.php">Pharmacies</a>
-            <a href="manageappointment.php">Appointments</a>
-            <a href="logout.php" style="color:#ffb3b3;">Log out (<?php echo htmlspecialchars($_SESSION['user_name'] ?? ''); ?>)</a>
-        </div>
+    <div class = container>
+     <?php include("navbaradmin.php") ?>
     </nav>
 
     <div class="admin-content">
+        <div class="admin-title">MediLocator Admin</div>
         <h1>Dashboard</h1>
         <div class="stat-cards">
             <div class="stat-card"><h2><?php echo $userCount; ?></h2><p>Users</p></div>
@@ -37,5 +30,8 @@ $appointmentCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS t
             <div class="stat-card"><h2><?php echo $appointmentCount; ?></h2><p>Appointments</p></div>
         </div>
     </div>
+    </div>
+
+        <?php include("footer.php") ?>
 </body>
 </html>

@@ -29,8 +29,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $latitude = mysqli_real_escape_string($conn, $_POST['latitude']);
     $longitude = mysqli_real_escape_string($conn, $_POST['longitude']);
     $phoneNum = mysqli_real_escape_string($conn, $_POST['phoneNum']);
-    $opHours = mysqli_real_escape_string($conn, $_POST['opHours']);
-    $clinicImage = mysqli_real_escape_string($conn, $_POST['clinicImage']);
+    $opHourStart = mysqli_real_escape_string($conn, $_POST['opHourStart']);
+    $opHourEnd = mysqli_real_escape_string($conn, $_POST['opHourEnd']);
+    $clinicImage = $clinic['clinicImage'] ?? '';
+
+    if (isset($_FILES['clinicImage']) && $_FILES['clinicImage']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = 'image/';
+        $fileName = basename($_FILES['clinicImage']['name']);
+        $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+
+        if (in_array($fileExt, $allowedTypes)) {
+            $newFileName = uniqid('clinic_', true) . '.' . $fileExt;
+            $uploadPath = $uploadDir . $newFileName;
+
+            if (move_uploaded_file($_FILES['clinicImage']['tmp_name'], $uploadPath)) {
+                $clinicImage = $uploadPath;
+            }
+        } else {
+            $error = "Only JPG, JPEG, PNG, GIF and WEBP images are allowed.";
+        }
+    }
+
+    $clinicImage = mysqli_real_escape_string($conn, $clinicImage);
 
     if (!is_numeric($latitude) || !is_numeric($longitude)) {
         $error = "Latitude and longitude must be numbers.";
@@ -40,7 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql = "UPDATE clinic SET
                     clinicName='$name', specialty='$specialty', specialServices='$specialServices',
                     message='$message', address='$address', latitude='$latitude', longitude='$longitude',
-                    phoneNum='$phoneNum', opHours='$opHours', clinicImage='$clinicImage'
+                    phoneNum='$phoneNum', opHourStart='$opHourStart', opHourEnd='$opHourEnd', 
+                    clinicImage='$clinicImage'
                 WHERE clinicId = $id";
         if (mysqli_query($conn, $sql)) {
             header("Location: manageclinic.php");
@@ -51,9 +74,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         // Insert
         $sql = "INSERT INTO clinic
-                    (clinicName, specialty, specialServices, message, address, latitude, longitude, phoneNum, opHours, clinicImage)
+                    (clinicName, specialty, specialServices, message, address, latitude, longitude, phoneNum, opHourStart, opHourEnd, clinicImage)
                 VALUES
-                    ('$name', '$specialty', '$specialServices', '$message', '$address', '$latitude', '$longitude', '$phoneNum', '$opHours', '$clinicImage')";
+                    ('$name', '$specialty', '$specialServices', '$message', '$address', '$latitude', '$longitude', '$phoneNum', '$opHourStart', '$opHourEnd', '$clinicImage')";
         if (mysqli_query($conn, $sql)) {
             header("Location: manageclinic.php");
             exit();
@@ -68,29 +91,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title><?php echo $editMode ? 'Edit Clinic' : 'Add Clinic'; ?></title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="adminMain.css">
+    <link rel="stylesheet" href="clinicform.css">
 </head>
 <body>
-    <nav class="admin-nav">
-        <div class="admin-nav-title">MediLocator Admin</div>
-        <div class="admin-nav-links">
-            <a href="admindashboard.php">Dashboard</a>
-            <a href="manageusers.php">Users</a>
-            <a href="manageclinic.php" class="active">Clinics</a>
-            <a href="managepharmacy.php">Pharmacies</a>
-            <a href="manageappointment.php">Appointments</a>
-            <a href="adminlogout.php" style="color:#ffb3b3;">Log out</a>
-        </div>
-    </nav>
-
+    <div class = "container">
+        <?php include("navbaradmin.php") ?>
+    
     <div class="admin-content">
+        <div class="admin-title">MediLocator Admin</div>
         <h1><?php echo $editMode ? 'Edit Clinic' : 'Add Clinic'; ?></h1>
 
         <?php if ($error): ?>
             <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
         <?php endif; ?>
 
-        <form method="POST" class="admin-form">
+        <form method="POST" class="admin-form" enctype="multipart/form-data">
             <input type="hidden" name="clinicId" value="<?php echo htmlspecialchars($clinic['clinicId']); ?>">
 
             <label>Clinic Name</label>
@@ -117,11 +133,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label>Phone Number</label>
             <input type="text" name="phoneNum" value="<?php echo htmlspecialchars($clinic['phoneNum']); ?>" required>
 
-            <label>Operating Hours</label>
-            <input type="text" name="opHours" value="<?php echo htmlspecialchars($clinic['opHours']); ?>" required>
+            <label>Operating Hour Start</label>
+            <input type="time" name="opHourStart" value="<?php echo htmlspecialchars($clinic['opHourStart'] ?? ''); ?>" required>
 
-            <label>Image Path (e.g. image/clinic.jpg)</label>
-            <input type="text" name="clinicImage" value="<?php echo htmlspecialchars($clinic['clinicImage']); ?>">
+            <label>Operating Hour End</label>
+            <input type="time" name="opHourEnd" value="<?php echo htmlspecialchars($clinic['opHourEnd'] ?? ''); ?>" required>
+
+            <label>Clinic Image</label>
+            <input type="file" name="clinicImage" accept="image/*">
+
+            <?php if (!empty($clinic['clinicImage'])): ?>
+                <p class="current-image-text">Current Image:</p>
+                <img src="<?php echo htmlspecialchars($clinic['clinicImage']); ?>" 
+                    class="preview-image" 
+                    alt="Clinic Image">
+            <?php endif; ?>
 
             <div class="form-actions">
                 <button type="submit" class="btn-add"><?php echo $editMode ? 'Save Changes' : 'Add Clinic'; ?></button>
@@ -129,5 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </form>
     </div>
+    </div>
+    <?php include("footer.php") ?>
 </body>
 </html>

@@ -23,22 +23,15 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY userId");
 <head>
     <meta charset="UTF-8">
     <title>Manage Users</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="adminMain.css">
+    <link rel="stylesheet" href="manageusers.css">
 </head>
 <body>
-    <nav class="admin-nav">
-        <div class="admin-nav-title">MediLocator Admin</div>
-        <div class="admin-nav-links">
-            <a href="AdminDashboard.php">Dashboard</a>
-            <a href="manageusers.php" class="active">Users</a>
-            <a href="manageclinic.php">Clinics</a>
-            <a href="manage_pharmacy.php">Pharmacies</a>
-            <a href="manage_appointment.php">Appointments</a>
-            <a href="admin_logout.php" style="color:#ffb3b3;">Log out</a>
-        </div>
-    </nav>
+    <div class = container>
+     <?php include("navbaradmin.php") ?>
 
     <div class="admin-content">
+        <div class="admin-title">MediLocator Admin</div>
         <h1>Manage Users</h1>
 
         <?php if (isset($_GET['error']) && $_GET['error'] == 'self'): ?>
@@ -70,5 +63,7 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY userId");
             <?php endwhile; ?>
         </table>
     </div>
+    </div>
+    <?php include("footer.php") ?>
 </body>
 </html>
