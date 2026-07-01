@@ -5,10 +5,57 @@
     background: var(--white);
     border-radius: 25px;
     padding-bottom: 30px;
-    box-shadow: 0 10px 30px rgba(32, 51, 70, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
+.appointment-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
 
+.appointment-card {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    transition: 0.2s ease;
+}
+
+.appointment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.appointment-card h3 {
+    margin-bottom: 10px;
+}
+
+.appointment-card p {
+    margin: 5px 0;
+    color: #555;
+}
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.time-red {
+    color: red;
+    font-weight: bold;
+}
 
 .appointment-header {
     background: linear-gradient(135deg, var(--teal), var(--teal-med));
@@ -40,34 +87,12 @@
     align-items: flex-start;
     padding: 35px 60px 10px 60px;
 }
-
-.select-area {
-    display: flex;
-    flex-direction: column;
-}
-
-.select-area label {
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: var(--night-ocean);
-}
-
-.select-area select {
-    width: 230px;
-    padding: 12px 15px;
-    background: var(--teal);
-    color: var(--white);
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(97, 188, 174, 0.3);
-}
-
-.select-area select option {
+.user-display {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     background: var(--white);
-    color: var(--night-ocean);
+    font-weight: 500;
 }
 
 .select-area1 {

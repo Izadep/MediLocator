@@ -26,7 +26,7 @@ $email = $_SESSION['user_email'];
         </div>
     </div>
 
-   <div class="content">
+   <div class="contentprofile">
         <div class="profile-container">
 
             <div class="profile-header slide-in">
