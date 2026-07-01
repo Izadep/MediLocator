@@ -148,5 +148,13 @@
                 .bindPopup(loc.name + " (" + locationtype + ")");
             }
         });
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme')=== 'dark') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '☀️Light Mode'
+        }
         </script>
 </html>

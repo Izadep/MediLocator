@@ -223,6 +223,14 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
             }, 1500);
         });
     }
+
+    const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme')=== 'dark') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '☀️Light Mode'
+        }
     </script>
 </body>
 </html>

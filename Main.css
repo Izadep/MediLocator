@@ -10,7 +10,13 @@
     --pastel-blue: #A7C7E7;
     --azure:#F0FFFF;
 }
-
+body.dark-mode {
+    --mint-pale: #0f172a;  /* Background utama jadi biru gelap */
+    --white: #1e293b;      /* Kotak putih jadi kelabu gelap */
+    --navy: #f8fafc;       /* Tulisan gelap jadi cerah */
+    --mint-bright: #334155;/* Warna hover jadi gelap */
+    --night-ocean: #f8fafc; 
+}
 
 * {
     margin: 0;
@@ -25,6 +31,7 @@ body {
     background-color: var(--mint-pale);
     color: var(--night-ocean);
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 #body-img {
     position: fixed;

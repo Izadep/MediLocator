@@ -60,7 +60,7 @@ body {
     max-width: 900px;
     margin: 15px auto;
     padding: 20px;
-    background: white;
+    background: var(--white);
     border-radius: 15px;
     overflow: hidden;
     max-height: 100px;
@@ -99,7 +99,7 @@ body {
 
     padding: 10px 20px;
     background: var(--teal);
-    color: white;
+    color: var(--white);
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
@@ -109,11 +109,11 @@ body {
 }
 .healthcare-list h3 {
     margin: 0;
-    color: #000000;
+    color: var(--navy);
 }
 .healthcare-list p {
     margin: 5px 0 0;
-    color: grey;
+    color: #888888;
 }
 .no-list {
     display: flex;
@@ -122,7 +122,7 @@ body {
 
 .healthcare-list {
     position: relative;
-    background: white;
+    background: var(--white);
     padding: 20px;
     margin-bottom: 15px;
     border-radius: 15px;

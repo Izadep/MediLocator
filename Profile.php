@@ -107,7 +107,7 @@ $appointment = mysqli_fetch_assoc($result);
 
             <div class="profile-menu slide-in" style="animation-delay: 0.2s;">
                 <a href="History.php">📅 Appointment History</a>
-                <a href="setting.php">⚙️ Settings</a>
+                <a href="#" id="darkModeToggle">🌙Dark Mode</a>
                 <a href="logout.php" class="logout">🚪 Log Out</a>
             </div>
         </div>
@@ -141,7 +141,28 @@ $appointment = mysqli_fetch_assoc($result);
 
         const slideElements = document.querySelectorAll('.slide-in');
         slideElements.forEach(el => observer.observe(el));
+        
 
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme')=== 'dark') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '☀️Light Mode'
+        }
+
+        darkModeToggle.addEventListener('click', function(e){
+            e.preventDefault();
+            body.classList.toggle('dark-mode');
+
+            if(body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme','dark');
+                darkModeToggle.innerHTML = '☀️Light Mode';
+            } else {
+                localStorage.setItem('theme','light');
+                darkModeToggle.innerHTML='🌙 Dark Mode';
+            }
+        });
     </script>
 </body>
 </html>
