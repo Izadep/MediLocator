@@ -4,13 +4,14 @@ include 'database.php';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $ic = mysqli_real_escape_string($conn, $_POST['userid']);
     $name = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
-    if($password !== $confirm_password) {
+    if (strlen($password) < 8) {
+        $error = "Password must be at least 8 characters.";
+    } else if ($password !== $confirm_password) {
         $error = "Passwords do not match!";
     } else {
 
@@ -73,11 +74,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <form method="POST" onsubmit="return validatePassword()">
             <div class="formGrp">
-                <p style="text-align: left;">IC/Passport number</p>
-                <input type="text" name="userid" id="idIn" placeholder="🪪IC/Passport Number" style="text-align: left;" required>
-            </div>
-
-            <div class="formGrp">
                 <p style="text-align: left;">Username</p>
                 <input type="text" name="username" id="idnameIn" placeholder="What should we call you?" style="text-align: left;" required>
             </div>
@@ -90,7 +86,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="formGrp">
                 <p style="text-align: left;">Password</p>
                 <div class="input-wrapper">
-                    <input type="password" name="password" id="passIn" placeholder="🔒︎ Enter password" style="text-align: left;" required>
+                    <input type="password" name="password" id="passIn" minlength="8" placeholder="🔒︎ Enter password" style="text-align: left;" required>
                     <span class="toggle-pass" onclick="togglePass()">👁️</span>
                 </div>
             </div>
@@ -98,7 +94,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="formGrp">
                 <p style="text-align: left;">Confirm Password</p>
                 <div class="input-wrapper">
-                    <input type="password" name="confirm_password" id= "cpassIn" placeholder="🔒︎ Enter password again" style="text-align: left;" required>
+                    <input type="password" name="confirm_password" id= "cpassIn" minlength="8" placeholder="🔒︎ Enter password again" style="text-align: left;" required>
                      <span class="toggle-pass" onclick="togglePass()">👁️</span>
                 </div>
             </div>
@@ -117,6 +113,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         function validatePassword() {
             let pswd = document.getElementById("passIn").value;
             let confpwsd = document.getElementById("cpassIn").value;
+
+            if (pswd.length < 8) {
+                alert("Password must be at least 8 characters.");
+                return false;
+            }
 
             if (pswd !== confpwsd) {
                 alert("Password does not match!");

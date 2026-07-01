@@ -53,3 +53,20 @@
     margin: 15px 0;
     font-weight: 600;
 }
+
+.btn-add {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-add:hover {
+    background: var(--night-ocean);
+    transform: translateY(-2px);
+}

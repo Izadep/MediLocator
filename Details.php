@@ -62,6 +62,44 @@ $lng = $row['longitude'];
 
 $googleLink = "https://www.google.com/maps?q=$lat,$lng";
 $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
+
+$filterType = $_GET['type'] ?? '';
+$filterId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+if (isset($_GET['delete']) && isset($_SESSION['logged_in'])) {
+    $deleteId = (int)$_GET['delete'];
+    $userId = mysqli_real_escape_string($conn, $_SESSION['user_id']);
+    mysqli_query($conn, "DELETE FROM review WHERE reviewId = $deleteId AND userId = '$userId'");
+    header("Location: Review.php" . ($filterType && $filterId ? "?type=$filterType&id=$filterId" : ""));
+    exit();
+}
+
+if ($filterType == 'clinic' && $filterId > 0) {
+    $sql = "SELECT r.reviewId, r.rating, r.comments, r.reviewDate, r.userId,
+                   u.name AS userName, c.clinicName AS placeName
+            FROM review r
+            LEFT JOIN users u ON r.userId = u.userId
+            LEFT JOIN clinic c ON r.clinicId = c.clinicId
+            WHERE r.clinicId = $filterId
+            ORDER BY r.reviewDate DESC";
+} elseif ($filterType == 'pharmacy' && $filterId > 0) {
+    $sql = "SELECT r.reviewId, r.rating, r.comments, r.reviewDate, r.userId,
+                   u.name AS userName, p.pharmacyName AS placeName
+            FROM review r
+            LEFT JOIN users u ON r.userId = u.userId
+            LEFT JOIN pharmacy p ON r.pharmacyId = p.pharmacyId
+            WHERE r.pharmacyId = $filterId
+            ORDER BY r.reviewDate DESC";
+} else {
+    $sql = "SELECT r.reviewId, r.rating, r.comments, r.reviewDate, r.userId,
+                   u.name AS userName,
+                   COALESCE(c.clinicName, p.pharmacyName) AS placeName
+            FROM review r
+            LEFT JOIN users u ON r.userId = u.userId
+            LEFT JOIN clinic c ON r.clinicId = c.clinicId
+            LEFT JOIN pharmacy p ON r.pharmacyId = p.pharmacyId
+            ORDER BY r.reviewDate DESC";
+}
 ?>
 
 <!DOCTYPE html>
@@ -121,8 +159,8 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                 </div>
 
                 <div class="button-row">
-                <a href="javascript:void(0)" class="back-btn" onclick="window.history.back()">
-                    ← Back
+                <a href="Search.php?category=<?= urlencode($type) ?>" class="back-btn">
+                    Back
                 </a>
                 <?php if ($type == "clinic"): ?>
                     <a href="BookAppointment.php?id= <?= $row['clinicId'] ?>" class="book-btn">

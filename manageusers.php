@@ -12,12 +12,19 @@ if (isset($_GET['delete'])) {
     }
 
     $check = mysqli_query($conn, "SELECT COUNT(*) AS total FROM appointment WHERE userId = '$userId'");
+    $check1 = mysqli_query($conn, "SELECT COUNT(*) AS total FROM review WHERE userId = '$userId'");
     $data = mysqli_fetch_assoc($check);
+    $data1 = mysqli_fetch_assoc($check1);
 
     if ($data['total'] > 0) {
         header("Location: manageusers.php?error=has_appointment");
         exit();
     }
+    if ($data1['total'] > 0) {
+        header("Location: manageusers.php?error=has_review");
+        exit();
+    }
+    
 
     mysqli_query($conn, "DELETE FROM users WHERE userId = '$userId'");
     header("Location: manageusers.php?deleted=success");
@@ -42,6 +49,7 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY userId");
     <div class="admin-content">
         <div class="admin-title">MediLocator Admin</div>
         <h1>Manage Users</h1>
+        <a href="userform.php" class="btn-add">+ Add Admin</a>
 
         <?php if (isset($_GET['error']) && $_GET['error'] == 'self'): ?>
             <p style="color:red;">You can't delete your own admin account while logged in.</p>
@@ -49,6 +57,10 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY userId");
 
         <?php if (isset($_GET['error']) && $_GET['error'] == 'has_appointment'): ?>
             <p style="color:red;">This user cannot be deleted because they still have appointment records.</p>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'has_review'): ?>
+            <p style="color:red;">This user cannot be deleted because they still have review records.</p>
         <?php endif; ?>
 
         <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 'success'): ?>

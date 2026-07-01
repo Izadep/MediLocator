@@ -4,6 +4,7 @@ include("database.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $_POST["date"];
+    $time = $_POST["time"] ?? '';
     $today = date("Y-m-d");
     $maxDate = date("Y-m-d", strtotime("+3 months"));
 

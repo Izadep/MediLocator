@@ -90,8 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <div class="form-actions">
                     <button type="submit" class="btn-submit">Submit Review</button>
-                    <a href="Review.php?type=<?php echo $type; ?>&id=<?php echo $refId; ?>"
-                       class="btn-cancel">Cancel</a>
+                    <a href="javascript:void(0)" class="btn-cancel" onclick="window.history.back()">
+                        Cancel
+                    </a>
                 </div>
             </form>
 
@@ -105,6 +106,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (window.scrollY > 20) navbar.classList.add('scrolled');
             else navbar.classList.remove('scrolled');
         });
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme')=== 'dark') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '☀️Light Mode'
+        }
     </script>
 </body>
 </html>
