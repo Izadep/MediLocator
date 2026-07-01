@@ -163,10 +163,11 @@
 }
 
 .appointment-content {
-    min-height: 420px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: flex-end;
+    min-height: 420px;
 }
 .content {
     flex: 1;
