@@ -47,10 +47,6 @@
                     <img src="image/pharmacy-icon.png">
                     <span>Pharmacy</span>
                 </a>
-                <div class="category">
-                    <img src="image/specialist-icon.png">
-                    <span>Specialist</span>
-                </div>
             </div>
         </div>
 

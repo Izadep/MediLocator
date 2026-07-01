@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $clinicId = $_GET['id'] ?? 0;
 
-$sql = "SELECT clinicName FROM clinic WHERE clinicId = $clinicId";
+$sql = "SELECT clinicName, specialty FROM clinic WHERE clinicId = $clinicId";
 $result = mysqli_query($conn, $sql);
 $clinic = mysqli_fetch_assoc($result);
 ?>
@@ -82,7 +82,7 @@ $clinic = mysqli_fetch_assoc($result);
                 <h2>Book Appointment</h2>
                 <p><?= htmlspecialchars($clinic['clinicName'] ?? 'Clinic') ?></p>
             </div>
-
+            <div class="appointment-card">
             <form action="BookAppointment.php?id=<?= $clinicId ?>" method="POST">
 
                 <div class="section">
@@ -105,19 +105,50 @@ $clinic = mysqli_fetch_assoc($result);
                 </div>
 
                 <div class="section">
-                    <select name="type">
-                        <option>General Checkup</option>
-                        <option>Dental</option>
-                        <option>X-Ray</option>
-                        <option>Vaccination</option>
+                    <h3>Appointment Type</h3>
+
+                    <select name="type" required>
+                        <option value="General Checkup">General Checkup</option>
+
+                        <?php
+                        $services = [];
+
+                        if (!empty($clinic['specialty'])) {
+                            $services[] = trim($clinic['specialty']);
+                        }
+
+                        if (!empty($clinic['specialServices'])) {
+                            $services = array_merge(
+                                $services,
+                                array_map('trim', explode(',', $clinic['specialServices']))
+                            );
+                        }
+
+                        $services = array_unique($services);
+
+                        foreach ($services as $service) {
+                            if (strcasecmp($service, "General Checkup") != 0) {
+                                echo '<option value="' . htmlspecialchars($service) . '">'
+                                    . htmlspecialchars($service) .
+                                    '</option>';
+                            }
+                        }
+                        ?>
                     </select>
                 </div>
 
-                <button type="submit" class="confirm-btn">
-                    Confirm Booking
-                </button>
+                <div class="button-group">
+                    <a href="javascript:void(0)" class="back-btn" onclick="window.history.back()">
+                        ← Back
+                    </a>
+
+                    <button type="submit" class="confirm-btn">
+                        Confirm Booking
+                    </button>
+                </div>
 
             </form>
+            </div>
         </div>
     </div>
 
