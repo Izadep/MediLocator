@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Write a Review - MediLocator</title>
     <link rel="stylesheet" href="Main.css">
-    <link rel="stylesheet" href="Review.css">
+    <link rel="stylesheet" href="review.css">
 </head>
 <body>
     <?php include("navbar.php") ?>
@@ -71,7 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="review-page" style="padding: 30px; width: 100%;">
 
             <h1>Write a Review</h1>
-            <p>Reviewing: <strong><?php echo htmlspecialchars($placeName); ?></strong></p>
+                <div class="reviewing-banner">
+                    <p>Reviewing</p>
+                        <h2><?php echo htmlspecialchars($placeName); ?></h2>
+                </div>
 
             <?php if ($error): ?>
                 <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
