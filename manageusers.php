@@ -42,6 +42,7 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY userId");
     <div class="admin-content">
         <div class="admin-title">MediLocator Admin</div>
         <h1>Manage Users</h1>
+        <a href="userform.php" class="btn-add">+ Add Admin</a>
 
         <?php if (isset($_GET['error']) && $_GET['error'] == 'self'): ?>
             <p style="color:red;">You can't delete your own admin account while logged in.</p>

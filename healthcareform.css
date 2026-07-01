@@ -104,3 +104,25 @@
     margin-bottom: 18px;
     box-shadow: 0 5px 14px rgba(65, 92, 119, 0.18);
 }
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding-right: 45px;
+    margin-bottom: 0;
+}
+
+.toggle-pass {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 17px;
+    user-select: none;
+}
