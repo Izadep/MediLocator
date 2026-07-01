@@ -133,7 +133,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
             <div class='card-expand'>
                 <div class='button-container'>
-                    <a href='Details.php?id=" . $row['id'] . "&type={$typeClass}' class='details-btn'>
+                     <a href='Details.php?id=" . $row['id'] . "&type={$typeClass}" . "&return=" . urlencode($_SERVER['REQUEST_URI']) . "' class='details-btn'>
                         View Details
                     </a>
                 </div>

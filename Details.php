@@ -49,7 +49,11 @@ if ($openTime && $closeTime) {
         $isOpen = ($currentTime >= $openTime || $currentTime <= $closeTime);
     }
 }
+$reviewQuery = "SELECT COUNT(*) AS totalReviews FROM review WHERE clinicId = $id";
+$reviewResult = mysqli_query($conn, $reviewQuery);
+$reviewRow = mysqli_fetch_assoc($reviewResult);
 
+$totalReviews = $reviewRow['totalReviews'];
 $image = ($type == "clinic")
     ? $row['clinicImage']
     : $row['pharmacyImage'];
@@ -88,10 +92,14 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                 <h2><?php echo htmlspecialchars($row['clinicName'] ?? $row['pharmacyName']); ?></h2>
 
                 <div class="rating-status">
-                    ⭐ 4.6 (33 reviews)
+                    ⭐ <?= $totalReviews ?> Reviews
                     <span class="status <?= $isOpen ? 'open' : 'closed' ?>">
                         <?= $isOpen ? 'OPEN' : 'CLOSED' ?>
                     </span>
+                </div>
+
+                <div class="hours-info">
+                    🕒 <?= date("h:i A", strtotime($openTime)) ?> - <?= date("h:i A", strtotime($closeTime)) ?>
                 </div>
                 
                 <div class="action-buttons">
@@ -112,11 +120,16 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                     <?php endif; ?>
                 </div>
 
+                <div class="button-row">
+                <a href="javascript:void(0)" class="back-btn" onclick="window.history.back()">
+                    ← Back
+                </a>
                 <?php if ($type == "clinic"): ?>
                     <a href="BookAppointment.php?id= <?= $row['clinicId'] ?>" class="book-btn">
                         Book Appointment
                     </a>
                 <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
