@@ -97,6 +97,10 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                         <?= $isOpen ? 'OPEN' : 'CLOSED' ?>
                     </span>
                 </div>
+
+                <div class="hours-info">
+                    🕒 <?= date("h:i A", strtotime($openTime)) ?> - <?= date("h:i A", strtotime($closeTime)) ?>
+                </div>
                 
                 <div class="action-buttons">
                     <button onclick="copyPhone('<?= $row['phoneNum'] ?>')" class="call-btn" title="Copy phone-number">📞 Call</button>
