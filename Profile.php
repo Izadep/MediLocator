@@ -11,7 +11,8 @@ $email = $_SESSION['user_email'];
 
 $userId = $_SESSION['user_id'];
 
-$sql = "SELECT a.*, c.clinicName, c.address
+
+$sql = "SELECT a.*, c.clinicName, c.address, c.clinicImage
         FROM appointment a
         JOIN clinic c ON a.clinicId = c.clinicId
         WHERE a.userId = '$userId'
@@ -20,7 +21,9 @@ $sql = "SELECT a.*, c.clinicName, c.address
         LIMIT 1";
 
 $result = mysqli_query($conn, $sql);
+
 $appointment = mysqli_fetch_assoc($result);
+
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +64,14 @@ $appointment = mysqli_fetch_assoc($result);
 
                 <?php if ($appointment): ?>
 
-                    <div class="clinic-image"></div>
+                    <?php
+                    $clinicImage = $appointment['clinicImage'] ?? 'default.jpg';
+                    $clinicImage = trim($clinicImage);
+                    ?>
+
+                    <div class="clinic-image"
+                        style="background-image: url('<?php echo htmlspecialchars($clinicImage); ?>');">
+                    </div>
 
                     <div class="appointment-info">
                         <span class="appointment-date">

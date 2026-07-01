@@ -48,10 +48,10 @@ $clinic = mysqli_fetch_assoc($result);
 </head>
 <body>
 <?php include("navbar.php"); ?>
-    <div class = "body-bg">
+    <!--<div class = "body-bg">
         <div id = "body-img">
         </div>
-    </div>
+    </div>-->
 
     <div class = "container">
         <div class="appointment-page">

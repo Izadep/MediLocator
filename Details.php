@@ -73,8 +73,7 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
     <?php include("navbar.php") ?>
 
     <div class="body-bg">
-        <div id="body-img">
-        </div>
+        <div id="body-img" style="background-image: url('<?php echo htmlspecialchars($image); ?>');"></div>
     </div>
 
     <div class="details-container">
