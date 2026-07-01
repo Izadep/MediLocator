@@ -13,6 +13,7 @@ $sql = "SELECT a.*, c.clinicName, c.address
         FROM appointment a
         JOIN clinic c ON a.clinicId = c.clinicId
         WHERE a.userId = '$userId'
+        AND a.status = 'Pending'
         ORDER BY a.dateTime ASC";
 
 $result = mysqli_query($conn, $sql);
@@ -62,6 +63,7 @@ $result = mysqli_query($conn, $sql);
                         <?php
                             $appointmentDate = strtotime($row['dateTime']);
                             $now = time();
+                            $isDue = ($now >= $appointmentDate);
 
                             $isNearby = false;
 
@@ -71,7 +73,14 @@ $result = mysqli_query($conn, $sql);
                             }
                         ?>
                         <div class="appointment-card <?= $isNearby ? 'nearby' : '' ?>">
-
+                            <?php if ($isDue && $row['status'] == 'Pending'): ?>
+                                <form method="POST" action="updateStatus.php" class="history-btn-form">
+                                    <input type="hidden" name="appointmentId" value="<?= $row['appointmentId'] ?>">
+                                    <button type="submit" class="history-btn">
+                                        Move to History
+                                    </button>
+                                </form>
+                            <?php endif; ?>
                             <?php if ($isNearby): ?>
                             <div class="badge">UPCOMING</div>
                             <?php endif; ?>

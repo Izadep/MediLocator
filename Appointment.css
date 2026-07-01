@@ -8,6 +8,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
+
 .appointment-content {
     display: flex;
     flex-direction: column;
@@ -25,6 +26,19 @@
     max-width: 1300px;
     margin: 0 auto;
     transition: 0.2s ease;
+}
+
+.appointment-history-card {
+    position: relative;
+    opacity: 0.5;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    transition: 0.2s ease;
+    filter: grayscale(100%);
 }
 
 .appointment-card:hover {
@@ -161,7 +175,26 @@
     border-top: 2px solid var(--mint-pale);
     margin: 25px auto;
 }
+.history-btn-form {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
 
+.history-btn {
+    background: var(--teal-med);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.history-btn:hover {
+    background: var(--teal);
+    transform: scale(1.05);
+}
 .appointment-content {
     display: flex;
     flex-direction: column;

@@ -1,9 +1,20 @@
 <?php
 session_start();
+include("database.php");
+
 if(!isset($_SESSION['logged_in'])) {
     header("Location: Login.php");
     exit();
 }
+$userId = $_SESSION['user_id'];
+$sql = "SELECT a.*, c.clinicName, c.address
+        FROM appointment a
+        JOIN clinic c ON a.clinicId = c.clinicId
+        WHERE a.userId = '$userId'
+        AND a.status = 'History'
+        ORDER BY a.dateTime DESC";
+
+$result = mysqli_query($conn, $sql);
 
 $name = $_SESSION['user_name'];
 ?>
@@ -45,12 +56,38 @@ $name = $_SESSION['user_name'];
                 <a href="Appointment.php" class="appointment-link">Appointment</a>
             </div>
 
-            <p class="no-appointment">(No appointment recorded)</p>
-
             <hr>
 
             <div class="appointment-content">
-                
+
+            <?php if ($result && mysqli_num_rows($result) > 0): ?>
+
+                <?php while($row = mysqli_fetch_assoc($result)): ?>
+
+                    <div class="appointment-history-card">
+
+                        <h3><?= htmlspecialchars($row['clinicName']) ?></h3>
+
+                        <p>📍 <?= htmlspecialchars($row['address']) ?></p>
+
+                        <p>📅 <?= date("d M Y", strtotime($row['dateTime'])) ?></p>
+
+                        <p>⏰ <?= date("h:i A", strtotime($row['dateTime'])) ?></p>
+
+                        <p>🧾 Type: <?= htmlspecialchars($row['type']) ?></p>
+
+                        <p style="color: gray; font-weight: bold;">
+                            Status: <?= htmlspecialchars($row['status']) ?>
+                        </p>
+
+                    </div>
+
+                <?php endwhile; ?>
+
+            <?php else: ?>
+                <p class="no-appointment">(No Appointment Recorded)</p>
+            <?php endif; ?>
+
             </div>
         </div>
     </div>

@@ -4,7 +4,16 @@ include("database.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $_POST["date"];
-    $time = $_POST["time"];
+    $today = date("Y-m-d");
+    $maxDate = date("Y-m-d", strtotime("+3 months"));
+
+    if ($date < $today || $date > $maxDate) {
+        echo "<script>
+        alert('Invalid booking date. Must be within 3 months.');
+        window.history.back();
+        </script>";
+        exit();
+    }
     $type = mysqli_real_escape_string($conn, $_POST["type"]);
 
     $dateTime = $date . " " . $time;
@@ -17,6 +26,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idRow = mysqli_fetch_assoc($idResult);
 
     $appointmentId = "APT" . str_pad($idRow['total'] + 1, 3, "0", STR_PAD_LEFT);
+    $check = "SELECT * FROM appointment 
+          WHERE clinicId = $clinicId 
+          AND dateTime = '$dateTime'";
+
+    $result = mysqli_query($conn, $check);
+
+    if (mysqli_num_rows($result) > 0) {
+        echo "<script>
+        alert('This time slot is already booked.');
+        window.location.href = 'BookAppointment.php?id=$clinicId';
+        </script>";
+        exit();
+    }
     $sql = "INSERT INTO appointment
             (appointmentId, dateTime, userId, clinicId, type)
             VALUES
