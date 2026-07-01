@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'database.php';
+include 'adminauth.php';
 $userCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM users"))['total'];
 $clinicCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM clinic"))['total'];
 $pharmacyCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM pharmacy"))['total'];

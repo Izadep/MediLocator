@@ -447,3 +447,9 @@ WHERE clinicId = 24;
 UPDATE clinic
 SET clinicImage = 'image/Star Life Clinic TM.png'
 WHERE clinicId = 25;
+
+-- Alter table `appointment` to add a new column `type` and modify the `appointmentId` column
+
+ALTER TABLE `appointment`
+ADD COLUMN `type` VARCHAR(255) DEFAULT NULL,
+MODIFY COLUMN `appointmentId` VARCHAR(11) NOT NULL;

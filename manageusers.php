@@ -1,23 +1,32 @@
 <?php
-session_start();
+include 'adminauth.php';
 include 'database.php';
 
 if (isset($_GET['delete'])) {
     $userId = mysqli_real_escape_string($conn, $_GET['delete']);
+    $currentUserId = $_SESSION['userId'] ?? '';
 
-    if ($userId === $_SESSION['user_id']) {
-        // Don't let an admin delete their own account
+    if ($userId === $currentUserId) {
         header("Location: manageusers.php?error=self");
         exit();
     }
 
+    $check = mysqli_query($conn, "SELECT COUNT(*) AS total FROM appointment WHERE userId = '$userId'");
+    $data = mysqli_fetch_assoc($check);
+
+    if ($data['total'] > 0) {
+        header("Location: manageusers.php?error=has_appointment");
+        exit();
+    }
+
     mysqli_query($conn, "DELETE FROM users WHERE userId = '$userId'");
-    header("Location: manageusers.php");
+    header("Location: manageusers.php?deleted=success");
     exit();
 }
 
 $result = mysqli_query($conn, "SELECT * FROM users ORDER BY userId");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +46,15 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY userId");
         <?php if (isset($_GET['error']) && $_GET['error'] == 'self'): ?>
             <p style="color:red;">You can't delete your own admin account while logged in.</p>
         <?php endif; ?>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'has_appointment'): ?>
+            <p style="color:red;">This user cannot be deleted because they still have appointment records.</p>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 'success'): ?>
+            <p style="color:green;">User deleted successfully.</p>
+        <?php endif; ?>
+
 
         <table class="admin-table">
             <tr>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'database.php';
+include 'adminauth.php';
 
 if (isset($_GET['delete'])) {
     $id = (int) $_GET['delete'];
@@ -9,33 +10,25 @@ if (isset($_GET['delete'])) {
     exit();
 }
 
-$result = mysqli_query($conn, "SELECT * FROM pharmacy ORDER BY pharmacyName");
+$result = mysqli_query($conn, "SELECT * FROM pharmacy ORDER BY pharmacyId");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Manage Pharmacies</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="adminMain.css">
+    <link rel="stylesheet" href="manageclinic.css">
 </head>
 <body>
-    <nav class="admin-nav">
-        <div class="admin-nav-title">MediLocator Admin</div>
-        <div class="admin-nav-links">
-            <a href="admindashboard.php">Dashboard</a>
-            <a href="manageusers.php">Users</a>
-            <a href="manageclinic.php">Clinics</a>
-            <a href="managepharmacy.php" class="active">Pharmacies</a>
-            <a href="manageappointment.php">Appointments</a>
-            <a href="adminlogout.php" style="color:#ffb3b3;">Log out</a>
-        </div>
-    </nav>
+     <div class = container>
+     <?php include("navbaradmin.php") ?>
 
     <div class="admin-content">
-        <div class="content-header">
+        <div class="admin-title">MediLocator Admin</div>
             <h1>Manage Pharmacies</h1>
             <a href="pharmacyform.php" class="btn-add">+ Add Pharmacy</a>
-        </div>
+        
 
         <table class="admin-table">
             <tr>
@@ -63,5 +56,7 @@ $result = mysqli_query($conn, "SELECT * FROM pharmacy ORDER BY pharmacyName");
             <?php endwhile; ?>
         </table>
     </div>
+    </div>
+      <?php include("footer.php") ?>
 </body>
 </html>

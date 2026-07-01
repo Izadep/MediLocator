@@ -22,11 +22,11 @@
     width: 100%;
     padding: 12px 14px;
     margin-bottom: 18px;
-    border: 1px solid var(--azure);
+    border: 1px solid var(--teal-med);
     border-radius: 9px;
     font-size: 15px;
     color: var(--night-ocean);
-    background: var(--teal-med);
+    background: var(--azure);
     outline: none;
     transition: 0.3s ease;
 }
@@ -34,7 +34,7 @@
 .admin-form input:focus,
 .admin-form textarea:focus {
     border-color: var(--teal);
-    background: var(--white);
+    background: var(--teal-med);
     box-shadow: 0 0 0 3px rgba(97, 188, 174, 0.2);
 }
 

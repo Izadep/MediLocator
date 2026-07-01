@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'database.php';
+include 'adminauth.php';
 
 $editMode = false;
 $clinic = [
@@ -74,12 +75,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     phoneNum='$phoneNum', opHourStart='$opHourStart', opHourEnd='$opHourEnd', 
                     clinicImage='$clinicImage'
                 WHERE clinicId = $id";
+
         if (mysqli_query($conn, $sql)) {
             header("Location: manageclinic.php");
             exit();
         } else {
             $error = "Update failed: " . mysqli_error($conn);
         }
+
     } else if ($error == '') {
         // Insert
         $result = mysqli_query($conn, "SELECT MAX(clinicId) AS maxId FROM clinic");
@@ -106,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title><?php echo $editMode ? 'Edit Clinic' : 'Add Clinic'; ?></title>
     <link rel="stylesheet" href="adminMain.css">
-    <link rel="stylesheet" href="clinicform.css">
+    <link rel="stylesheet" href="healthcareform.css">
 </head>
 <body>
     <div class = "container">
@@ -117,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1><?php echo $editMode ? 'Edit Clinic' : 'Add Clinic'; ?></h1>
 
         <?php if ($error): ?>
-            <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
+         <p style="color:red;"><?php echo $error; ?></p>
         <?php endif; ?>
 
         <form method="POST" class="admin-form" enctype="multipart/form-data">
