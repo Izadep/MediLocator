@@ -92,12 +92,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     (clinicId, clinicName, specialty, specialServices, message, address, latitude, longitude, phoneNum, opHourStart, opHourEnd, clinicImage)
                 VALUES
                     ('$clinicId', '$name', '$specialty', '$specialServices', '$message', '$address', '$latitude', '$longitude', '$phoneNum', '$opHourStart', '$opHourEnd', '$clinicImage')";
-        echo "<pre>$sql</pre>";
 
         if (!mysqli_query($conn, $sql)) {
             die("MySQL Error: " . mysqli_error($conn));
         } else {
-            echo "Insert successful!";
+            header("Location: manageclinic.php");
             exit();
         }
     }
