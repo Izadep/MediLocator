@@ -169,6 +169,13 @@ $clinic = mysqli_fetch_assoc($result);
             selectedTime.value = btn.dataset.time;
         });
     });
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+        if (localStorage.getItem('theme')=== 'dark') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '☀️Light Mode'
+        }
 </script>
 
 </body>
