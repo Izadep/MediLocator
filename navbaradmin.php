@@ -21,6 +21,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
             <a href="manageappointment.php" class="navadmin-item <?= $currentPage == 'manageappointment.php' ? 'active' : '' ?>">
                 Appointments</a>
+
+            <a href="managereview.php" class="navadmin-item <?= $currentPage == 'managereview.php' ? 'active' : '' ?>">
+                Review</a>
                 
             <a href="logout.php" class="navadmin-item" style="color:#ffb3b3;">Log out (<?php echo htmlspecialchars($_SESSION['user_name'] ?? ''); ?>)</a>
         </div>
