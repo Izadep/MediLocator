@@ -14,7 +14,9 @@ include 'database.php';
 </head>
 <body>
     <?php include("navbar.php");?>
-    
+        <div class="settingcontain">
+            <h1>Settings⚙️</h1>
+        </div>
 
     <?php include("footer.php"); ?>
 </body>
