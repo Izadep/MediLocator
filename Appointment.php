@@ -127,6 +127,14 @@ $result = mysqli_query($conn, $sql);
 
             const slideElements = document.querySelectorAll('.slide-in');
             slideElements.forEach(el => observer.observe(el));
+
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme')=== 'dark') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '☀️Light Mode'
+        }
     </script>
 </body>
 </html>
