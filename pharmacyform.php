@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'database.php';
+include 'adminauth.php';
 
 $editMode = false;
 $pharmacy = [
@@ -98,7 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title><?php echo $editMode ? 'Edit Pharmacy' : 'Add Pharmacy'; ?></title>
     <link rel="stylesheet" href="adminMain.css">
-    <link rel="stylesheet" href="clinicform.css">
+    <link rel="stylesheet" href="healthcareform.css.css">
+</head>
+
 <body>
     <div class = "container">
         <?php include("navbaradmin.php") ?>

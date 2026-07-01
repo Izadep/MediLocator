@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'database.php';
+include 'adminauth.php';
 
 if (isset($_GET['delete'])) {
     $id = (int) $_GET['delete'];

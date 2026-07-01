@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'database.php';
+include 'adminauth.php';
 
 $editMode = false;
 $clinic = [
@@ -103,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title><?php echo $editMode ? 'Edit Clinic' : 'Add Clinic'; ?></title>
     <link rel="stylesheet" href="adminMain.css">
-    <link rel="stylesheet" href="clinicform.css">
+    <link rel="stylesheet" href="healthcareform.css">
 </head>
 <body>
     <div class = "container">
@@ -114,8 +115,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1><?php echo $editMode ? 'Edit Clinic' : 'Add Clinic'; ?></h1>
 
         <?php if ($error): ?>
-            <p style="color:red;"><?php echo $error; ?></p>
+         <p style="color:red;"><?php echo $error; ?></p>
         <?php endif; ?>
+
         <form method="POST" class="admin-form" enctype="multipart/form-data">
             <input type="hidden" name="clinicId" value="<?php echo htmlspecialchars($clinic['clinicId']); ?>">
 
