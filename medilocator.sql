@@ -453,3 +453,9 @@ WHERE clinicId = 25;
 ALTER TABLE `appointment`
 ADD COLUMN `type` VARCHAR(255) DEFAULT NULL,
 MODIFY COLUMN `appointmentId` VARCHAR(11) NOT NULL;
+
+ALTER TABLE appointment
+ADD UNIQUE KEY unique_booking (clinicId, dateTime);
+
+ALTER TABLE appointment
+ADD status VARCHAR(20) DEFAULT 'Pending';
