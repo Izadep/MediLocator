@@ -23,17 +23,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
 
             // generate user id
-            $sql = "SELECT COUNT(*) as total FROM users";
+            // generate user id based on latest existing userId
+            $sql = "SELECT userId FROM users ORDER BY userId DESC LIMIT 1";
             $result = mysqli_query($conn, $sql);
-            $row = mysqli_fetch_assoc($result);
 
-            $userid = "USR" . str_pad($row['total'] + 1, 3, "0", STR_PAD_LEFT);
+            if ($row = mysqli_fetch_assoc($result)) {
+                $lastId = $row['userId']; // example: USR002
+                $num = (int) substr($lastId, 3);
+                $newNum = $num + 1;
+                $userid = "USR" . str_pad($newNum, 3, "0", STR_PAD_LEFT);
+            } else {
+                $userid = "USR001";
+}
 
             // 🔐 HASH PASSWORD
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO users (userid, name, pass, email)
-                    VALUES ('$userid', '$name', '$hashedPassword', '$email')";
+            $sql = "INSERT INTO users (userid, name, pass, email, role)
+                    VALUES ('$userid', '$name', '$hashedPassword', '$email', 'user')";
 
             if(mysqli_query($conn, $sql)) {
                 header("Location: Login.php?register_success=1");
