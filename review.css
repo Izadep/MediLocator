@@ -11,6 +11,16 @@
     margin-bottom: 24px;
 }
 
+.review-header a{
+    background: #2c3e91;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
 .review-header h {
     font-size: 1.8rem;
     color: #2c3e91;
