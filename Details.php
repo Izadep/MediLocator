@@ -112,11 +112,16 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                     <?php endif; ?>
                 </div>
 
+                <div class="button-row">
+                <a href="javascript:void(0)" class="back-btn" onclick="window.history.back()">
+                    ← Back
+                </a>
                 <?php if ($type == "clinic"): ?>
                     <a href="BookAppointment.php?id= <?= $row['clinicId'] ?>" class="book-btn">
                         Book Appointment
                     </a>
                 <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
