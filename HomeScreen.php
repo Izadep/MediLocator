@@ -69,6 +69,7 @@
         </div>
     </div>
     <?php include("footer.php") ?>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         window.addEventListener('scroll',function(){
             var navbar= document.getElementById('navbar');
@@ -97,10 +98,12 @@
     </script>
    <?php
     include("database.php");
-
-    $sql = "SELECT clinicName, latitude, longitude FROM clinic";
+    
+    $sql = "SELECT clinicName AS name, latitude, longitude, 'clinic' AS type FROM clinic
+            UNION
+            SELECT pharmacyName AS name, latitude, longitude, 'pharmacy' AS type FROM pharmacy
+            ";
     $result = mysqli_query($conn, $sql);
-
     if (!$result) {
         die("Query failed: " . mysqli_error($conn));
     }
@@ -112,6 +115,15 @@
     }
     ?>
         <script>
+            var clinicIcon = L.icon({
+                iconUrl: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                iconSize: [40, 40],
+            });
+
+            var pharmacyIcon = L.icon({
+                iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+                iconSize: [40, 40],
+            });
         var map = L.map('map').setView([2.271439, 102.286995], 16);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -124,9 +136,16 @@
 
         locations.forEach(loc => {
             if (loc.latitude && loc.longitude) {
-                L.marker([parseFloat(loc.latitude), parseFloat(loc.longitude)])
-                    .addTo(map)
-                    .bindPopup(loc.name);
+
+                let locationtype = (loc.type === "pharmacy") ? "Pharmacy" : "Clinic";
+
+                let iconType = (loc.type === "pharmacy") ? pharmacyIcon : clinicIcon;
+
+                L.marker([parseFloat(loc.latitude), parseFloat(loc.longitude)], {
+                    icon: iconType
+                })
+                .addTo(map)
+                .bindPopup(loc.name + " (" + locationtype + ")");
             }
         });
         </script>
