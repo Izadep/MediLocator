@@ -38,7 +38,7 @@ $result = mysqli_query($conn, "SELECT * FROM review ORDER BY reviewId");
         <table class="admin-table">
             <tr>
                 <th>Review ID</th>
-                <th>Clinnic ID</th>
+                <th>Clinic ID</th>
                 <th>Pharmacy ID</th>
                 <th>User ID</th>
                 <th>Comment</th>
