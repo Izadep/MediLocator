@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("database.php");
+
 if(!isset($_SESSION['logged_in'])) {
     header("Location: Login.php");
     exit();
@@ -8,9 +9,50 @@ if(!isset($_SESSION['logged_in'])) {
 
 $name = $_SESSION['user_name'];
 $email = $_SESSION['user_email'];
-
 $userId = $_SESSION['user_id'];
 
+// ==========================================
+// LOGIK UNTUK UPLOAD GAMBAR PROFIL BARU
+// ==========================================
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_picture'])) {
+    $target_dir = "ProfilePic/"; 
+    $file_name = basename($_FILES["profile_picture"]["name"]);
+    
+    // Elakkan nama fail bertindih dengan tambah ID dan masa
+    $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+    $new_file_name = "user_" . $userId . "_" . time() . "." . $imageFileType;
+    $target_file = $target_dir . $new_file_name;
+
+    $uploadOk = 1;
+
+    // Semak format gambar
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+        echo "<script>alert('Hanya format JPG, JPEG, PNG & GIF dibenarkan.');</script>";
+        $uploadOk = 0;
+    }
+
+    // Jika tiada masalah, proses upload
+    if ($uploadOk == 1) {
+        if (move_uploaded_file($_FILES["profile_picture"]["tmp_name"], $target_file)) {
+            // Update database table users, attribute picture
+            $update_sql = "UPDATE users SET picture = '$target_file' WHERE userId = '$userId'"; 
+            
+            if (mysqli_query($conn, $update_sql)) {
+                // Update session supaya gambar baru terus terpapar
+                $_SESSION['user-img'] = $target_file;
+                
+                // Refresh page
+                header("Location: profile.php");
+                exit();
+            } else {
+                echo "<script>alert('Gagal kemaskini database.');</script>";
+            }
+        } else {
+            echo "<script>alert('Gagal memuat naik gambar.');</script>";
+        }
+    }
+}
+// ==========================================
 
 $sql = "SELECT a.*, c.clinicName, c.address, c.clinicImage
         FROM appointment a
@@ -38,19 +80,20 @@ $appointment = mysqli_fetch_assoc($result);
 
 <body>
     <?php include("navbar.php") ?>
-    <!--<div class = "body-bg">
-        <div id = "body-img">
-        </div>
-    </div>-->
-
-   <div class="contentprofile">
+    <div class="contentprofile">
         <div class="profile-container">
 
             <div class="profile-header slide-in">
-                <div class="profile-pic">
-                    <img src="<?php echo $_SESSION['user-img'] ?>" alt="Profile Picture">
+                <div class="profile-pic-container">
+                    <div class="profile-pic">
+                        <img src="<?php echo $_SESSION['user-img'] ?>" alt="Profile Picture">
+                    </div>
+                    
+                    <form action="profile.php" method="POST" enctype="multipart/form-data" id="upload-form">
+                        <label for="profile_picture" class="edit-pic-btn">✏️</label>
+                        <input type="file" name="profile_picture" id="profile_picture" accept="image/*" style="display: none;" onchange="document.getElementById('upload-form').submit();">
+                    </form>
                 </div>
-
                 <div class="profile-info">
                     <h2><?php echo $_SESSION['user_name']; ?></h2>
                     <p><?php echo $_SESSION['user_email']; ?></p>
@@ -124,6 +167,7 @@ $appointment = mysqli_fetch_assoc($result);
                 navbar.classList.remove('scrolled');
             }
         });
+        
         const observerOptions = {
             root: null,
             rootMargin: '0px',
