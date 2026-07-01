@@ -459,3 +459,6 @@ ADD UNIQUE KEY unique_booking (clinicId, dateTime);
 
 ALTER TABLE appointment
 ADD status VARCHAR(20) DEFAULT 'Pending';
+
+ALTER TABLE users
+ADD picture VARCHAR(255) NULL;
