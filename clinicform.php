@@ -74,12 +74,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     phoneNum='$phoneNum', opHourStart='$opHourStart', opHourEnd='$opHourEnd', 
                     clinicImage='$clinicImage'
                 WHERE clinicId = $id";
+
         if (mysqli_query($conn, $sql)) {
             header("Location: manageclinic.php");
             exit();
         } else {
             $error = "Update failed: " . mysqli_error($conn);
         }
+
     } else if ($error == '') {
         // Insert
         $sql = "INSERT INTO clinic
@@ -112,9 +114,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1><?php echo $editMode ? 'Edit Clinic' : 'Add Clinic'; ?></h1>
 
         <?php if ($error): ?>
-            <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
+            <p style="color:red;"><?php echo $error; ?></p>
         <?php endif; ?>
-
         <form method="POST" class="admin-form" enctype="multipart/form-data">
             <input type="hidden" name="clinicId" value="<?php echo htmlspecialchars($clinic['clinicId']); ?>">
 
