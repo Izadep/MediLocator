@@ -49,7 +49,11 @@ if ($openTime && $closeTime) {
         $isOpen = ($currentTime >= $openTime || $currentTime <= $closeTime);
     }
 }
+$reviewQuery = "SELECT COUNT(*) AS totalReviews FROM review WHERE clinicId = $id";
+$reviewResult = mysqli_query($conn, $reviewQuery);
+$reviewRow = mysqli_fetch_assoc($reviewResult);
 
+$totalReviews = $reviewRow['totalReviews'];
 $image = ($type == "clinic")
     ? $row['clinicImage']
     : $row['pharmacyImage'];
@@ -88,7 +92,7 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                 <h2><?php echo htmlspecialchars($row['clinicName'] ?? $row['pharmacyName']); ?></h2>
 
                 <div class="rating-status">
-                    ⭐ 4.6 (33 reviews)
+                    ⭐ <?= $totalReviews ?> Reviews
                     <span class="status <?= $isOpen ? 'open' : 'closed' ?>">
                         <?= $isOpen ? 'OPEN' : 'CLOSED' ?>
                     </span>
