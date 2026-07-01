@@ -97,7 +97,6 @@ $wazeLink = "https://waze.com/ul?ll=$lat,$lng&navigate=yes";
                 
                 <div class="action-buttons">
                     <button onclick="copyPhone('<?= $row['phoneNum'] ?>')" class="call-btn" title="Copy phone-number">📞 Call</button>
-                    <button title="Send a Message">💬 Message</button>
                     <button onclick="openDirectionModal()" title="Get Direction">📍 Direction</button>
                     <button onclick="copyLink()" class="share-btn" title="Copy link">🔗 Share</button>
                 </div>

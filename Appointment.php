@@ -30,10 +30,10 @@ $result = mysqli_query($conn, $sql);
 
 <body>
     <?php include("navbar.php") ?>
-    <div class = "body-bg">
+    <!--<div class = "body-bg">
         <div id = "body-img">
         </div>
-    </div>
+    </div>-->
         <div class="content slide-in">
             <div class="appointment-page">
                 <div class="appointment-header">

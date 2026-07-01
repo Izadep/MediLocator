@@ -35,10 +35,10 @@ $appointment = mysqli_fetch_assoc($result);
 
 <body>
     <?php include("navbar.php") ?>
-    <div class = "body-bg">
+    <!--<div class = "body-bg">
         <div id = "body-img">
         </div>
-    </div>
+    </div>-->
 
    <div class="contentprofile">
         <div class="profile-container">
