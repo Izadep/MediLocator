@@ -5,7 +5,22 @@ include 'adminauth.php';
 
 if (isset($_GET['delete'])) {
     $id = (int) $_GET['delete'];
+
+    $result = mysqli_query($conn, "SELECT clinicImage FROM clinic WHERE clinicId = $id");
+    $clinic = mysqli_fetch_assoc($result);
+
+    if ($clinic && !empty($clinic['clinicImage'])) {
+        $imagePath = $clinic['clinicImage'];
+
+        // Only delete files inside image folder
+        if (strpos($imagePath, 'image/') === 0 && file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+    }
+    
+
     mysqli_query($conn, "DELETE FROM clinic WHERE clinicId = $id");
+
     header("Location: manageclinic.php");
     exit();
 }
