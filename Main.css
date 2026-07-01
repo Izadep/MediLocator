@@ -18,6 +18,14 @@ body.dark-mode {
     --night-ocean: #f8fafc; 
 }
 
+body.dark-mode .logo img {
+    height: 60px;
+    margin-left: 10px;
+    
+    /* Tambah kod ini: X-offset, Y-offset, Blur, Warna */
+    filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.55));
+}
+
 * {
     margin: 0;
     padding: 0;
