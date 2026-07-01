@@ -7,7 +7,6 @@ include 'database.php';
 $filterType = $_GET['type'] ?? '';
 $filterId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// Handle delete
 if (isset($_GET['delete']) && isset($_SESSION['logged_in'])) {
     $deleteId = (int)$_GET['delete'];
     $userId = mysqli_real_escape_string($conn, $_SESSION['user_id']);
@@ -16,7 +15,6 @@ if (isset($_GET['delete']) && isset($_SESSION['logged_in'])) {
     exit();
 }
 
-// Build SQL
 if ($filterType == 'clinic' && $filterId > 0) {
     $sql = "SELECT r.reviewId, r.rating, r.comments, r.reviewDate, r.userId,
                    u.name AS userName, c.clinicName AS placeName

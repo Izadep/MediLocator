@@ -17,7 +17,6 @@ if (($type !== 'clinic' && $type !== 'pharmacy') || $refId <= 0) {
     exit();
 }
 
-// Get place name
 if ($type == 'clinic') {
     $res = mysqli_query($conn, "SELECT clinicName AS placeName FROM clinic WHERE clinicId = $refId");
 } else {
