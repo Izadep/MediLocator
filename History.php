@@ -20,9 +20,9 @@ $name = $_SESSION['user_name'];
 
 <body class="bodyhistory">
     <?php include("navbar.php") ?>
-    <div class = "body-bg">
+    <!-- <div class = "body-bg">
         <div id = "body-img">
-        </div>
+        </div> -->
     </div>
     <div class="content slide-in">
         <div class="appointment-page">
@@ -33,13 +33,12 @@ $name = $_SESSION['user_name'];
 
             <div class="appointment-controls">
                 <div class="select-area1">
-                    <label for="appointmentUser">Select appointment for:</label>
+                    <label for="appointmentUser">Username:</label>
 
                     <div class="custom-select-wrapper">
-                        <select id="appointmentUser" name="appointmentUser">
-                            <option value="user1"><?php echo $name . " (you)" ?></option>
-                            <option value="user2">User 2</option>
-                        </select>
+                        <div class="user-display">
+                            <?= htmlspecialchars($name) ?>
+                        </div>
                     </div>
                 </div>
 
