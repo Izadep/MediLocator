@@ -82,15 +82,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else if ($error == '') {
         // Insert
+        $result = mysqli_query($conn, "SELECT MAX(clinicId) AS maxId FROM clinic");
+        $row = mysqli_fetch_assoc($result);
+        $clinicId = ($row['maxId'] ?? 0) + 1;
         $sql = "INSERT INTO clinic
-                    (clinicName, specialty, specialServices, message, address, latitude, longitude, phoneNum, opHourStart, opHourEnd, clinicImage)
+                    (clinicId, clinicName, specialty, specialServices, message, address, latitude, longitude, phoneNum, opHourStart, opHourEnd, clinicImage)
                 VALUES
-                    ('$name', '$specialty', '$specialServices', '$message', '$address', '$latitude', '$longitude', '$phoneNum', '$opHourStart', '$opHourEnd', '$clinicImage')";
-        if (mysqli_query($conn, $sql)) {
-            header("Location: manageclinic.php");
-            exit();
+                    ('$clinicId', '$name', '$specialty', '$specialServices', '$message', '$address', '$latitude', '$longitude', '$phoneNum', '$opHourStart', '$opHourEnd', '$clinicImage')";
+        echo "<pre>$sql</pre>";
+
+        if (!mysqli_query($conn, $sql)) {
+            die("MySQL Error: " . mysqli_error($conn));
         } else {
-            $error = "Insert failed: " . mysqli_error($conn);
+            echo "Insert successful!";
+            exit();
         }
     }
 }
