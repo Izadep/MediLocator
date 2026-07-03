@@ -4,6 +4,7 @@ include("database.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $_POST["date"];
+    $time = $_POST["time"] ?? '';
     $today = date("Y-m-d");
     $maxDate = date("Y-m-d", strtotime("+3 months"));
 
@@ -168,6 +169,13 @@ $clinic = mysqli_fetch_assoc($result);
             selectedTime.value = btn.dataset.time;
         });
     });
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+        if (localStorage.getItem('theme')=== 'dark') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '☀️Light Mode'
+        }
 </script>
 
 </body>

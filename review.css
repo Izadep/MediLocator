@@ -1,3 +1,16 @@
+:root {
+    --teal: #61BCAE;
+    --night-ocean: #415c77;
+    --mint-bright: #ADD8D1;
+    --mint-pale: #E0F0EE;
+    --teal-med: #8ACCC2;
+    --white: #ffffff;
+    --navy: #001d4f;
+    --sky-blue:#87CEEB;
+    --pastel-blue: #A7C7E7;
+    --azure:#F0FFFF;
+}
+
 .review-page {
     max-width: 800px;
     margin: 30px auto;
@@ -11,6 +24,16 @@
     margin-bottom: 24px;
 }
 
+.review-header a{
+    background: teal;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
 .review-header h {
     font-size: 1.8rem;
     color: #2c3e91;
@@ -19,7 +42,7 @@
 
 .btn-add-review {
     background: #2c3e91;
-    color: #fff;
+    color: var(--white);
     padding: 10px 18px;
     border-radius: 8px;
     text-decoration: none;
@@ -33,6 +56,7 @@
 
 .review-card {
     background: #fff;
+    color: navy;
     border-radius: 15px;
     padding: 23px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -86,7 +110,7 @@
 }
 
 .reviewing-banner {
-    background: #2c3e91;
+    background: teal;
     color: #fff;
     text-align: center;
     padding: 20px 30px;
@@ -110,14 +134,14 @@
 }
 
 .review-form {
-    background: #fff;
+    background:var(--white);
     padding: 28px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .form-group { margin-bottom: 20px; }
-.form-group label { display: block; font-weight: 600; margin-bottom: 10px; color: #333; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 10px; color: var(--navy); }
 
 .form-group select,
 .form-group textarea {
@@ -138,7 +162,7 @@
 .form-actions { display: flex; gap: 12px; margin-top: 24px; }
 
 .btn-submit {
-    background: #2c3e91;
+    background: teal;
     color: #fff;
     border: none;
     padding: 10px 24px;
