@@ -4,12 +4,12 @@ include 'database.php';
 include 'adminauth.php';
 
 if (isset($_GET['delete'])) {
-    $id = (int) $_GET['delete'];
+    $id = mysqli_real_escape_string($conn, $_GET['delete']);
 
     $check = mysqli_query($conn, "
         SELECT dateTime 
         FROM appointment 
-        WHERE appointmentId = $id
+        WHERE appointmentId = '$id'
     ");
 
     $appointment = mysqli_fetch_assoc($check);
@@ -26,7 +26,7 @@ if (isset($_GET['delete'])) {
 
     mysqli_query($conn, "
         DELETE FROM appointment 
-        WHERE appointmentId = $id
+        WHERE appointmentId = '$id'
     ");
 
     header("Location: manageappointment.php?success=deleted");

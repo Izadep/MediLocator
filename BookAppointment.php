@@ -14,6 +14,16 @@ include("database.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $_POST["date"];
     $time = $_POST["time"] ?? '';
+
+    if (empty($time)) {
+    echo "<script>
+        alert('Please select a time slot.');
+        window.history.back();
+    </script>";
+    exit();
+}
+
+
     $today = date("Y-m-d");
     $maxDate = date("Y-m-d", strtotime("+3 months"));
 
@@ -27,28 +37,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = mysqli_real_escape_string($conn, $_POST["type"]);
 
     $dateTime = $date . " " . $time;
+    
 
     $userId = $_SESSION["user_id"];
     $clinicId = (int)$_GET['id'];
+
+    $userCheck = "
+    SELECT * FROM appointment
+    WHERE userId = '$userId'
+    AND dateTime = '$dateTime'
+    AND status = 'Pending'
+    ";
+
+    $userResult = mysqli_query($conn, $userCheck);
+
+        if (mysqli_num_rows($userResult) > 0) {
+            echo "<script>
+                alert('You already have an appointment at this time slot.');
+                window.location.href = 'BookAppointment.php?id=$clinicId';
+            </script>";
+            exit();
+        }
+
+        
 
     $idQuery = "SELECT COUNT(*) AS total FROM appointment";
     $idResult = mysqli_query($conn, $idQuery);
     $idRow = mysqli_fetch_assoc($idResult);
 
     $appointmentId = "APT" . str_pad($idRow['total'] + 1, 3, "0", STR_PAD_LEFT);
-    $check = "SELECT * FROM appointment 
-          WHERE clinicId = $clinicId 
-          AND dateTime = '$dateTime'";
+    // Check if clinic slot already booked
+    $check = "
+        SELECT * FROM appointment 
+        WHERE clinicId = $clinicId 
+        AND dateTime = '$dateTime'
+        AND status = 'Pending'
+    ";
 
     $result = mysqli_query($conn, $check);
 
     if (mysqli_num_rows($result) > 0) {
         echo "<script>
-        alert('This time slot is already booked.');
-        window.location.href = 'BookAppointment.php?id=$clinicId';
+            alert('This time slot is already booked.');
+            window.location.href = 'BookAppointment.php?id=$clinicId';
         </script>";
         exit();
     }
+    
     $sql = "INSERT INTO appointment
             (appointmentId, dateTime, userId, clinicId, type)
             VALUES
@@ -110,6 +145,7 @@ $clinic = mysqli_fetch_assoc($result);
 
 
                     <div class="time-grid">
+                        <input type="hidden" name="time" id="selectedTime" required>
                        <?php
                         $start = $clinic['opHourStart'] ?? '09:00:00';
                         $end = $clinic['opHourEnd'] ?? '17:00:00';
