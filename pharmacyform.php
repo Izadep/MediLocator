@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 WHERE pharmacyId = $id";
 
         if (mysqli_query($conn, $sql)) {
-            header("Location: managepharmacy.php");
+            header("Location: managepharmacy.php?success=updated");
             exit();
         } else {
             $error = "Update failed: " . mysqli_error($conn);
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 VALUES
                     ('$name', '$product', '$message', '$address', '$latitude', '$longitude', '$phoneNum', '$opHourStart', '$opHourEnd', '$pharmacyImage')";
         if (mysqli_query($conn, $sql)) {
-            header("Location: managepharmacy.php");
+            header("Location: managepharmacy.php?success=added");
             exit();
         } else {
             $error = "Insert failed: " . mysqli_error($conn);
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title><?php echo $editMode ? 'Edit Pharmacy' : 'Add Pharmacy'; ?></title>
     <link rel="stylesheet" href="adminMain.css">
-    <link rel="stylesheet" href="healthcareform.css.css">
+    <link rel="stylesheet" href="healthcareform.css">
 </head>
 
 <body>
@@ -138,8 +138,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="phoneNum" value="<?php echo htmlspecialchars($pharmacy['phoneNum']); ?>" required>
 
             <label>Operating Hours</label>
-            <input type="text" name="opHourStart" value="<?php echo htmlspecialchars($pharmacy['opHourStart']); ?>" required>
-            <input type="text" name="opHourEnd" value="<?php echo htmlspecialchars($pharmacy['opHourEnd']); ?>" required>
+            <input type="time" name="opHourStart" value="<?php echo htmlspecialchars($pharmacy['opHourStart']); ?>" required>
+            <input type="time" name="opHourEnd" value="<?php echo htmlspecialchars($pharmacy['opHourEnd']); ?>" required>
 
             <label>Pharmacy Image</label>
             <input type="file" name="pharmacyImage" accept="image/*">
