@@ -11,7 +11,12 @@ if (isset($_GET['delete'])) {
     exit();
 }
 
-$result = mysqli_query($conn, "SELECT * FROM review ORDER BY reviewId");
+$result = mysqli_query($conn, "SELECT r.*, c.clinicName, p.pharmacyName, u.name AS userName
+                        FROM review r
+                        LEFT JOIN clinic c ON r.clinicId = c.clinicId
+                        LEFT JOIN pharmacy p ON r.pharmacyId = p.pharmacyId
+                        LEFT JOIN users u ON r.userId = u.userId
+                        ORDER BY r.reviewId");
 ?>
 
 <!DOCTYPE html>
@@ -31,32 +36,34 @@ $result = mysqli_query($conn, "SELECT * FROM review ORDER BY reviewId");
         <h1>Manage Review</h1>
 
         <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 'success'): ?>
-            <p style="color:green;">User deleted successfully.</p>
+            <p style="color:green;">Review deleted successfully.</p>
         <?php endif; ?>
 
 
         <table class="admin-table">
             <tr>
                 <th>Review ID</th>
-                <th>Clinic ID</th>
-                <th>Pharmacy ID</th>
-                <th>User ID</th>
+                <th>Clinic Name</th>
+                <th>Pharmacy Name</th>
+                <th>Username</th>
                 <th>Comment</th>
                 <th>Date</th>
+                <th>Rating</th>
                 <th>Action</th>
             </tr>
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <tr>
                 <td><?php echo htmlspecialchars($row['reviewId']); ?></td>
                 <td>
-                <?php echo isset($row['clinicId']) && $row['clinicId'] !== ''? htmlspecialchars($row['clinicId']): '-'; ?>
+                <?php echo isset($row['clinicName']) && $row['clinicName'] !== ''? htmlspecialchars($row['clinicName']): '-'; ?>
                 </td>
                 <td>
-                <?php echo isset($row['pharmacyId']) && $row['pharmacyId'] !== ''? htmlspecialchars($row['pharmacyId']): '-'; ?>
+                <?php echo isset($row['pharmacyName']) && $row['pharmacyName'] !== ''? htmlspecialchars($row['pharmacyName']): '-'; ?>
                 </td>
-                <td><?php echo htmlspecialchars($row['userId']); ?></td>
+                <td><?php echo htmlspecialchars($row['userName']); ?></td>
                 <td><?php echo htmlspecialchars($row['comments']); ?></td>
                 <td><?php echo htmlspecialchars($row['reviewDate']); ?></td>
+                <td><?php echo htmlspecialchars($row['rating']); ?></td>
                 <?php if ($row['userId'] != 'USR001') { ?>
                     <td>
                     <a href="managereview.php?delete=<?php echo urlencode($row['reviewId']); ?>"

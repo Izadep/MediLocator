@@ -18,8 +18,13 @@ if (isset($_GET['delete'])) {
         }
     }
     
+    $check = mysqli_query($conn, "SELECT COUNT(*) AS total FROM appointment WHERE clinicId = '$id'");
+    $data = mysqli_fetch_assoc($check);
 
-    mysqli_query($conn, "DELETE FROM clinic WHERE clinicId = $id");
+    if ($data['total'] > 0) {
+        header("Location: manageclinic.php?error=has_appointment");
+        exit();
+    }
 
     header("Location: manageclinic.php");
     exit();
@@ -43,6 +48,10 @@ $result = mysqli_query($conn, "SELECT * FROM clinic ORDER BY clinicId");
         <div class="admin-title">MediLocator Admin</div>
             <h1>Manage Clinics</h1> 
             <a href="clinicform.php" class="btn-add">+ Add Clinic</a>
+
+            <?php if (isset($_GET['error']) && $_GET['error'] == 'has_appointment'): ?>
+                <p style="color:red;">This clinic cannot be deleted because they still have appointment records.</p>
+            <?php endif; ?>
         
         <table class="admin-table">
             <tr>

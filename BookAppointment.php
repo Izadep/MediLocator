@@ -1,5 +1,14 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    echo "<script>
+        alert('Please log in to book an appointment.');
+        window.location.href = 'Login.php';
+    </script>";
+    exit();
+}
+
 include("database.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

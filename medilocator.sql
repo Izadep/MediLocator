@@ -462,3 +462,8 @@ ADD status VARCHAR(20) DEFAULT 'Pending';
 
 ALTER TABLE users
 ADD picture VARCHAR(255) NULL;
+
+ALTER TABLE `review` MODIFY `rating` int(11) NOT NULL; --make the star rating not null--
+
+ALTER TABLE review
+MODIFY COLUMN rating DECIMAL(2,1) NOT NULL; --tukar int jdi decimal--

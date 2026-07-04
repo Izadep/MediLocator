@@ -17,6 +17,7 @@ if (($type !== 'clinic' && $type !== 'pharmacy') || $refId <= 0) {
     exit();
 }
 
+// Get place name
 if ($type == 'clinic') {
     $res = mysqli_query($conn, "SELECT clinicName AS placeName FROM clinic WHERE clinicId = $refId");
 } else {
@@ -32,18 +33,21 @@ if (!$place) {
 $placeName = $place['placeName'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $rating = isset($_POST['rating']) ? (int)$_POST['rating'] : 0;
     $comments = mysqli_real_escape_string($conn, $_POST['comments']);
     $reviewDate = date('Y-m-d');
 
-    if (empty(trim($comments))) {
+    if ($rating < 1 || $rating > 5) {
+        $error = "Please select a rating.";
+    } elseif (empty(trim($comments))) {
         $error = "Please write a comment.";
     } else {
         if ($type == 'clinic') {
             $sql = "INSERT INTO review (rating, comments, reviewDate, userId, clinicId)
-                    VALUES (NULL, '$comments', '$reviewDate', '$userId', $refId)";
+                    VALUES ($rating, '$comments', '$reviewDate', '$userId', $refId)";
         } else {
             $sql = "INSERT INTO review (rating, comments, reviewDate, userId, pharmacyId)
-                    VALUES (NULL, '$comments', '$reviewDate', '$userId', $refId)";
+                    VALUES ($rating, '$comments', '$reviewDate', '$userId', $refId)";
         }
 
         if (mysqli_query($conn, $sql)) {
@@ -62,7 +66,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Write a Review - MediLocator</title>
     <link rel="stylesheet" href="Main.css">
-    <link rel="stylesheet" href="review.css">
+    <link rel="stylesheet" href="Review.css">
+    <style>
+        .star-input {
+            display: flex;
+            flex-direction: row;
+            gap: 4px;
+        }
+        .star-input input[type="radio"] {
+            display: none;
+        }
+        .star-label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+        .star-label.selected,
+        .star-label.hovered {
+            color: #f5a623;
+        }
+    </style>
 </head>
 <body>
     <?php include("navbar.php") ?>
@@ -70,17 +94,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="content">
         <div class="review-page" style="padding: 30px; width: 100%;">
 
-            <h1>Write a Review</h1>
-                <div class="reviewing-banner">
-                    <p>Reviewing</p>
-                        <h2><?php echo htmlspecialchars($placeName); ?></h2>
-                </div>
+            <div class="reviewing-banner">
+                <p>Reviewing</p>
+                <h2><?php echo htmlspecialchars($placeName); ?></h2>
+            </div>
 
             <?php if ($error): ?>
                 <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
             <?php endif; ?>
 
             <form method="POST" class="review-form">
+
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="star-input" id="starInput">
+                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                            <input type="radio" name="rating" id="star<?php echo $i; ?>" value="<?php echo $i; ?>">
+                            <label for="star<?php echo $i; ?>" class="star-label" data-value="<?php echo $i; ?>">★</label>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>Your Review</label>
                     <textarea name="comments" rows="5"
@@ -93,8 +127,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <a href="Review.php?type=<?php echo $type; ?>&id=<?php echo $refId; ?>"
                        class="btn-cancel">Cancel</a>
                 </div>
-            </form>
 
+            </form>
         </div>
     </div>
 
@@ -106,13 +140,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             else navbar.classList.remove('scrolled');
         });
 
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        const stars = document.querySelectorAll('.star-label');
+        let selectedRating = 0;
 
-        if (localStorage.getItem('theme')=== 'dark') {
-            body.classList.add('dark-mode');
-            darkModeToggle.innerHTML = '☀️Light Mode'
-        }
+        stars.forEach(function(star) {
+            star.addEventListener('mouseover', function() {
+                let val = parseInt(this.getAttribute('data-value'));
+                stars.forEach(function(s) {
+                    s.style.color = parseInt(s.getAttribute('data-value')) <= val ? '#f5a623' : '#ddd';
+                });
+            });
+
+            star.addEventListener('mouseout', function() {
+                stars.forEach(function(s) {
+                    s.style.color = parseInt(s.getAttribute('data-value')) <= selectedRating ? '#f5a623' : '#ddd';
+                });
+            });
+
+            star.addEventListener('click', function() {
+                selectedRating = parseInt(this.getAttribute('data-value'));
+                document.getElementById('star' + selectedRating).checked = true;
+                stars.forEach(function(s) {
+                    s.style.color = parseInt(s.getAttribute('data-value')) <= selectedRating ? '#f5a623' : '#ddd';
+                });
+            });
+            
+        });
     </script>
 </body>
 </html>

@@ -31,6 +31,7 @@ $result = mysqli_query($conn, $sql);
 
 <body>
     <?php include("navbar.php") ?>
+    <?php $notificationShown = false; ?>
     <!--<div class = "body-bg">
         <div id = "body-img">
         </div>
@@ -83,7 +84,17 @@ $result = mysqli_query($conn, $sql);
                             <?php endif; ?>
                             <?php if ($isNearby): ?>
                             <div class="badge">UPCOMING</div>
-                            <?php endif; ?>
+
+                            <?php
+                            if (!$notificationShown) {
+                                $notificationShown = true;
+                                echo "
+                                <script>
+                                    alert('Get ready for Your appointment! Your appointment is within the next 24 hours!');
+                                </script>";
+                            }
+                            ?>
+                        <?php endif; ?>
                             <h3><?= htmlspecialchars($row['clinicName']) ?></h3>
                             <p>📍 <?= htmlspecialchars($row['address']) ?></p>
                             <p>📅 <?= date("d M Y", strtotime($row['dateTime'])) ?></p>
