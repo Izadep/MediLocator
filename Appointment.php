@@ -9,6 +9,16 @@ if(!isset($_SESSION['logged_in'])) {
 $userId = $_SESSION['user_id'];
 $name = $_SESSION['user_name'];
 
+$updatePast = "
+    UPDATE appointment
+    SET status = 'Completed'
+    WHERE userId = '$userId'
+    AND status = 'Pending'
+    AND dateTime < NOW()
+";
+
+mysqli_query($conn, $updatePast);
+
 $sql = "SELECT a.*, c.clinicName, c.address
         FROM appointment a
         JOIN clinic c ON a.clinicId = c.clinicId

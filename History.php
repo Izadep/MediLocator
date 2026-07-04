@@ -11,7 +11,7 @@ $sql = "SELECT a.*, c.clinicName, c.address
         FROM appointment a
         JOIN clinic c ON a.clinicId = c.clinicId
         WHERE a.userId = '$userId'
-        AND a.status = 'History'
+        AND a.status = 'Completed'
         ORDER BY a.dateTime DESC";
 
 $result = mysqli_query($conn, $sql);
