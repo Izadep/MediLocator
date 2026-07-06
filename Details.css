@@ -37,6 +37,7 @@
 }
 
 .healthcare-info{
+    color: var(--navy);
     padding:25px;
 }
 
@@ -52,14 +53,37 @@
     padding: 5px 10px;
     border-radius: 20px;
 }
-
 .status.closed {
     background: #e74c3c;
     color: white;
     padding: 5px 10px;
     border-radius: 20px;
 }
-
+.button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    width: 100%;
+}
+.back-btn {
+    display:block;
+    width:220px;
+    margin:30px;
+    padding:15px;
+    text-align:center;
+    background:#cfcfcf;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    transition: all 0.2s ease;
+}
+.back-btn:hover {
+    background-color: var(--teal-med);
+    transform: translateY(-1px);
+}
 .action-buttons{
     display:flex;
     justify-content: center;
@@ -90,7 +114,7 @@
 .book-btn{
     display:block;
     width:220px;
-    margin:30px auto 0;
+    margin:30px;
     padding:15px;
     text-align:center;
     background:var(--teal-med);

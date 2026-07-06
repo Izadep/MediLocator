@@ -160,7 +160,7 @@ if ($filterType == 'clinic' && $filterId > 0) {
 
                 <div class="button-row">
                 <a href="Search.php?category=<?= urlencode($type) ?>" class="back-btn">
-                    Back
+                    ← Back
                 </a>
                 <?php if ($type == "clinic"): ?>
                     <a href="BookAppointment.php?id= <?= $row['clinicId'] ?>" class="book-btn">
