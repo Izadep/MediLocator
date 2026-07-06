@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <label>Password</label>
                 <div class="input-wrapper">
-                    <input type="password" name="password" id="passIn" minlength="8"required>
+                    <input type="password" name="password" id="passIn" minlength="8" required>
                     <span class="toggle-pass" onclick="togglePass()">👁️</span>
                 </div>
 

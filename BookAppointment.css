@@ -134,3 +134,11 @@ select:focus {
 .confirm-btn:hover {
     background: var(--night-ocean);
 }
+
+.slot-note {
+    color: #777;
+    font-style: italic;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}

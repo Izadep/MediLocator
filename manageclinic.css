@@ -43,6 +43,27 @@
     transform: translateY(-2px);
 }
 
+/* Error Message */
+.admin-content p[style="color:red;"] {
+    background: #ffe5e5;
+    color: #b00020 !important;
+    padding: 12px 15px;
+    border-left: 5px solid #ff4d4d;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-weight: 600;
+}
+
+.admin-content p[style="color:green;"] {
+    background: #e5ffe6;
+    color: #56bb52 !important;
+    padding: 12px 15px;
+    border-left: 5px solid #348f24;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-weight: 600;
+}
+
 /* Edit Button */
 .btn-edit{
     display: inline-block;
@@ -79,4 +100,84 @@
 .btn-add:hover {
     background: var(--night-ocean);
     transform: translateY(-2px);
+}
+
+.admin-content p[style="color:red;"] {
+    background: #ffe5e5;
+    color: #b00020 !important;
+    padding: 12px 15px;
+    border-left: 5px solid #ff4d4d;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-weight: 600;
+}
+
+.search-form {
+    margin: 20px 0 18px 0;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.search-container input {
+    width: 380px;
+    max-width: 100%;
+    padding: 13px 16px;
+    border: 1px solid #b8d8d5;
+    border-radius: 10px;
+    font-size: 15px;
+    background: #ffffff;
+    color: #001d4f;
+    outline: none;
+}
+
+.search-container input:focus {
+    border-color: #61bcae;
+    box-shadow: 0 0 0 3px rgba(97, 188, 174, 0.2);
+}
+
+.search-icon,
+.reset-btn {
+    padding: 13px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.search-icon {
+    background: #61bcae;
+    color: white;
+}
+
+.search-icon:hover {
+    background: #4aa89a;
+}
+
+.reset-btn {
+    background: #415c77;
+    color: white;
+}
+
+.reset-btn:hover {
+    background: #2f455c;
+}
+
+.no-result-message {
+    margin-top: 20px;
+    padding: 18px;
+    text-align: center;
+    background: #fff8e1;
+    color: #8a6d3b;
+    border: 1px solid #f0d98a;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
 }

@@ -1,10 +1,29 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    echo "<script>
+        alert('Please log in to book an appointment.');
+        window.location.href = 'Login.php';
+    </script>";
+    exit();
+}
+
 include("database.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $_POST["date"];
     $time = $_POST["time"] ?? '';
+
+    if (empty($time)) {
+    echo "<script>
+        alert('Please select a time slot.');
+        window.history.back();
+    </script>";
+    exit();
+}
+
+
     $today = date("Y-m-d");
     $maxDate = date("Y-m-d", strtotime("+3 months"));
 
@@ -18,28 +37,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = mysqli_real_escape_string($conn, $_POST["type"]);
 
     $dateTime = $date . " " . $time;
+    
 
     $userId = $_SESSION["user_id"];
     $clinicId = (int)$_GET['id'];
+
+    $userCheck = "
+    SELECT * FROM appointment
+    WHERE userId = '$userId'
+    AND dateTime = '$dateTime'
+    AND status = 'Pending'
+    ";
+
+    $userResult = mysqli_query($conn, $userCheck);
+
+        if (mysqli_num_rows($userResult) > 0) {
+            echo "<script>
+                alert('You already have an appointment at this time slot.');
+                window.location.href = 'BookAppointment.php?id=$clinicId';
+            </script>";
+            exit();
+        }
+
+        
 
     $idQuery = "SELECT COUNT(*) AS total FROM appointment";
     $idResult = mysqli_query($conn, $idQuery);
     $idRow = mysqli_fetch_assoc($idResult);
 
     $appointmentId = "APT" . str_pad($idRow['total'] + 1, 3, "0", STR_PAD_LEFT);
-    $check = "SELECT * FROM appointment 
-          WHERE clinicId = $clinicId 
-          AND dateTime = '$dateTime'";
+    // Check if clinic slot already booked
+    $check = "
+        SELECT * FROM appointment 
+        WHERE clinicId = $clinicId 
+        AND dateTime = '$dateTime'
+        AND status = 'Pending'
+    ";
 
     $result = mysqli_query($conn, $check);
 
     if (mysqli_num_rows($result) > 0) {
         echo "<script>
-        alert('This time slot is already booked.');
-        window.location.href = 'BookAppointment.php?id=$clinicId';
+            alert('This time slot is already booked.');
+            window.location.href = 'BookAppointment.php?id=$clinicId';
         </script>";
         exit();
     }
+    
     $sql = "INSERT INTO appointment
             (appointmentId, dateTime, userId, clinicId, type)
             VALUES
@@ -54,9 +98,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $clinicId = $_GET['id'] ?? 0;
 
-$sql = "SELECT clinicName, specialty FROM clinic WHERE clinicId = $clinicId";
+$sql = "SELECT clinicName, specialty, specialServices, opHourStart, opHourEnd 
+        FROM clinic 
+        WHERE clinicId = $clinicId";
 $result = mysqli_query($conn, $sql);
 $clinic = mysqli_fetch_assoc($result);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -93,15 +141,43 @@ $clinic = mysqli_fetch_assoc($result);
 
                 <div class="section">
                     <h3>Select Time</h3>
+                    <h5 class = "slot-note" >Available slots are based on the clinic's operating hours.</h5>
+
 
                     <div class="time-grid">
                         <input type="hidden" name="time" id="selectedTime" required>
-                        <button type="button" class="time-btn" data-time="10:00:00">10:00 AM</button>
-                        <button type="button" class="time-btn" data-time="11:00:00">11:00 AM</button>
-                        <button type="button" class="time-btn" data-time="14:00:00">02:00 PM</button>
-                        <button type="button" class="time-btn" data-time="15:00:00">03:00 PM</button>
-                        <button type="button" class="time-btn" data-time="16:00:00">04:00 PM</button>
-                        <button type="button" class="time-btn" data-time="17:00:00">05:00 PM</button>
+                       <?php
+                        $start = $clinic['opHourStart'] ?? '09:00:00';
+                        $end = $clinic['opHourEnd'] ?? '17:00:00';
+
+                        $openTime = strtotime($start);
+                        $closeTime = strtotime($end);
+
+                        $firstSlot = $openTime + (30 * 60);
+                        $lastSlot = $closeTime - (60 * 60);
+
+                        // First slot: 30 minutes after opening
+                        $slotValue = date("H:i:s", $firstSlot);
+                        $slotLabel = date("h:i A", $firstSlot);
+
+                        echo '<button type="button" class="time-btn" data-time="' . $slotValue . '">'
+                            . $slotLabel .
+                            '</button>';
+
+                        // Next slots: every full hour
+                        $startHour = strtotime(date("Y-m-d H:00:00", $openTime)) + (60 * 60);
+
+                        while ($startHour <= $lastSlot) {
+                            $slotValue = date("H:i:s", $startHour);
+                            $slotLabel = date("h:i A", $startHour);
+
+                            echo '<button type="button" class="time-btn" data-time="' . $slotValue . '">'
+                                . $slotLabel .
+                                '</button>';
+
+                            $startHour += 60 * 60;
+                        }
+                        ?>
                     </div>
                 </div>
 

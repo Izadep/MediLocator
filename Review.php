@@ -17,7 +17,7 @@ if (isset($_GET['delete']) && isset($_SESSION['logged_in'])) {
 
 if ($filterType == 'clinic' && $filterId > 0) {
     $sql = "SELECT r.reviewId, r.rating, r.comments, r.reviewDate, r.userId,
-                   u.name AS userName, c.clinicName AS placeName
+                   u.name AS userName, c.clinicName AS placeName, u.picture as userPicture
             FROM review r
             LEFT JOIN users u ON r.userId = u.userId
             LEFT JOIN clinic c ON r.clinicId = c.clinicId
@@ -25,7 +25,7 @@ if ($filterType == 'clinic' && $filterId > 0) {
             ORDER BY r.reviewDate DESC";
 } elseif ($filterType == 'pharmacy' && $filterId > 0) {
     $sql = "SELECT r.reviewId, r.rating, r.comments, r.reviewDate, r.userId,
-                   u.name AS userName, p.pharmacyName AS placeName
+                   u.name AS userName, p.pharmacyName AS placeName, u.picture as userPicture
             FROM review r
             LEFT JOIN users u ON r.userId = u.userId
             LEFT JOIN pharmacy p ON r.pharmacyId = p.pharmacyId
@@ -34,7 +34,7 @@ if ($filterType == 'clinic' && $filterId > 0) {
 } else {
     $sql = "SELECT r.reviewId, r.rating, r.comments, r.reviewDate, r.userId,
                    u.name AS userName,
-                   COALESCE(c.clinicName, p.pharmacyName) AS placeName
+                   COALESCE(c.clinicName, p.pharmacyName) AS placeName, u.picture as userPicture
             FROM review r
             LEFT JOIN users u ON r.userId = u.userId
             LEFT JOIN clinic c ON r.clinicId = c.clinicId
@@ -48,6 +48,7 @@ if (!$result) {
 }
 
 $reviews = [];
+
 while ($row = mysqli_fetch_assoc($result)) {
     $reviews[] = $row;
 }
@@ -85,12 +86,27 @@ while ($row = mysqli_fetch_assoc($result)) {
                     <?php foreach ($reviews as $row): ?>
                     <div class="review-card">
                         <div class="review-top">
-                            <div>
-                                <strong><?php echo htmlspecialchars($row['userName'] ?? 'Anonymous'); ?></strong><br>
-                                <small><?php echo htmlspecialchars($row['placeName'] ?? ''); ?></small>
+                            <div class="review-user">
+                                <div class="profile-pic">
+                                    <img src="<?php echo htmlspecialchars($row['userPicture']); ?>" alt="Profile Picture">
+                                </div>
+                                <div class="user-info">
+                                    <strong><?php echo htmlspecialchars($row['userName'] ?? 'Anonymous'); ?></strong>
+                                    <small><?php echo htmlspecialchars($row['placeName'] ?? ''); ?></small>
+                                </div>
                             </div>
-                            <div>
-                                <small><?php echo htmlspecialchars($row['reviewDate']); ?></small>
+                            <div class="review-right">
+                                <div class="star-display">
+                                    <?php
+                                       $rating = (int)($row['rating'] ?? 0);
+                                      for ($i = 1; $i <= 5; $i++):
+                                     ?>
+                                    <span style="color: <?php echo $i <= $rating ? '#f5a623' : '#ddd'; ?>; font-size:1.2rem;">★</span>
+                                     <?php endfor; ?>
+                                </div>
+                                <small class="review-date">
+                                    <?php echo htmlspecialchars($row['reviewDate']); ?>
+                                </small>
                             </div>
                         </div>
                         <p><?php echo htmlspecialchars($row['comments']); ?></p>
@@ -120,9 +136,9 @@ while ($row = mysqli_fetch_assoc($result)) {
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
 
-        if (localStorage.getItem('theme')=== 'dark') {
+        if (localStorage.getItem('theme') === 'dark') {
             body.classList.add('dark-mode');
-            darkModeToggle.innerHTML = '☀️Light Mode'
+            darkModeToggle.innerHTML = '☀️Light Mode';
         }
     </script>
 </body>

@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 WHERE clinicId = $id";
 
         if (mysqli_query($conn, $sql)) {
-            header("Location: manageclinic.php");
+            header("Location: manageclinic.php?success=updated");
             exit();
         } else {
             $error = "Update failed: " . mysqli_error($conn);
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!mysqli_query($conn, $sql)) {
             die("MySQL Error: " . mysqli_error($conn));
         } else {
-            header("Location: manageclinic.php");
+            header("Location: manageclinic.php?success=added");
             exit();
         }
     }
@@ -121,6 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php if ($error): ?>
          <p style="color:red;"><?php echo $error; ?></p>
         <?php endif; ?>
+
 
         <form method="POST" class="admin-form" enctype="multipart/form-data">
             <input type="hidden" name="clinicId" value="<?php echo htmlspecialchars($clinic['clinicId']); ?>">

@@ -9,6 +9,16 @@ if(!isset($_SESSION['logged_in'])) {
 $userId = $_SESSION['user_id'];
 $name = $_SESSION['user_name'];
 
+$updatePast = "
+    UPDATE appointment
+    SET status = 'Completed'
+    WHERE userId = '$userId'
+    AND status = 'Pending'
+    AND dateTime < NOW()
+";
+
+mysqli_query($conn, $updatePast);
+
 $sql = "SELECT a.*, c.clinicName, c.address
         FROM appointment a
         JOIN clinic c ON a.clinicId = c.clinicId
@@ -31,6 +41,7 @@ $result = mysqli_query($conn, $sql);
 
 <body>
     <?php include("navbar.php") ?>
+    <?php $notificationShown = false; ?>
     <!--<div class = "body-bg">
         <div id = "body-img">
         </div>
@@ -83,7 +94,17 @@ $result = mysqli_query($conn, $sql);
                             <?php endif; ?>
                             <?php if ($isNearby): ?>
                             <div class="badge">UPCOMING</div>
-                            <?php endif; ?>
+
+                            <?php
+                            if (!$notificationShown) {
+                                $notificationShown = true;
+                                echo "
+                                <script>
+                                    alert('Get ready for Your appointment! Your appointment is within the next 24 hours!');
+                                </script>";
+                            }
+                            ?>
+                        <?php endif; ?>
                             <h3><?= htmlspecialchars($row['clinicName']) ?></h3>
                             <p>📍 <?= htmlspecialchars($row['address']) ?></p>
                             <p>📅 <?= date("d M Y", strtotime($row['dateTime'])) ?></p>
