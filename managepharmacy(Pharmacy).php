@@ -110,7 +110,7 @@ $userId = $_SESSION['user_id'] ?? null;
 
             <?php if (isset($_GET['error']) && $_GET['error'] == 'has_records'): ?>
                 <p style="color:red;">
-                    This pharmacy cannot be deleted because it still has appointment or review records.
+                    This pharmacy cannot be deleted because it still has review records.
                 </p>
             <?php endif; ?>
 
