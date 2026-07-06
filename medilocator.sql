@@ -467,3 +467,21 @@ ALTER TABLE `review` MODIFY `rating` int(11) NOT NULL; --make the star rating no
 
 ALTER TABLE review
 MODIFY COLUMN rating DECIMAL(2,1) NOT NULL; --tukar int jdi decimal--
+
+ALTER TABLE clinic
+ADD userId VARCHAR(12);
+
+ALTER TABLE clinic
+ADD CONSTRAINT fk_clinic_user
+FOREIGN KEY (userId) REFERENCES users(userId)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+ALTER TABLE pharmacy
+ADD userId VARCHAR(12);
+
+ALTER TABLE pharmacy
+ADD CONSTRAINT fk_pharmacy_user
+FOREIGN KEY (userId) REFERENCES users(userId)
+ON DELETE CASCADE
+ON UPDATE CASCADE;

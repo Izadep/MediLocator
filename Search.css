@@ -96,7 +96,7 @@ body {
 .details-btn {
     margin-top: auto;
     margin-left: auto;
-
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
     padding: 10px 20px;
     background: var(--teal);
     color: var(--white);

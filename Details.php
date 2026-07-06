@@ -49,11 +49,28 @@ if ($openTime && $closeTime) {
         $isOpen = ($currentTime >= $openTime || $currentTime <= $closeTime);
     }
 }
-$reviewQuery = "SELECT COUNT(*) AS totalReviews FROM review WHERE clinicId = $id";
+if ($type == "clinic") {
+    $reviewQuery = "
+        SELECT 
+            COUNT(*) AS totalReviews,
+            ROUND(AVG(rating), 1) AS avgRating
+        FROM review
+        WHERE clinicId = $id";
+} else {
+    $reviewQuery = "
+        SELECT 
+            COUNT(*) AS totalReviews,
+            ROUND(AVG(rating), 1) AS avgRating
+        FROM review
+        WHERE pharmacyId = $id";
+}
+
 $reviewResult = mysqli_query($conn, $reviewQuery);
 $reviewRow = mysqli_fetch_assoc($reviewResult);
 
 $totalReviews = $reviewRow['totalReviews'];
+$avgRating = $reviewRow['avgRating'] ?? 0;
+
 $image = ($type == "clinic")
     ? $row['clinicImage']
     : $row['pharmacyImage'];
@@ -130,7 +147,11 @@ if ($filterType == 'clinic' && $filterId > 0) {
                 <h2><?php echo htmlspecialchars($row['clinicName'] ?? $row['pharmacyName']); ?></h2>
 
                 <div class="rating-status">
-                    ⭐ <?= $totalReviews ?> Reviews
+                     <?php if ($totalReviews > 0): ?>
+                        ⭐ <?= $avgRating ?> (<?= $totalReviews ?> Reviews)
+                    <?php else: ?>
+                        ⭐ No reviews yet
+                    <?php endif; ?>
                     <span class="status <?= $isOpen ? 'open' : 'closed' ?>">
                         <?= $isOpen ? 'OPEN' : 'CLOSED' ?>
                     </span>

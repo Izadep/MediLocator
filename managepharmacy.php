@@ -6,24 +6,32 @@ include 'adminauth.php';
 if (isset($_GET['delete'])) {
     $id = (int) $_GET['delete'];
 
+    // Check if pharmacy has reviews
+    $check = mysqli_query($conn, "SELECT COUNT(*) AS total FROM review WHERE pharmacyId = $id");
+    $data = mysqli_fetch_assoc($check);
+
+    if ($data['total'] > 0) {
+        header("Location: managepharmacy.php?error=has_review");
+        exit();
+    }
+
+    // Get image
     $result = mysqli_query($conn, "SELECT pharmacyImage FROM pharmacy WHERE pharmacyId = $id");
     $pharmacy = mysqli_fetch_assoc($result);
 
     if ($pharmacy && !empty($pharmacy['pharmacyImage'])) {
         $imagePath = $pharmacy['pharmacyImage'];
 
-        // Only delete files inside image folder
         if (strpos($imagePath, 'image/') === 0 && file_exists($imagePath)) {
             unlink($imagePath);
         }
     }
 
-
+    // Delete pharmacy
     mysqli_query($conn, "DELETE FROM pharmacy WHERE pharmacyId = $id");
 
     header("Location: managepharmacy.php?deleted=success");
     exit();
-
 }
 
 $result = mysqli_query($conn, "SELECT * FROM pharmacy ORDER BY pharmacyId");
@@ -71,9 +79,13 @@ if ($searchSafe !== '') {
             ?>
             
             <a href="pharmacyform.php" class="btn-add">+ Add Pharmacy</a>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'has_review'): ?>
+            <p style="color:red;">This pharmacy cannot be deleted because it has review records.</p>
+        <?php endif; ?>
         
         <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 'success'): ?>
-            <p style="color:red;">Pharmacy deleted successfully.</p>  
+            <p style="color:green;">Pharmacy deleted successfully.</p>  
         <?php endif; ?>
 
         <?php if (isset($_GET['success']) && $_GET['success'] == 'added'): ?>

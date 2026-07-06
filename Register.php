@@ -35,13 +35,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $userid = "USR" . str_pad($newNum, 3, "0", STR_PAD_LEFT);
             } else {
                 $userid = "USR001";
+                
 }
 
             // 🔐 HASH PASSWORD
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $defaultpic = 'image/ProfileEmpty.png';
 
-            $sql = "INSERT INTO users (userid, name, pass, email, role)
-                    VALUES ('$userid', '$name', '$hashedPassword', '$email', 'user')";
+            $emailLower = strtolower($email);
+
+            if (str_ends_with($emailLower, '@clinic')) {
+                $role = 'clin';
+            } elseif (str_ends_with($emailLower, '@pharmacy')) {
+                $role = 'phar';
+            } else {
+                $role = 'user';
+            }
+            $sql = "INSERT INTO users (userid, name, pass, email, role, picture)
+                    VALUES ('$userid', '$name', '$hashedPassword', '$email', '$role', '$defaultpic')";
 
             if(mysqli_query($conn, $sql)) {
                 header("Location: Login.php?register_success=1");

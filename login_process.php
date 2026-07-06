@@ -1,8 +1,9 @@
-<?php 
+<?php
 session_start();
 include 'database.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
@@ -10,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) == 1) {
+
         $user = mysqli_fetch_assoc($result);
 
         if (password_verify($password, $user['pass'])) {
@@ -24,31 +26,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!empty($user['picture'])) {
                 $_SESSION['user-img'] = $user['picture'];
             } else {
-                // Jika user belum pernah upload gambar, guna gambar default
-                // Pastikan awak letak gambar bernama "default.png" dalam folder ProfilePic
-                $_SESSION['user-img'] = 'ProfilePic/default.png'; 
+                $_SESSION['user-img'] = 'image/ProfileEmpty.png';
             }
 
             if ($user['role'] == 'admin') {
                 header("Location: admindashboard.php");
-                exit();
-            } else {
+            } elseif ($user['role'] == 'clin') {
+                header("Location: ClinicDashboard.php");
+            } elseif ($user['role'] == 'phar') {
+                header("Location: PharmacyDashboard.php");
+            } elseif ($user['role'] == 'user') {
                 header("Location: HomeScreen.php");
-                exit();
+            } else {
+                header("Location: Login.php?error=invalid_role");
             }
+            exit();
 
         } else {
             header("Location: Login.php?error=wrong_password");
             exit();
         }
+
     } else {
         header("Location: Login.php?error=user_not_found");
         exit();
     }
+
 } else {
     header("Location: Login.php");
     exit();
 }
 
 mysqli_close($conn);
-?>

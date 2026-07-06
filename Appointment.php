@@ -85,7 +85,7 @@ $result = mysqli_query($conn, $sql);
                         ?>
                         <div class="appointment-card <?= $isNearby ? 'nearby' : '' ?>">
                             <?php if ($isDue && $row['status'] == 'Pending'): ?>
-                                <form method="POST" action="updateStatus.php" class="history-btn-form">
+                                <form method="POST" action="UpdateStatus.php" class="history-btn-form">
                                     <input type="hidden" name="appointmentId" value="<?= $row['appointmentId'] ?>">
                                     <button type="submit" class="history-btn">
                                         Move to History

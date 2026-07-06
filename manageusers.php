@@ -32,6 +32,48 @@ if (isset($_GET['delete'])) {
 }
 
 $result = mysqli_query($conn, "SELECT * FROM users ORDER BY userId");
+
+$clinicId = mysqli_real_escape_string($conn, $_GET['delete']);
+
+$appointmentCheck = mysqli_query($conn,
+    "SELECT COUNT(*) AS total FROM appointment WHERE clinicId = '$clinicId'");
+
+$reviewCheck = mysqli_query($conn,
+    "SELECT COUNT(*) AS total FROM review WHERE clinicId = '$clinicId'");
+
+$appointmentData = mysqli_fetch_assoc($appointmentCheck);
+$reviewData = mysqli_fetch_assoc($reviewCheck);
+
+if ($appointmentData['total'] > 0) {
+    header("Location: manageclinic.php?error=has_appointment");
+    exit();
+}
+
+if ($reviewData['total'] > 0) {
+    header("Location: manageclinic.php?error=has_review");
+    exit();
+}
+
+mysqli_query($conn, "DELETE FROM clinic WHERE clinicId = '$clinicId'");
+header("Location: manageclinic.php?deleted=success");
+exit();
+
+$pharmacyId = mysqli_real_escape_string($conn, $_GET['delete']);
+
+$reviewCheck = mysqli_query($conn,
+    "SELECT COUNT(*) AS total FROM review WHERE pharmacyId = '$pharmacyId'");
+
+$reviewData = mysqli_fetch_assoc($reviewCheck);
+
+if ($reviewData['total'] > 0) {
+    header("Location: managepharmacy.php?error=has_review");
+    exit();
+}
+
+// Safe to delete
+mysqli_query($conn, "DELETE FROM pharmacy WHERE pharmacyId = '$pharmacyId'");
+header("Location: managepharmacy.php?deleted=success");
+exit();
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +92,18 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY userId");
         <div class="admin-title">MediLocator Admin</div>
         <h1>Manage Users</h1>
         <a href="userform.php" class="btn-add">+ Add Admin</a>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'has_review'): ?>
+            <p style="color:red;">This pharmacy cannot be deleted because it has review records.</p>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'has_appointment'): ?>
+            <p style="color:red;">This clinic cannot be deleted because it has appointment records.</p>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'has_review'): ?>
+            <p style="color:red;">This clinic cannot be deleted because it has review records.</p>
+        <?php endif; ?>
 
         <?php if (isset($_GET['error']) && $_GET['error'] == 'self'): ?>
             <p style="color:red;">You can't delete your own admin account while logged in.</p>
