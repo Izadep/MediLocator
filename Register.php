@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // 🔐 HASH PASSWORD
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $defaultpic = 'ProfileEmpty.png';
+            $defaultpic = 'image/ProfileEmpty.png';
 
             $emailLower = strtolower($email);
 

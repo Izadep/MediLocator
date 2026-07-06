@@ -26,7 +26,7 @@ $category = $_GET['category'] ?? '';
     <div class = "container">
         <form action="Search.php" method="get" class="slide-in" style="animation-delay: 0.2s;">
             <div class="search-container">
-                <input type="text" name="search" placeholder="Search Clinic or Pharmacy" id="SearchBar" required>
+                <input type="text" name="search" placeholder=" <?php echo htmlspecialchars($search); ?> "id="SearchBar" required>
                 <button type="submit" class="search-icon">
                     <img src="image/kanta.png">
                 </button>

@@ -35,8 +35,8 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment</title>
-    <link rel="stylesheet" href="User/Main.css">
-    <link rel="stylesheet" href="User/Appointment.css">
+    <link rel="stylesheet" href="Main.css">
+    <link rel="stylesheet" href="Appointment.css">
 </head>
 
 <body>
@@ -62,7 +62,7 @@ $result = mysqli_query($conn, $sql);
                             </div>
                         </div>
                     </div>
-                    <a href="User/History.php" class="history-link">History</a>
+                    <a href="History.php" class="history-link">History</a>
                 </div>
                 <hr>
                 <div class="appointment-content">
@@ -85,7 +85,7 @@ $result = mysqli_query($conn, $sql);
                         ?>
                         <div class="appointment-card <?= $isNearby ? 'nearby' : '' ?>">
                             <?php if ($isDue && $row['status'] == 'Pending'): ?>
-                                <form method="POST" action="User/UpdateStatus.php" class="history-btn-form">
+                                <form method="POST" action="UpdateStatus.php" class="history-btn-form">
                                     <input type="hidden" name="appointmentId" value="<?= $row['appointmentId'] ?>">
                                     <button type="submit" class="history-btn">
                                         Move to History
@@ -122,7 +122,7 @@ $result = mysqli_query($conn, $sql);
             </div>
         </div>
 
-    <?php include("User/footer.php") ?>
+    <?php include("footer.php") ?>
     <script>
         window.addEventListener('scroll',function(){
                 var navbar= document.getElementById('navbar');
